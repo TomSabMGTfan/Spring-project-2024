@@ -1,38 +1,38 @@
-import express from "express";
-import dotenv from "dotenv";
+import express from 'express';
+import dotenv from 'dotenv';
+
 dotenv.config();
 
-import { connectDB } from "./connectionToDataBase/postgresConnection.mjs";
+import { connectDB } from './db/postgresConnection.mjs';
 
-// import passport from './strategies/auth.mjs' -- For future
+import passport from './strategies/auth.mjs';
 
-// import usersRouter from ...
+import usersRouter from './routes/index.mjs';
 
 const app = express();
 
-const startServer = async () => {
-  // async is used because we dont want the script to run first, we need to await for connection with database
-  try {
-    const message = await connectDB();
-    console.log(message);
+const startServer = async () => { // async nes nenoriu iskart paleisti script, naudoju await connection su duomenu baze
+	try {
+		const message = await connectDB(); // laukiame kol susijungs su duomenu baze todel naudoju await = await connection to database
+		console.log(message);
 
-    app.use(express.json());
+		app.use(express.json());
 
-    app.use(passport.initialize());
+		app.use(passport.initialize());
 
-    app.use("/api/v1/library", usersRouter);
+		app.use('/api/v1/library', usersRouter);
 
-    const port = process.env.PORT;
+		const port = process.env.PORT;
 
-    app.listen(port, () => {
-      console.log(`Server is running and listening on port ${port}`);
-    });
-  } catch (error) {
-    console.error("Failed to connect to database", error);
+		app.listen(port, () => {
+			console.log(`Server is running and listening on port ${port}`);
+		});
 
-    process.exit(1);
-  }
+	} catch (error) {
+		console.error('Failed to connect to database', error);
+
+		process.exit(1);
+	}
 };
-
 
 startServer();
