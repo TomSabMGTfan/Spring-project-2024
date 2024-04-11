@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { pool } from '../db/postgresConnection.mjs';
 
 const userModel = {
