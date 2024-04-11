@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from 'react';
 // jwtDecode yra biblioteka, kuri yra naudojama, kad iš tokeno išgauti vartotojo duomenis
 //  tai nėra, kad nuskaitytu iš serverio duomenis
 // ar kad išsaugotų duomenis į serverį, tai tik iš tokeno išgauna vartotojo duomenis
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import { apiClient } from '../api/apis';
 
 // Pats context principas yra tas, kad mes sukuriame vieną objektą, kuris bus pasiekiamas visoje programoje
