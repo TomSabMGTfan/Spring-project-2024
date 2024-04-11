@@ -1,22 +1,57 @@
-import { useState } from 'react'
+import { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import RegistrationForm from "./components/RegisterForm"
-
-import './App.css'
+import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
+import UserDashboard from './components/UserDashboard';
+import AdminDashboard from './components/AdminDashboard';
+import PrivateRoute from './routes/privateRoutes';
+import { AuthContext } from './utils/AuthContext';
 
 function App() {
-  
+  const { user: authUser, logoutUser } = useContext(AuthContext); 
 
   return (
-    <>
     <Router>
+      <nav>
+        <ul>
+          {!authUser ? (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/">Register</Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <button onClick={logoutUser}>Logout</button>
+            </li>
+          )}
+        </ul>
+      </nav>
       <Routes>
-        <Route path='/Signup' element={<RegistrationForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/" element={<RegisterForm />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute roles={['user']}>
+              <UserDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <PrivateRoute roles={['admin']}>
+              <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
-      
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
