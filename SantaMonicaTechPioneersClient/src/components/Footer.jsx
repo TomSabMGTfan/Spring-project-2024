@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import './Footer.css'
+import './css/Footer.css'
 
 const Footer = () => {
   return (
@@ -24,10 +24,10 @@ const Footer = () => {
 
 export default Footer;
 
-{/* <ul className='list-unstyled'>
+ <ul className='list-unstyled'>
                 <li><a href="https://www.facebook.com/"><i className='fab fa-facebook-f'></i></a></li>
                 <li><a href="https://lt.linkedin.com/"><i className='fa-brands fa-linkedin'></i></a></li>
                 <li><a href="https://www.instagram.com/"><i className='fa-brands fa-square-instagram'></i></a></li>
-                </ul> */}
+                </ul> 
 
 

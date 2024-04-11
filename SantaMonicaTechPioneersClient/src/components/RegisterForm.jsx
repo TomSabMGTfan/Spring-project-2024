@@ -56,27 +56,39 @@ function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('username', { required: true, minLength: 6, maxLength: 32 })} placeholder="Username" />
-      {errors.username && <p>Username is required and must be between 6 and 32 characters</p>}
 
-      <input
+    <div className='registration_form'>
+      <h1 >Sign up</h1>
+      <h3>for free</h3>
+      
+    <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
+      <p className='input_text'>User name</p>
+      <input className='input_field' {...register('username', { required: true, minLength: 6, maxLength: 32 })} placeholder="Enter your user name" />
+      {errors.username && <p>Username is required and must be between 6 and 32 characters</p>}
+      <p className='input_text'>Email</p>
+<input className='input_field' type="email" {...register('email', { required: true })} placeholder="Enter your email address" />
+      {errors.email && <p>{errors.email.message}</p>}
+      <p className='input_text'>Password</p>
+      <input className='input_field'
         type="password"
         {...register('password', { required: true, minLength: 8, maxLength: 128 })}
-        placeholder="Password"
+        placeholder="Enter your password"
       />
       {errors.password && <p>Password is required and must be between 8 and 128 characters</p>}
+      <p className='input_text'>Use 8 or more characters with a mix of letters, numbers & symbols</p>
+      <p className='input_text'>By creating an account, you agree to the <u><b>Terms of use</b></u> and <u><b>Privacy Policy.</b></u></p>
 
-      <input type="password" {...register('repeatPassword', { required: true })} placeholder="Repeat Password" />
-      {errors.repeatPassword && <p>Please repeat your password</p>}
+    
 
-      <input type="email" {...register('email', { required: true })} placeholder="Email" />
-      {errors.email && <p>{errors.email.message}</p>}
+      
 
       {serverError ? <p>{serverError}</p> : successMessage && <p>{successMessage}</p>}
 
-      <button type="submit">Register</button>
+      <button className='input_field' type="submit">Sign up</button>
+      <p className='input_text'>Already have an account?   <u><b>Log in</b></u></p>
+
     </form>
+    </div>
   );
 }
 
