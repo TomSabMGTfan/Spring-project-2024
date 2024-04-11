@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ const startServer = async () => { // async nes nenoriu iskart paleisti script, n
 		const message = await connectDB(); // laukiame kol susijungs su duomenu baze todel naudoju await = await connection to database
 		console.log(message);
 
+
+		app.use(cors());
 		app.use(express.json());
 
 		app.use(passport.initialize());
