@@ -1,44 +1,48 @@
 import bcrypt from 'bcrypt';
+import { validationResult } from 'express-validator';
 
-import userModel from '../models/userModel.mjs'; // Update this path to the path of your User model
+import userModel from '../models/userModel.mjs';
 
 const userController = {
 
+	// POST: User registration
 	createUser: async (req, res) => {
 		try {
-			const { username, password, repeatPassword, email, role = 'user'} = req.body;
-
-			const existingUser = await userModel.getUserByEmail(email);
-			if (existingUser) {
-				res.status(400).json({ message: 'Email already exists.' });
-				return;
+			// Checking for validation errors
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				return res.status(400).json({ errors: errors.array() });
 			}
 
-			if (password !== repeatPassword) {
-				res.status(400).json({ message: 'Passwords do not match.' });
-				return;
-			}
+			const { username, password, email} = req.body;
 
+			// Hashing password
 			const hashedPassword = await bcrypt.hash(password, 10);
 
+			// Creating new user object for user model
 			const newUser = {
 				username,
 				password: hashedPassword,
 				email,
-				registered_on: new Date(),
-				reservations: [],
-				role: 'user' // reikia priskirti default role naujam sukurtam useriui
+				role: "user",
+				registered_on: new Date()
 			};
 
+			// Creating user
 			const createUser = await userModel.createUser(newUser);
-			res.status(201).json(createUser); // reikia res status kad per json grazintu useri pagal createUser funkcija
+
+			res.status(201).json(createUser);
 
 		} catch (err) {
+
+			// Logging
 			console.error(err);
+
 			res.status(500).json({ message: 'An error occurred while creating the user.' });
 		}
 	},
 
+	// POST: User login
 	login: async (req, res) => {
 		try {
 			const { username, email } = req.body;
@@ -50,6 +54,7 @@ const userController = {
 			if (err.message === 'User not found.' || err.message === 'Invalid credentials.') {
 				res.status(401).json({ message: err.message });
 			} else {
+				console.log(err);
 				res.status(500).json({ message: 'An error occurred while logging in.' });
 			}
 		}

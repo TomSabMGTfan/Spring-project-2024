@@ -5,6 +5,7 @@ dotenv.config();
 
 const { Pool } = pg;
 
+// Configuring database connection
 export const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -15,12 +16,14 @@ export const pool = new Pool({
 
 export const connectDB = () => {
   return new Promise((resolve, reject) => {
-    // pazadi kad grazins dokumentus atgal
+
+    // Connecting to the database
     pool.connect((err) => {
       if (err) {
         console.error("connection error", err.stack);
         reject(err);
-      } else {
+      } 
+      else {
         resolve("Database connected successfully");
       }
     });
