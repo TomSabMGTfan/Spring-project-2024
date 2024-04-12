@@ -3,7 +3,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
-import userController from '../controller/userController.mjs';
+import userController from '../controllers/userController.mjs';
 
 import { userValidationSchema, loginValidationSchema } from '../validators/userValidator.mjs';
 

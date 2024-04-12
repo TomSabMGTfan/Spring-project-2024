@@ -8,26 +8,35 @@ import { connectDB } from './db/postgresConnection.mjs';
 
 import passport from './strategies/auth.mjs';
 
-import usersRouter from './routes/index.mjs';
+import mainRouter from './routes/mainRouter.mjs';
 
 const app = express();
 
-const startServer = async () => { // async nes nenoriu iskart paleisti script, naudoju await connection su duomenu baze
+// Server configuration
+const startServer = async () => { 
 	try {
-		const message = await connectDB(); // laukiame kol susijungs su duomenu baze todel naudoju await = await connection to database
+		// Connecting to database
+		const message = await connectDB();
 		console.log(message);
 
 
 		app.use(cors());
+
+		// Configuring for json body requests
 		app.use(express.json());
 
+		// Authentication & Authorization
 		app.use(passport.initialize());
 
-		app.use('/api/v1/library', usersRouter);
+		// API routes
+		app.use('/api/v1/library', mainRouter);
 
+		// Configuring port
 		const port = process.env.PORT;
 
+		// Starting server
 		app.listen(port, () => {
+			// Logging
 			console.log(`Server is running and listening on port ${port}`);
 		});
 
@@ -38,4 +47,5 @@ const startServer = async () => { // async nes nenoriu iskart paleisti script, n
 	}
 };
 
+// Starting server
 startServer();
