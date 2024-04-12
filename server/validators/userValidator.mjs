@@ -1,7 +1,7 @@
 import { checkSchema, param } from 'express-validator';
 import userModel from '../models/userModel.mjs';
 
-export const userValidationSchema = checkSchema({
+export const registerUserValidationSchema = checkSchema({
 	username: {
 		isLength: {
 			options: { min: 6, max: 32 },
@@ -27,6 +27,23 @@ export const userValidationSchema = checkSchema({
 			errorMessage: 'Password cannot be empty',
 		},
 	},
+	repeatPassword: {
+		isLength: {
+			options: { min: 8, max: 128 },
+			errorMessage: 'Password must be between 8 and 128 characters',
+		},
+		matches: {
+			options: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
+			errorMessage: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+		},
+		notEmpty: {
+			errorMessage: 'Password cannot be empty',
+		},
+		custom: {
+			options: (value, { req }) => value === req.body.password,
+			errorMessage: "Passwords do not match"
+        },
+	},
 	email: {
 		isEmail: {
 			errorMessage: 'Email must be valid',
@@ -36,7 +53,7 @@ export const userValidationSchema = checkSchema({
 		},
 		custom: {
 			options: async (value) => {
-				const existingUser = await userModel.getUserByEmail({ email: value });
+				const existingUser = await userModel.getUserByEmail(value);
 				if (existingUser) {
 					throw new Error('Email already exists.');
 				}
@@ -100,13 +117,4 @@ export const validateUserId = [
 	param('id')
 		.isInt()
 		.withMessage('ID must be an integer')
-];
-
-export const validateReservationParams = [
-	param('userId')
-		.isInt()
-		.withMessage('User ID must be an integer'),
-	param('bookId')
-		.isInt()
-		.withMessage('Book ID must be an integer')
 ];

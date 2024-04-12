@@ -14,7 +14,7 @@ const userModel = {
 	},
 
 	// Getting user from email
-	getUserByEmail: async ({email}) => {
+	getUserByEmail: async (email) => {
 		// Sending query to database
 		const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
 

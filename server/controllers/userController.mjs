@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import { validationResult } from 'express-validator';
 
 import userModel from '../models/userModel.mjs';
 
@@ -7,20 +8,13 @@ const userController = {
 	// POST: User registration
 	createUser: async (req, res) => {
 		try {
-			const { username, password, repeatPassword, email} = req.body;
-
-			// Checking if user already exists
-			const existingUser = await userModel.getUserByEmail(email);
-			if (existingUser) {
-				res.status(400).json({ message: 'Email already exists.' });
-				return;
+			// Checking for validation errors
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				return res.status(400).json({ errors: errors.array() });
 			}
 
-			// Checking if passwords match
-			if (password !== repeatPassword) {
-				res.status(400).json({ message: 'Passwords do not match.' });
-				return;
-			}
+			const { username, password, email} = req.body;
 
 			// Hashing password
 			const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,14 +24,13 @@ const userController = {
 				username,
 				password: hashedPassword,
 				email,
-				registered_on: new Date(),
-				reservations: [],
-				role: 'user'
+				role: "user",
+				registered_on: new Date()
 			};
 
 			// Creating user
 			const createUser = await userModel.createUser(newUser);
-			
+
 			res.status(201).json(createUser);
 
 		} catch (err) {
