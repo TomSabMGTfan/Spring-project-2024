@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom'; 
-import "./css/Registrationform.css"
+import "./css/RegistrationLoginform.css"
 import { registerUser } from '../api/apis';
+import { Link } from 'react-router-dom'
+
 
 function RegisterForm() {
   const {
@@ -85,7 +87,7 @@ function RegisterForm() {
       {serverError ? <p>{serverError}</p> : successMessage && <p>{successMessage}</p>}
 
       <button className='input_field' type="submit">Sign up</button>
-      <p className='input_text'>Already have an account?   <u><b>Log in</b></u></p>
+      <p className='input_text'>Already have an account?   <Link to='/login' style={{color: "black"}}><u><b>Log in</b></u></Link></p>
 
     </form>
     </div>

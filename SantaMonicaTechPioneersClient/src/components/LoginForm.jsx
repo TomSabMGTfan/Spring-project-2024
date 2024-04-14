@@ -2,6 +2,8 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../utils/AuthContext';
+import { Link } from 'react-router-dom'
+import "./css/RegistrationLoginform.css"
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -32,20 +34,29 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Username or Email:
-        <input {...register('login', { required: 'Username is required' })} />
+    <div className='registration_form'>
+    <h1 >Log in</h1>
+    <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
+      <p className='input_text'>Email address or user name</p>
+      
+        <input className='input_field' {...register('login', { required: 'Username is required' })} />
         {errors.username && <p>{errors.username.message}</p>}
-      </label>
-      <label>
-        Password:
-        <input type="password" {...register('password', { required: 'Password is required' })} />
+      
+      
+        <p className='input_text'>Password</p>
+        <input className='input_field' type="password" {...register('password', { required: 'Password is required' })} />
         {errors.password && <p>{errors.password.message}</p>}
-      </label>
+      
       {serverError && <p>{serverError}</p>}
-      <input type="submit" value="Log in" />
+      <p className='input_text'><input type="checkbox" name="Re" id="" />Remember me</p>
+      <p className='input_text'>By continuing you agree to the <u><b>Terms of use</b></u> and <u><b>Privacy Policy.</b></u></p>
+      
+      <button className='input_field' type="submit">Log in</button>
+      <p className='input_text'>   <Link to='/' style={{color: "black", textAlign:"center"}}><u><b>Forgot your password ?</b></u></Link></p>
+      <p className='input_text'>Don’t have an account?   <Link to='/signup' style={{color: "black"}}><u><b>Sign up</b></u></Link></p>
+
     </form>
+    </div>
   );
 }
 
