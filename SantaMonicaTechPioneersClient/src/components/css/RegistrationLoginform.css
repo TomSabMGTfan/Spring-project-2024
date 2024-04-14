@@ -1,0 +1,50 @@
+.registration_form{
+    background-color: white;
+}
+.registration_form_body{
+    display: grid;
+    justify-content:center;
+    font-family: "Kadwa", serif;
+   
+  }
+  h1.form{
+    font-size: 4rem;
+    font-family: "Kadwa", serif;
+  }
+  h3{
+    font-size: 2rem;
+    font-family: "Kadwa", serif;
+  }
+  .input_field{
+    border-radius: 12px;
+    height: 3.125rem;
+    cursor: pointer;
+  }
+
+  input.input_field {
+    width: 36.25rem;
+  }
+  .input_text{
+  text-align: left;
+  margin-bottom: 8px;
+  font-family: "Kadwa", serif;
+  
+  }
+  .input_text:nth-last-child(1){
+    text-align: center;
+    }
+    .input_text:nth-last-child(2){
+        text-align: center;
+        }
+  button.input_field{
+    border-radius: 23px;
+    font-size: 2rem;
+    background-color: #F4F5F8;
+    padding: 0;
+    display: flex;
+        align-items: center; 
+        justify-content: center;
+  
+  }
+  button.input_field:hover{
+    background-color: rgba(72, 143, 199, 0.63);}

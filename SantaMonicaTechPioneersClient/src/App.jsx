@@ -24,7 +24,7 @@ function App() {
      <Header />
     <Router>
     <nav>
-          <ul>
+          
             {!authUser ? (
               <>
 
@@ -33,7 +33,7 @@ function App() {
               <li>
                  <button onClick={logoutUser}>Logout</button>
                  </li>)}
-                 </ul>
+                 
         </nav>
       <Routes>
       <Route path="/login" element={<LoginForm />} />
