@@ -60,7 +60,7 @@ function RegisterForm() {
   return (
 
     <div className='registration_form'>
-      <h1 >Sign up</h1>
+      <h1 className='form'>Sign up</h1>
       <h3>for free</h3>
 
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
