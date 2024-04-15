@@ -76,6 +76,12 @@ function RegisterForm() {
         {...register('password', { required: true, minLength: 8, maxLength: 128 })}
         placeholder="Enter your password"
       />
+      <p className='input_text'>Repeat password</p>
+      <input className='input_field'
+        type="password"
+        {...register('repeatPassword', { required: true, minLength: 8, maxLength: 128 })}
+        placeholder="Enter your password"
+      />
       {errors.password && <p>Password is required and must be between 8 and 128 characters</p>}
       <p className='input_text'>Use 8 or more characters with a mix of letters, numbers & symbols</p>
       <p className='input_text'>By creating an account, you agree to the <u><b>Terms of use</b></u> and <u><b>Privacy Policy.</b></u></p>
