@@ -1,75 +1,87 @@
-footer {
-    background-color: #48BFC7;
-    color: #fff;
-    padding: 20px 75px;
-    
-  }
-  
-  .MainContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .mr-auto {
-    margin-right: auto;
-  }
-  
-  .Icons {
-    display: inline-block;
-    margin: 0 10px;
-    font-size: 40px;
-    padding: 10px;
-  }
-  
-  .Icons a {
-    color: #F4F5F8;
-    text-decoration: none;
-  }
-  
-  .Icons a:hover {
-    color: #ccc;
-  } 
-  .question a {
-    color: black;
-    text-decoration: none;
-    font-size: large;
-    font-weight: bold;
-    
-  }
-  
-  .question a:hover {
-    color: #ccc;
-  }
-  
+.section_pading{
+  padding: 4rem 4rem;
+}
+.footer{
+  background-color: #48BFC7;
+}
+.sb__footer-links{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+.sb__footer-links-div p a{
+  width: 250px;
+  margin: 1rem;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: #000000;
+  margin-left: 15rem;
+}
+.sb__footer-links-div p a:hover{
+  color: #F4F5F8;
+}
 
-/* .MainContainer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
+.sb__footer{
+  display: flex;
+  flex-direction: column;
+}
+.socialmedia{
+  display: flex;
+  flex-direction: row;
+  margin-right: 15rem;
+}
+.socialmedia a{
+  color: #F4F5F8;
+  width: 80%;
+  font-size: 40px;
+  padding: 10px;
+}
+.socialmedia a:hover{
+  color: #ccc;
+}
+
+.sb__footer-links p{
+  font-size: 12px;
+  line-height: 15px;
+  margin: 2.5rem 0;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1420px){
+  .sb__footer-links div{
+    margin: 0.5rem;
+    margin-right: 12rem;
   }
-  
-  .question a {
-    color: #fff;
-    text-decoration: none;
+}
+@media only screen and (max-width: 1115px){
+  .sb__footer-links div{
+    margin: 0.5rem;
+    margin-right: 11rem;
   }
-  
-  .question a:hover {
-    color: #ccc;
+}
+@media only screen and (max-width: 1082px){
+  .sb__footer-links div{
+    margin: 0.5rem;
+    margin-right: 10rem;
   }
-  
-  .Icons {
-    display: inline-block;
-    margin: 0 10px;
+}
+@media only screen and (max-width: 1051px){
+  .sb__footer-links div{
+    margin: 0.5rem;
+    margin-right: 9rem;
   }
-  
-  .Icons a {
-    color: #fff;
-    font-size: 24px;
-    text-decoration: none;
+}
+@media only screen and (max-width: 1018px){
+  .sb__footer-links div{
+    margin: 0.5rem;
+    margin-right: 8rem;
   }
-  
-  .Icons a:hover {
-    color: #ccc;
-  } */
+}
