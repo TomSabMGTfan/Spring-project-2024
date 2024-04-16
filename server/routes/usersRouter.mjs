@@ -16,6 +16,6 @@ router.post('/register', registerUserValidationSchema, userController.createUser
 
 router.post('/login', loginValidationSchema, userController.login);
 
-router.get("/", AuthMiddleware("Admin"), userController.getUserById);
+router.get("/:id", userController.getUserById);
 
 export default router;

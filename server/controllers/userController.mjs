@@ -1,90 +1,110 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { validationResult } from 'express-validator';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { validationResult } from "express-validator";
 
-import userModel from '../models/userModel.mjs';
+import userModel from "../models/userModel.mjs";
 
 const userController = {
+  // POST: User registration
+  createUser: async (req, res) => {
+    try {
+      // Checking for validation errors
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
 
-	// POST: User registration
-	createUser: async (req, res) => {
-		try {
-			// Checking for validation errors
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				return res.status(400).json({ errors: errors.array() });
-			}
+      const { username, password, email } = req.body;
 
-			const { username, password, email} = req.body;
+      // Hashing password
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-			// Hashing password
-			const hashedPassword = await bcrypt.hash(password, 10);
+      // Creating new user object for user model
+      const newUser = {
+        username,
+        password: hashedPassword,
+        email,
+        role: "user",
+        registered_on: new Date(),
+      };
 
-			// Creating new user object for user model
-			const newUser = {
-				username,
-				password: hashedPassword,
-				email,
-				role: "user",
-				registered_on: new Date()
-			};
+      // Creating user
+      const createUser = await userModel.createUser(newUser);
 
-			// Creating user
-			const createUser = await userModel.createUser(newUser);
+      res.status(201).json(createUser);
+    } catch (err) {
+      // Logging
+      console.error(err);
 
-			res.status(201).json(createUser);
+      res
+        .status(500)
+        .json({ message: "An error occurred while creating the user." });
+    }
+  },
 
-		} catch (err) {
+  // POST: User login
+  login: async (req, res) => {
+    try {
+      // Checking for validation errors
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
 
-			// Logging
-			console.error(err);
+      const { login, password } = req.body;
 
-			res.status(500).json({ message: 'An error occurred while creating the user.' });
-		}
-	},
+      // Getting user from given email or username
+      const user = await userModel.login(login);
+      if (!user) {
+        return res
+          .status(400)
+          .json({
+            errors: [
+              { msg: "User with the given email/username does not exist" },
+            ],
+          });
+      }
 
-	// POST: User login
-	login: async (req, res) => {
-		try {
-			// Checking for validation errors
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				return res.status(400).json({ errors: errors.array() });
-			}
+      // Checking if passwords match
+      const passwords_match = await bcrypt.compare(password, user.password);
+      if (!passwords_match) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "Incorrect password" }] });
+      }
 
-			const { login, password } = req.body;
+      // Generating token
+      const token = jwt.sign({ user_id: user.id }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
 
-			// Getting user from given email or username
-			const user = await userModel.login(login);
-			if(!user){
-				return res.status(400).json({errors: [{msg: "User with the given email/username does not exist"}]});
-			}
+      res.status(200).json({ message: "Logged in successfully", token });
+    } catch (err) {
+      // Logging
+      console.log(err);
 
-			// Checking if passwords match
-			const passwords_match = await bcrypt.compare(password, user.password);
-			if(!passwords_match){
-				return res.status(400).json({errors: [{msg: "Incorrect password"}]});
-			}
+      res.status(500).json({ message: "An error occurred while logging in." });
+    }
+  },
 
-			// Generating token
-			const token = jwt.sign({user_id: user.id}, process.env.JWT_SECRET, {expiresIn: '1h'});
-			
-			res.status(200).json({ message: 'Logged in successfully', token });	
-		} catch (err) {
+  // GET: User
+  getUserById: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const user = await userModel.getUserById(id);
 
-			// Logging
-			console.log(err);
+      if (!user) {
+        res.status(400).json({ message: "User not found" });
+        return;
+      }
 
-			res.status(500).json({ message: 'An error occurred while logging in.' });
-		}
-	},
-
-	// GET: User
-	getUserById: async (req, res) => {
-		console.log(req.USER_ID);
-		// TODO: Get user by id
-		return res.status(200).json();
-	}
+      res.status(200).json(user);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "An error has occurred while retrieving the user" });
+    }
+  },
 };
 
 export default userController;
