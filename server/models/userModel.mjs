@@ -21,16 +21,20 @@ const userModel = {
 		return result.rows[0];
 	},
 
-	login: async ({ username, email }) => {
-		const userResult = await pool.query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email]);
+	// Getting user from username
+	getUserByUsername: async (username) => {
+		// Sending query to database
+		const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
 
-		if (userResult.rows.length === 0) {
-			throw new Error('User not found.');
-		}
+		return result.rows[0];
+	},
 
-		const user = userResult.rows[0];
+	// Getting user from username or email 
+	login: async (login) => {
+		// Sending query to database
+		const result = await pool.query('SELECT * FROM users WHERE username = $1 OR email = $2', [login, login]);
 
-		return user;
+		return result.rows[0];;
 	},
 
 	// Getting user from id

@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
 
 import userModel from '../models/userModel.mjs';
@@ -45,19 +46,44 @@ const userController = {
 	// POST: User login
 	login: async (req, res) => {
 		try {
-			const { username, email } = req.body;
-
-			const user = await userModel.login({ username, email });
-			console.log(user);
-			res.status(200).json({ message: 'Logged in successfully.', user });	
-		} catch (err) {
-			if (err.message === 'User not found.' || err.message === 'Invalid credentials.') {
-				res.status(401).json({ message: err.message });
-			} else {
-				console.log(err);
-				res.status(500).json({ message: 'An error occurred while logging in.' });
+			// Checking for validation errors
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				return res.status(400).json({ errors: errors.array() });
 			}
+
+			const { login, password } = req.body;
+
+			// Getting user from given email or username
+			const user = await userModel.login(login);
+			if(!user){
+				return res.status(400).json({errors: [{msg: "User with the given email/username does not exist"}]});
+			}
+
+			// Checking if passwords match
+			const passwords_match = await bcrypt.compare(password, user.password);
+			if(!passwords_match){
+				return res.status(400).json({errors: [{msg: "Incorrect password"}]});
+			}
+
+			// Generating token
+			const token = jwt.sign({user_id: user.id}, process.env.JWT_SECRET, {expiresIn: '1h'});
+			
+			res.status(200).json({ message: 'Logged in successfully', token });	
+		} catch (err) {
+
+			// Logging
+			console.log(err);
+
+			res.status(500).json({ message: 'An error occurred while logging in.' });
 		}
+	},
+
+	// GET: User
+	getUserById: async (req, res) => {
+		console.log(req.USER_ID);
+
+		return res.status(200).json();
 	}
 };
 
