@@ -1,23 +1,37 @@
-import React from 'react'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { useRef } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 import './css/Header.css'
 
-const Header = () => {
-  return (
-    <header>
-      <Navbar bg="primary" variant='primary' data-bs-theme="dark" collapseOnSelect>
-        <Container className="header">
-          <Navbar.Brand href="/"><h1>SantaMonicaTechPioneersClient</h1></Navbar.Brand>
-          <Nav className="ml-auto">
-            <Nav.Link href="./Login"> <i className='fas fa-user'></i>Log in</Nav.Link>
-            <Nav.Link href="#features"><i className='fas fa-address-book'></i>Contact</Nav.Link>
-            <Nav.Link href="#pricing"><i className='fas fa-dollar-sign'></i> Pricing</Nav.Link>
-            <Nav.Link href="/signup"><i className='fas fa-play'></i> Get started</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-    </header>
-  )
+function Navbar() {
+	const navRef = useRef();
+
+	const showNavbar = () => {
+		navRef.current.classList.toggle(
+			"responsive_nav"
+		);
+	};
+
+	return (
+		<header>
+			<h3><a href="/#">SantaMonicaTechPioneersClient</a></h3>
+			<nav ref={navRef}>
+				<a href="/login"><i className='fas fa-user'></i>Log in</a>
+				<a href="#Contact"><i className='fas fa-address-book'></i>Contact</a>
+				<a href="#Pricing"><i className='fas fa-dollar-sign'></i>Pricing</a>
+				<a href="/signup"><i className='fas fa-play'></i>Get started</a>
+				<button
+					className="nav-btn nav-close-btn"
+					onClick={showNavbar}>
+					<FaTimes />
+				</button>
+			</nav>
+			<button
+				className="nav-btn"
+				onClick={showNavbar}>
+				<FaBars />
+			</button>
+		</header>
+	);
 }
 
-export default Header
+export default Navbar;
