@@ -6,8 +6,6 @@ dotenv.config();
 
 import { connectDB } from './db/postgresConnection.mjs';
 
-import passport from './strategies/auth.mjs';
-
 import mainRouter from './routes/mainRouter.mjs';
 
 const app = express();
@@ -24,9 +22,6 @@ const startServer = async () => {
 
 		// Configuring for json body requests
 		app.use(express.json());
-
-		// Authentication & Authorization
-		app.use(passport.initialize());
 
 		// API routes
 		app.use('/api/v1/library', mainRouter);

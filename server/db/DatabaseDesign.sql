@@ -3,10 +3,10 @@ CREATE TYPE ROLE AS ENUM ('user', 'admin');
 
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY, 
-    username VARCHAR(255) NOT NULL, 
+    username VARCHAR(255) NOT NULL UNIQUE, 
     password VARCHAR(255) NOT NULL, 
     email VARCHAR(255) NOT NULL UNIQUE, 
-    role ROLE DEFAULT 'user',
+    role ROLE NOT NULL DEFAULT 'user',
     registered_on DATE NOT NULL 
 );
 
@@ -16,7 +16,7 @@ CREATE TABLE projects (
     id SERIAL PRIMARY KEY, 
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    status STATUS DEFAULT 'in progress'
+    status STATUS NOT NULL DEFAULT 'in progress'
 );
 
 CREATE TABLE project_workers(
@@ -31,7 +31,7 @@ CREATE TABLE tasks(
     id SERIAL PRIMARY KEY, 
     name VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
-    status STATUS DEFAULT 'in progress',
+    status STATUS NOT NULL DEFAULT 'in progress',
     project_id INT NOT NULL,
     CONSTRAINT fk_projects FOREIGN KEY(project_id) REFERENCES projects(id)
 );

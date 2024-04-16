@@ -13,6 +13,14 @@ export const registerUserValidationSchema = checkSchema({
 		isString: {
 			errorMessage: 'Username must be a string!',
 		},
+		custom:{
+			options: async (value) => {
+				const existingUser = await userModel.getUserByUsername(value);
+				if (existingUser) {
+					throw new Error('Username already taken.');
+				}
+			},
+		}
 	},
 	password: {
 		isLength: {
@@ -67,13 +75,7 @@ export const loginValidationSchema = [
 		login: {
 			notEmpty: {
 				errorMessage: 'Login cannot be empty',
-			},
-			custom: {
-				options: (value) => {
-					return value.includes('@') ? checkSchema({ email: { isEmail: true } }) : typeof value === 'string';
-				},
-				errorMessage: 'Login must be a valid email or a username',
-			},
+			}
 		},
 		password: {
 			notEmpty: {
