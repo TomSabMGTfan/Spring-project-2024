@@ -3,7 +3,9 @@ import 'dotenv/config';
 
 import userModel from '../models/userModel.mjs';
 
+// AuthMiddleware itself is not a middleware, it RETURNS a middleware function so in order to use it you need to call it
 export default function AuthMiddleware(role='user'){
+    // Middlware that check if user is authenticated and checks his role based on the AuthMiddleware role argument
     return async function(req, res, next){
         try{
             // Checking if token is provided in the Authorization header

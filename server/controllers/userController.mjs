@@ -82,7 +82,7 @@ const userController = {
 	// GET: User
 	getUserById: async (req, res) => {
 		console.log(req.USER_ID);
-
+		// TODO: Get user by id
 		return res.status(200).json();
 	}
 };
