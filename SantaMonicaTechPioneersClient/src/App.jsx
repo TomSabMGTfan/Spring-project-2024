@@ -23,18 +23,6 @@ function App() {
     <>
      <Header />
     <Router>
-    <nav>
-          
-            {!authUser ? (
-              <>
-
-              </>
-            ) : ( 
-              <li>
-                 <button onClick={logoutUser}>Logout</button>
-                 </li>)}
-                 
-        </nav>
       <Routes>
       <Route path="/login" element={<LoginForm />} />
         <Route path='/Signup' element={<RegistrationForm />} />
