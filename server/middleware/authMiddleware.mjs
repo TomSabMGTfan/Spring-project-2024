@@ -21,7 +21,7 @@ export default function AuthMiddleware(role='user'){
             }
             
             // Checking if user is valid
-            const user = await userModel.getUserById(payload.user_id);
+            const user = await userModel.getUserById(payload.user.id);
             if(!user){
                 throw Error("User no longer exists");
             }
@@ -34,7 +34,7 @@ export default function AuthMiddleware(role='user'){
             }
 
             // Providing user id for the next in the pipeline
-            req.USER_ID = user.id;
+            req.user = user;
             next();
         }
         catch(err){

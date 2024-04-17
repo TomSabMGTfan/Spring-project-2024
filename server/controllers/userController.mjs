@@ -24,7 +24,7 @@ const userController = {
         username,
         password: hashedPassword,
         email,
-        role: "user",
+        role: "admin",
         registered_on: new Date(),
       };
 
@@ -76,8 +76,11 @@ const userController = {
           .json({ errors: [{ msg: "Incorrect password" }] });
       }
 
+      // Deleting password field from user object
+      delete user.password;
+
       // Generating token
-      const token = jwt.sign({ user_id: user.id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ user }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
 
