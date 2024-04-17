@@ -31,6 +31,9 @@ const userController = {
       // Creating user
       const createUser = await userModel.createUser(newUser);
 
+      // Deleting password field from user object
+      delete createUser.password;
+
       res.status(201).json(createUser);
     } catch (err) {
       // Logging
@@ -97,6 +100,8 @@ const userController = {
         res.status(400).json({ message: "User not found" });
         return;
       }
+
+      delete user.password;
 
       res.status(200).json(user);
     } catch (error) {

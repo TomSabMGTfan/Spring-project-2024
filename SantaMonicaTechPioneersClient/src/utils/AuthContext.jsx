@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     console.log('Token from localStorage:', token);
     if (token) {
      // state user yra naudojamas, kad išsaugoti vartotojo duomenis, kurie yra išgaunami iš tokeno tai mes naudojame, kaip kinamąjį user
-      const user = jwtDecode(token);
+      const user = {id: jwtDecode(token).user_id};
       console.log('User from jwtDecode:', user);
       // Tada mes setToken(token) ir setUser(user), kad išsaugoti token ir user state objektuose
       setToken(token);
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
         console.log(token);
         // tai ties ta vieta, mes naudojame user state objektą, kad išsaugoti vartotojo duomenis, kurie yra iš tokeno, kai vartotojas prisijungia
         // o viršuje naudojome useEffect() metodą, kad išsaugoti vartotojo duomenis, kurie yra iš tokeno, tai bus pasiekiamas visada, kai atnaujiname puslapį
-        const user = jwtDecode(token);
+        const user = {id: jwtDecode(token).user_id};
         // Naudojame localStorage.setItem('token', token), tai todėl, kad kai atnaujiname puslapį, tai mes neprarasime prisijungimo duomenų (token ir user)
         console.log('User from loginUser:', user);
         localStorage.setItem('token', token);
