@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { fetchUserData } from '../api/apis';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../utils/AuthContext';
+import {UserNavigation} from './UserNavigation';
 
 function UserDashboard() {
   const { user: authUser } = useContext(AuthContext);
@@ -42,6 +43,7 @@ function UserDashboard() {
 
   return (
     <div>
+      <UserNavigation />
       <h1>Welcome, {userData.username}!</h1>
       <p>Email: {userData.email}</p>
       <p>Role: {userData.role}</p>
