@@ -20,7 +20,9 @@
     height: 3.125rem;
     cursor: pointer;
   }
-
+  .input_error{
+    max-width: 36.25rem;;
+  }
   input.input_field {
     width: 36.25rem;
   }

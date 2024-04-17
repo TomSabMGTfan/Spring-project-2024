@@ -24,7 +24,7 @@ const userController = {
         username,
         password: hashedPassword,
         email,
-        role: "admin",
+        role: "user",
         registered_on: new Date(),
       };
 
@@ -63,7 +63,10 @@ const userController = {
           .status(400)
           .json({
             errors: [
-              { msg: "User with the given email/username does not exist" },
+              { 
+                path: "login",
+                msg: "User with the given email/username does not exist" 
+              },
             ],
           });
       }
@@ -73,7 +76,12 @@ const userController = {
       if (!passwords_match) {
         return res
           .status(400)
-          .json({ errors: [{ msg: "Incorrect password" }] });
+          .json({ errors: [
+            { 
+              path: "password",
+              msg: "Incorrect password" 
+            }
+          ] });
       }
 
       // Deleting password field from user object

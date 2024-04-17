@@ -11,6 +11,7 @@ function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
+    setError
   } = useForm();
   // useContext() metodas yra naudojamas, kad pasiekti AuthContext objektą
   // kaip lifte mes paspaudžiame mygtuką ir galime pasiekti, bet kokį aukšta
@@ -29,7 +30,18 @@ function LoginForm() {
         }
       }
     } catch (error) {
-      setServerError(error.message);
+      if(error.response && error.response.status === 400){
+        const errors = error.response.data.errors;
+        for(let i = 0; i < errors.length; i++){
+          setError(errors[i].path, {
+            type: "manual",
+            message: errors[i].msg
+          });
+        }
+      }
+      else{
+        setServerError(error.message);
+      }
     }
   };
 
@@ -39,13 +51,13 @@ function LoginForm() {
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
       <p className='input_text'>Email address or user name</p>
       
-        <input className='input_field' {...register('login', { required: 'Username is required' })} />
-        {errors.username && <p>{errors.username.message}</p>}
+        <input className='input_field' {...register('login', { required: 'Username/Email is required' })} />
+        {errors.login && <p className='input_error'>{errors.login.message}</p>}
       
       
         <p className='input_text'>Password</p>
         <input className='input_field' type="password" {...register('password', { required: 'Password is required' })} />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && <p className='input_error'>{errors.password.message}</p>}
       
       {serverError && <p>{serverError}</p>}
       <p className='input_text'><input type="checkbox" name="Re" id="" />Remember me</p>
