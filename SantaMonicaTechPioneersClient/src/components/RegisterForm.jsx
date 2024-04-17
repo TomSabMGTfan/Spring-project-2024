@@ -44,13 +44,13 @@ function RegisterForm() {
       // console.log(error.response.data);
       // jeigu iš serverio gauname klaidą, tai ją apdorojame ir nurodome, kad klaida yra email lauke
       if (error.response && error.response.status === 400) {
-        setError('email', {
-          type: 'manual',
-          // error.response.data.errors[0].msg yra klaidos pranešimas iš serverio
-          // geriau yra naudoti klaidos pranešimą iš serverio negu parašant kalidas kliento pusėje, nes serveris gali turėti skirtingus klaidos pranešimus
-          // data.errors[0].msg, pas kiekviena bus skirtingas jeigu naudoiste kitą programavimo kalbą ar kitaip gaunate klaidos pranešimus
-          message: error.response.data.errors[0].msg,
-        });
+        const errors = error.response.data.errors;
+        for(let i = 0; i < errors.length; i++){
+          setError(errors[i].path, {
+            type: "manual",
+            message: errors[i].msg
+          });
+        }
       } else {
         setServerError('Something went wrong. Please try again later');
       }
@@ -64,26 +64,88 @@ function RegisterForm() {
       <h3>for free</h3>
 
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
+
       <p className='input_text'>User name</p>
-      <input className='input_field' {...register('username', { required: true, minLength: 6, maxLength: 32 })} placeholder="Enter your user name" />
-      {errors.username && <p>Username is required and must be between 6 and 32 characters</p>}
+      <input className='input_field' {...register('username', { 
+        required: {
+          value: true,
+          message: "Username is required"
+        }, 
+        minLength: {
+          value: 6,
+          message: "Username must be in between 6 and 32 characters"
+        }, 
+        maxLength: {
+          value: 32,
+          message: "Username must be in between 6 and 32 characters"
+        } 
+        })} placeholder="Enter your user name" />
+      {errors.username && <p className='input_error'>{errors.username.message}</p>}
+      
       <p className='input_text'>Email</p>
-<input className='input_field' type="email" {...register('email', { required: true })} placeholder="Enter your email address" />
-      {errors.email && <p>{errors.email.message}</p>}
+      <input className='input_field' {...register('email', {
+        required: {
+          value: true,
+          message: "Email is required"
+        },
+        pattern: {
+          value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          message: 'Please enter a valid email',
+        } 
+      })} placeholder="Enter your email address" />
+      {errors.email && <p className='input_error'>{errors.email.message}</p>}
+      
       <p className='input_text'>Password</p>
       <input className='input_field'
         type="password"
-        {...register('password', { required: true, minLength: 8, maxLength: 128 })}
+        {...register('password', { 
+          required: {
+            value: true,
+            message: "Password is required"
+          }, 
+          minLength: {
+            value: 8,
+            message: "Password must be in between 8 and 128 characters"
+          }, 
+          maxLength: {
+            value: 128,
+            message: "Password must be in between 8 and 128 characters"
+          },
+          pattern:{
+            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
+            message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+          } 
+        })}
         placeholder="Enter your password"
       />
+      {errors.password && <p className='input_error'>{errors.password.message}</p>}
+
       <p className='input_text'>Repeat password</p>
       <input className='input_field'
         type="password"
-        {...register('repeatPassword', { required: true, minLength: 8, maxLength: 128 })}
+        {...register('repeatPassword', { 
+          required: {
+            value: true,
+            message: "Password is required"
+          }, 
+          minLength: {
+            value: 8,
+            message: "Password must be in between 8 and 128 characters"
+          }, 
+          maxLength: {
+            value: 128,
+            message: "Password must be in between 8 and 128 characters"
+          },
+          pattern:{
+            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
+            message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+          } 
+        })}
         placeholder="Enter your password"
       />
-      {errors.password && <p>Password is required and must be between 8 and 128 characters</p>}
-      <p className='input_text'>Use 8 or more characters with a mix of letters, numbers & symbols</p>
+      {errors.repeatPassword && <p className='input_error'>{errors.repeatPassword.message}</p>}
+
+        <br/>
       <p className='input_text'>By creating an account, you agree to the <u><b>Terms of use</b></u> and <u><b>Privacy Policy.</b></u></p>
 
 
