@@ -1,5 +1,5 @@
 
--- CREATE TYPE ROLE AS ENUM ('user', 'admin');
+CREATE TYPE ROLE AS ENUM ('user', 'admin');
 
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY, 
@@ -10,7 +10,7 @@ CREATE TABLE users (
     registered_on DATE NOT NULL 
 );
 
--- CREATE TYPE STATUS AS ENUM ('in progress', 'done');
+CREATE TYPE STATUS AS ENUM ('in progress', 'done');
 
 CREATE TABLE projects (
     id SERIAL PRIMARY KEY, 
