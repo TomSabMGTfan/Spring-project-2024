@@ -1,8 +1,15 @@
-import { useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState } from 'react';
 import './css/Header.css'
+import {AuthContext} from "../utils/AuthContext"
+
 
 function Navbar() {
+	const {loginUser} = useContext(AuthContext)
+	const [user, setUser] = useState(null)
+	const { user: authUser, logoutUser } = useContext(AuthContext);
+	
 	const navRef = useRef();
 
 	const showNavbar = () => {
@@ -14,7 +21,7 @@ function Navbar() {
 	return (
 		<header>
 			<h3><a href="/#">SantaMonicaTechPioneersClient</a></h3>
-			<nav ref={navRef}>
+			{/* <nav ref={navRef}>
 				<a href="/login"><i className='fas fa-user'></i>Log in</a>
 				<a href="#Contact"><i className='fas fa-address-book'></i>Contact</a>
 				<a href="#Pricing"><i className='fas fa-dollar-sign'></i>Pricing</a>
@@ -24,12 +31,30 @@ function Navbar() {
 					onClick={showNavbar}>
 					<FaTimes />
 				</button>
-			</nav>
-			<button
-				className="nav-btn"
+			</nav> */}
+			<nav ref={navRef} >
+				{!authUser ? (
+					<>
+					<a href="/login"><i className='fas fa-user'></i>Log in</a>
+					<a href="/signup"><i className="fas fa-play">Get started</i></a>
+					</>
+ 				) : (
+					<>
+					<a href="#Contact"><i className="fas fa-address-book">Contact</i></a>
+					<a href="#Pricing"><i className="fas fa-dollar-sign">Pricing</i></a>
+					<li>
+						<button onClick={logoutUser}>Logout</button>
+					</li>
+					</>
+
+				)}
+				<button
+				className="nav-btn nav-close-btn"
 				onClick={showNavbar}>
-				<FaBars />
+				<FaTimes />
 			</button>
+			</nav>
+		
 		</header>
 	);
 }

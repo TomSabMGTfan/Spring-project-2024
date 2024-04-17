@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   // loginUser() metodas yra naudojamas, kad prisijungti prie sistemos
   // data yra objektas, kuris turi duomenis, kurie yra reikalingi prisijungimui
-  const loginUser = async (data) => {
+ const loginUser = async (data) => {
     try {
       // apiClient yra axios objektas, kuris yra naudojamas, kad siųsti užklausas į serverį
       const response = await apiClient.post('/users/login', {
