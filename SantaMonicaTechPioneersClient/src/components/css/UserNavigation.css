@@ -1,0 +1,49 @@
+
+.Left-Nav{
+    display: flex;
+   flex-direction: column;
+    height: 100%;
+    background-color: white; 
+    align-items: center;
+    width: 248px;
+    background-color:#48bfc70A;
+    
+
+}
+
+.text-list{
+    color: black; 
+    margin-left: 8px;
+}
+
+.text-ul{
+    width: 100%;
+}
+.text-li{
+   padding-top: 13px;
+  align-items: center;
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 13px;
+    padding-left: 65px;
+
+   
+}
+.text-li:hover{
+    background-color: gainsboro;
+}
+.techin-logo{
+    max-width: 157px;
+    height: 56px;
+   
+}
+.green-logo{
+    display:flex;
+    margin-bottom: 67px;
+    margin-top: 35px;
+}
+
+.logos{
+    max-width: 35px;
+}
