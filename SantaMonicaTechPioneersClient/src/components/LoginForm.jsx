@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../utils/AuthContext';
@@ -17,6 +17,15 @@ function LoginForm() {
   // kaip lifte mes paspaudžiame mygtuką ir galime pasiekti, bet kokį aukšta
   const { loginUser } = useContext(AuthContext);
   const [serverError, setServerError] = useState(null);
+
+  const { user, token } = useContext(AuthContext);
+  useEffect(() => {
+    // If user is logged in then redirect him to home page
+    if(token && user){
+      navigate("/");
+      return;
+    }
+  }, [token, user, navigate])
 
   const onSubmit = async (data) => {
     try {

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom'; 
 import "./css/RegistrationLoginform.css"
 import { registerUser } from '../api/apis';
 import { Link } from 'react-router-dom'
-
+import { AuthContext } from '../utils/AuthContext';
 
 function RegisterForm() {
   const {
@@ -22,6 +22,15 @@ function RegisterForm() {
   const [successMessage, setSuccessMessage] = useState(null);
 
   const navigate = useNavigate();
+
+  const { user, token } = useContext(AuthContext);
+  useEffect(() => {
+    // If user is logged in then redirect him to home page
+    if(token && user){
+      navigate("/");
+      return;
+    }
+  }, [token, user, navigate])
 
   const onSubmit = async (data) => {
     // prieš išsiunčiant užklausą į serverį, patikriname ar slaptažodžiai sutampa
