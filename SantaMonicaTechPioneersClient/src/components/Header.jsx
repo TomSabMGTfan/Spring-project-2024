@@ -42,6 +42,7 @@ function Navbar() {
 					<>
 					<a href="#Contact"><i className="fas fa-address-book">Contact</i></a>
 					<a href="#Pricing"><i className="fas fa-dollar-sign">Pricing</i></a>
+					<a href="dashboard"><i className=""></i>Back to Projects</a>
 					<li>
 						<button onClick={logoutUser}>Logout</button>
 					</li>
