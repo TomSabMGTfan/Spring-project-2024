@@ -5,7 +5,7 @@
     display: grid;
     justify-content:center;
     font-family: "Kadwa", serif;
-   
+   min-height: 75vh;
   }
   h1.form{
     font-size: 4rem;
