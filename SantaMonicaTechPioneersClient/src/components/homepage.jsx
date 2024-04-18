@@ -1,4 +1,5 @@
-
+import {AuthContext} from "../utils/AuthContext"
+import { useContext, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom'
 import './css/homepage.css'
 
@@ -6,12 +7,19 @@ import './css/homepage.css'
 
 
 export const Home = () => {
+    const { user: authUser, logoutUser } = useContext(AuthContext);
 
 return (
     <>
     <div className="container">
     <h1 className="mainTitle"> Your Team <b className="title"> Project</b> </h1>
-    <Link to='/signup' className="main_page_button">Sign up</Link>
+ 
+    {!authUser ? (
+  <Link to='/signup' className="main_page_button">Sign up</Link>
+) : <Link to='/signup' className="main_page_button2">Sign up</Link>}
+  
+  
+    
 
 </div>
 <div className='bottom_section'>

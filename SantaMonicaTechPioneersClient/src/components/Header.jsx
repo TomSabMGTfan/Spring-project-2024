@@ -1,13 +1,11 @@
 import { useContext, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import React, { useState } from 'react';
 import './css/Header.css'
 import {AuthContext} from "../utils/AuthContext"
 
 
 function Navbar() {
-	const {loginUser} = useContext(AuthContext)
-	const [user, setUser] = useState(null)
+
 	const { user: authUser, logoutUser } = useContext(AuthContext);
 	
 	const navRef = useRef();

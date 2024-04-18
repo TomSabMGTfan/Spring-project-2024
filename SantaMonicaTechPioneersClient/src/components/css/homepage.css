@@ -56,3 +56,13 @@ align-items: center;
 .bottom_section{
   background-color: white;
 }
+
+.main_page_button2 {
+  height: 100px;
+  font-size:  38px;
+  width: 300px;
+  margin-top: 160px;
+  margin-bottom: 160px;
+  cursor:default;
+  opacity: 0;
+}
