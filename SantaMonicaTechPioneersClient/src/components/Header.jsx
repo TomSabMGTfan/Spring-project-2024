@@ -18,7 +18,7 @@ function Navbar() {
 
 	return (
 		<header>
-			<h3><a href="/#">SantaMonicaTechPioneersClient</a></h3>
+			<h3><a href="/#">SantaMonicaTechPioneers</a></h3>
 			{/* <nav ref={navRef}>
 				<a href="/login"><i className='fas fa-user'></i>Log in</a>
 				<a href="#Contact"><i className='fas fa-address-book'></i>Contact</a>
@@ -41,9 +41,9 @@ function Navbar() {
 					<a href="#Contact"><i className="fas fa-address-book">Contact</i></a>
 					<a href="#Pricing"><i className="fas fa-dollar-sign">Pricing</i></a>
 					<a href="dashboard"><i className=""></i>Back to Projects</a>
-					<li>
-						<button onClick={logoutUser}>Logout</button>
-					</li>
+					<>
+						<button style={{background:"none"}} onClick={logoutUser}>Logout</button>
+					</>
 					</>
 
 				)}
