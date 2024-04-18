@@ -42,7 +42,7 @@ function UserDashboard() {
   }
 
   return (
-    <div>
+    <div className='dashboard_body'>
       <UserNavigation />
       <h1>Welcome, {userData.username}!</h1>
       <p>Email: {userData.email}</p>

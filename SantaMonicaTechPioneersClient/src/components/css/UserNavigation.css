@@ -1,3 +1,6 @@
+.dashboard_body{
+    min-height: 80vh;
+}
 
 .Left-Nav{
     display: flex;
