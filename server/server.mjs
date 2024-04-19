@@ -24,7 +24,7 @@ const startServer = async () => {
 		app.use(express.json());
 
 		// API routes
-		app.use('/api/v1/library', mainRouter);
+		app.use('/api', mainRouter);
 
 		// Configuring port
 		const port = process.env.PORT;
