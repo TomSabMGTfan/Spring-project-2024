@@ -5,6 +5,7 @@ import { AuthContext } from '../utils/AuthContext';
 import { Link } from 'react-router-dom'
 import "./css/RegistrationLoginform.css"
 
+
 function LoginForm() {
   const navigate = useNavigate();
   const {
@@ -55,8 +56,12 @@ function LoginForm() {
   };
 
   return (
+    <>
+    <div className='login_img'>
+      <img src="https://th.bing.com/th/id/OIP._0uBOMn3IRWsPloTmZqOcwHaJS?w=143&h=180&c=7&r=0&o=5&pid=1.7" alt="login" />
+    </div>
     <div className='registration_form'>
-    <h1 >Log in</h1>
+    <h1 className='form'>Log in</h1>
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
       <p className='input_text'>Email address or user name</p>
       
@@ -78,6 +83,7 @@ function LoginForm() {
 
     </form>
     </div>
+    </>
   );
 }
 

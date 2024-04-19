@@ -1,3 +1,13 @@
+.kadwa-regular {
+  font-family: "Kadwa", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.login_img{
+padding-top: 1.85rem;
+}
+
 .registration_form{
     background-color: white;
 }

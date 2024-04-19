@@ -33,13 +33,13 @@ function Navbar() {
 			<nav ref={navRef} >
 				{!authUser ? (
 					<>
-					<a href="/login"><i className='fas fa-user'></i>Log in</a>
-					<a href="/signup"><i className="fas fa-play">Get started</i></a>
+					<a href="/login"><i className=''></i>Log in</a>
+					<a href="/signup"><i className="">Get started</i></a>
 					</>
  				) : (
 					<>
-					<a href="#Contact"><i className="fas fa-address-book">Contact</i></a>
-					<a href="#Pricing"><i className="fas fa-dollar-sign">Pricing</i></a>
+					<a href="#Contact"><i className="">Contact</i></a>
+					<a href="#Pricing"><i className="">Pricing</i></a>
 					<a href="dashboard"><i className=""></i>Back to Projects</a>
 					<>
 						<button style={{background:"none"}} onClick={logoutUser}>Logout</button>

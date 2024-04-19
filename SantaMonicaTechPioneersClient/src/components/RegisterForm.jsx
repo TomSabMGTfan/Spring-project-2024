@@ -67,7 +67,8 @@ function RegisterForm() {
   };
 
   return (
-
+    <>
+<div><img src="https://th.bing.com/th/id/OIP.VbnRceZBt0T-3EYcBi0LCAHaHa?rs=1&pid=ImgDetMain" alt="sign up" style={{width:"10%"}}/></div>
     <div className='registration_form'>
       <h1 className='form'>Sign up</h1>
       <h3>for free</h3>
@@ -168,6 +169,7 @@ function RegisterForm() {
 
     </form>
     </div>
+    </>
   );
 }
 
