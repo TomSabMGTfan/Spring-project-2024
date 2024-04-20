@@ -39,7 +39,6 @@ function Navbar() {
  				) : (
 					<>
 					<a href="#Contact"><i className="header_nav_buttons">Contact</i></a>
-					<a href="#Pricing"><i className="header_nav_buttons">Pricing</i></a>
 					<a href="dashboard"><i className="header_nav_buttons"></i>Back to Projects</a>
 					<>
 						<button className="header_nav_buttons"style={{background:"none"}} onClick={logoutUser}>Logout</button>
