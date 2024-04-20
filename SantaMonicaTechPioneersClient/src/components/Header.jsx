@@ -33,16 +33,16 @@ function Navbar() {
 			<nav ref={navRef} >
 				{!authUser ? (
 					<>
-					<a href="/login"><i className=''></i>Log in</a>
-					<a href="/signup"><i className="">Get started</i></a>
+					<a href="/login"><i className='header_nav_buttons'></i>Log in</a>
+					<a href="/signup"><i className="header_nav_buttons"style={{color:"red"}}>Get started</i></a>
 					</>
  				) : (
 					<>
-					<a href="#Contact"><i className="">Contact</i></a>
-					<a href="#Pricing"><i className="">Pricing</i></a>
-					<a href="dashboard"><i className=""></i>Back to Projects</a>
+					<a href="#Contact"><i className="header_nav_buttons">Contact</i></a>
+					<a href="#Pricing"><i className="header_nav_buttons">Pricing</i></a>
+					<a href="dashboard"><i className="header_nav_buttons"></i>Back to Projects</a>
 					<>
-						<button style={{background:"none"}} onClick={logoutUser}>Logout</button>
+						<button className="header_nav_buttons"style={{background:"none"}} onClick={logoutUser}>Logout</button>
 					</>
 					</>
 

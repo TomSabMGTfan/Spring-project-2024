@@ -6,7 +6,7 @@
 }
 
 :root {
-	--mainColor: #48BFC7;
+	--mainColor: #DFC1C1;
 	--mainColorLight: #48BFC7;
 	--secondaryColor: #ffffff;
 	--textColor: #000000;
@@ -22,22 +22,29 @@ header {
 	background-color: var(--mainColor);
 	color: var(--textColor);
 } 
+
+.header_nav_buttons{
+	font-family: "Kadwa", serif;
+	font-size: 0.75rem;
+}
+.header_nav_buttons:hover{
+	color: var(--secondaryColor);
+}
 header h3 a{
 	align-items: center;
 	margin-left: 1rem;
-	font-size: xx-large;
+	font-size: 1rem;
 	color: var(--textColor);
 	margin-left: 10rem;
 }
-header h3 a:hover {
-	color: var(--secondaryColor);
-}
+
 nav a {
 	margin: 0 1.5rem;
 	color: var(--textColor);
 	text-decoration: none;
-	font-size: larger;
-	
+	font-size: 0.95rem;
+	font-weight: 400;
+	font-family: "Kadwa", serif;
 }
 
 nav a:hover {
@@ -51,6 +58,7 @@ nav a:nth-child(4):hover {
 }
 nav i{
 	margin: 0.5rem;
+	font-style: normal;
 }
 header .nav-btn {
 	padding: 5px;
@@ -69,8 +77,8 @@ nav {
 	display: flex;
 	align-items: center;
 }
-
-@media only screen and (max-width: 1420px) {
+/* -----------nereikalinga dalis---------------- */
+/* @media only screen and (max-width: 1420px) {
 	header .nav-btn {
 		visibility: visible;
 		opacity: 1;
@@ -104,5 +112,6 @@ nav {
 
 	nav a {
 		font-size: 1.5rem;
+		
 	}
-}
+} */
