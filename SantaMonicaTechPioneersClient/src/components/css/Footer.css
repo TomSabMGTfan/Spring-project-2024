@@ -2,12 +2,14 @@
   padding: 4rem 4rem;
 }
 .footer{
-  background-color: #48BFC7;
+  background-color: #DFC1C1;
   /* position: absolute; */
   right: 0;
   left: 0;
   /* bottom: -40vh; */
 }
+
+
 .sb__footer-links{
   display: flex;
   justify-content: space-between;
@@ -22,8 +24,8 @@
   width: 250px;
   margin: 1rem;
   text-align: center;
-  font-size: large;
-  font-weight: bold;
+  font-size: 1rem;
+  font-family: "Kadwa", serif;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -37,6 +39,9 @@
 .sb__footer{
   display: flex;
   flex-direction: column;
+  font-weight: normal;
+   
+    
 }
 .socialmedia{
   display: flex;
@@ -59,7 +64,9 @@
   margin: 2.5rem 0;
   cursor: pointer;
 }
-@media only screen and (max-width: 1420px){
+
+/* -------------------nereikalinga dalis---------------- */
+/* @media only screen and (max-width: 1420px){
   .sb__footer-links div{
     margin: 0.5rem;
     margin-right: 12rem;
@@ -88,4 +95,4 @@
     margin: 0.5rem;
     margin-right: 8rem;
   }
-}
+} */

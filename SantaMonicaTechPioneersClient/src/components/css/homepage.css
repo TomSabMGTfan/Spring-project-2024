@@ -2,13 +2,15 @@
   
     width: 100%;
     margin: 0 auto;  
-background-color: #48BFC7;
+background-color: #DFC1C1;
 display: flex;
 flex-direction: column;
-align-items: center;
+align-items: center;}
 
 
-}
+
+
+
 .title {
     color: #871919;
     font-size: 96px;
@@ -24,6 +26,7 @@ align-items: center;
     font-family: "Kadwa", serif;
   font-weight: 700;
   border-radius: 15px;
+  padding: 1.37rem;
   
 }
 .button:hover{
@@ -53,9 +56,9 @@ align-items: center;
   font-style: normal;
 
 }
-.bottom_section{
+ .bottom_section{ 
   background-color: white;
-}
+} 
 
 .main_page_button2 {
   height: 100px;
