@@ -75,15 +75,15 @@ function RegisterForm() {
 
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
 
-      <p className='input_text'>User name</p>
+      <p className='input_text'>Username</p>
       <input className='input_field' {...register('username', { 
         required: {
           value: true,
           message: "Username is required"
         }, 
         minLength: {
-          value: 6,
-          message: "Username must be in between 6 and 32 characters"
+          value: 3,
+          message: "Username must be in between 3 and 32 characters"
         }, 
         maxLength: {
           value: 32,

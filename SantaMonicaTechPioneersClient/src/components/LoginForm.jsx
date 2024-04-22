@@ -63,7 +63,7 @@ function LoginForm() {
     <div className='registration_form'>
     <h1 className='form'>Log in</h1>
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
-      <p className='input_text'>Email address or user name</p>
+      <p className='input_text'>Email address or username</p>
       
         <input className='input_field' {...register('login', { required: 'Username/Email is required' })} />
         {errors.login && <p className='input_error'>{errors.login.message}</p>}
