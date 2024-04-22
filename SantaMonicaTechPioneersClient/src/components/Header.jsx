@@ -19,17 +19,8 @@ function Navbar() {
 	return (
 		<header>
 			<h3><a href="/#">SantaMonicaTechPioneers</a></h3>
-			{/* <nav ref={navRef}>
-				<a href="/login"><i className='fas fa-user'></i>Log in</a>
-				<a href="#Contact"><i className='fas fa-address-book'></i>Contact</a>
-				<a href="#Pricing"><i className='fas fa-dollar-sign'></i>Pricing</a>
-				<a href="/signup"><i className='fas fa-play'></i>Get started</a>
-				<button
-					className="nav-btn nav-close-btn"
-					onClick={showNavbar}>
-					<FaTimes />
-				</button>
-			</nav> */}
+			{/* <h5>Logged  in as </h5> */}
+
 			<nav ref={navRef} >
 				{!authUser ? (
 					<>
