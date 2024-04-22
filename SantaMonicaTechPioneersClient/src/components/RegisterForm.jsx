@@ -83,11 +83,11 @@ function RegisterForm() {
         }, 
         minLength: {
           value: 3,
-          message: "Username must be in between 3 and 32 characters"
+          message: "Username must be in between 3 and 20 characters"
         }, 
         maxLength: {
-          value: 32,
-          message: "Username must be in between 6 and 32 characters"
+          value: 20,
+          message: "Username must be in between 3 and 20 characters"
         } 
         })} placeholder="Enter your user name" />
       {errors.username && <p className='input_error'>{errors.username.message}</p>}
