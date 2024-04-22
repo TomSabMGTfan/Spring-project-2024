@@ -89,7 +89,7 @@ function RegisterForm() {
           value: 20,
           message: "Username must be in between 3 and 20 characters"
         } 
-        })} placeholder="Enter your user name" />
+        })} placeholder="  Enter your username" />
       {errors.username && <p className='input_error'>{errors.username.message}</p>}
       
       <p className='input_text'>Email</p>
@@ -102,7 +102,7 @@ function RegisterForm() {
           value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
           message: 'Please enter a valid email',
         } 
-      })} placeholder="Enter your email address" />
+      })} placeholder="  Enter your email address" />
       {errors.email && <p className='input_error'>{errors.email.message}</p>}
       
       <p className='input_text'>Password</p>
@@ -126,7 +126,7 @@ function RegisterForm() {
             message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
           } 
         })}
-        placeholder="Enter your password"
+        placeholder="  Enter your password"
       />
       {errors.password && <p className='input_error'>{errors.password.message}</p>}
 
@@ -151,7 +151,7 @@ function RegisterForm() {
             message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
           } 
         })}
-        placeholder="Enter your password"
+        placeholder="  Enter your password"
       />
       {errors.repeatPassword && <p className='input_error'>{errors.repeatPassword.message}</p>}
 

@@ -38,8 +38,9 @@ padding-top: 1.85rem;
   }
   .input_text{
   text-align: left;
-  margin-bottom: 8px;
+  margin-bottom: -30px;
   font-family: "Kadwa", serif;
+  margin-left: 20px;
   
   }
   .input_text:nth-last-child(1){
