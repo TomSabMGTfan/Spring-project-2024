@@ -19,7 +19,7 @@ function Navbar() {
 	return (
 		<header>
 			<h3><a href="/#">SantaMonicaTechPioneers</a></h3>
-			{/* <h5>Logged  in as </h5> */}
+			<h5>Logged  in as {authUser ? authUser.username : "Guest"}</h5>
 
 			<nav ref={navRef} >
 				{!authUser ? (
