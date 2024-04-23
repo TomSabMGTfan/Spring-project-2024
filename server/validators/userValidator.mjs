@@ -4,8 +4,8 @@ import userModel from '../models/userModel.mjs';
 export const registerUserValidationSchema = checkSchema({
 	username: {
 		isLength: {
-			options: { min: 6, max: 32 },
-			errorMessage: 'Username must be at least 6 characters with a max of 32 characters',
+			options: { min: 3, max: 20 },
+			errorMessage: 'Username must be at least 3 characters with a max of 20 characters',
 		},
 		notEmpty: {
 			errorMessage: 'Username cannot be empty',
