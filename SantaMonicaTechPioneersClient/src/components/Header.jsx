@@ -18,8 +18,9 @@ function Navbar() {
 
 	return (
 		<header>
-			<h3><a href="/#">SantaMonicaTechPioneers</a></h3>
-			<h5>Logged  in as {authUser ? authUser.username : "Guest"}</h5>
+			
+			<h5> {authUser ?` Logged in as ${authUser.username}` : ''}</h5>
+			<h3><a href="/#">Santa Monica Tech Pioneers</a></h3>
 
 			<nav ref={navRef} >
 				{!authUser ? (
