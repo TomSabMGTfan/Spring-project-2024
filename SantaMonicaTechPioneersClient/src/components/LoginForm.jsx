@@ -63,18 +63,18 @@ function LoginForm() {
     <div className='registration_form'>
     <h1 className='form'>Log in</h1>
     <form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
-      <p className='input_text'>Email address or username</p>
+      <p className='input_text' style={{marginTop: "45px"}} >Email address or username</p>
       
         <input className='input_field' {...register('login', { required: 'Username/Email is required' })} />
         {errors.login && <p className='input_error'>{errors.login.message}</p>}
       
       
-        <p className='input_text'>Password</p>
+        <p className='input_text'style={{marginTop: "45px"}} >Password</p>
         <input className='input_field' type="password" {...register('password', { required: 'Password is required' })} />
         {errors.password && <p className='input_error'>{errors.password.message}</p>}
       
       {serverError && <p>{serverError}</p>}
-      <p className='input_text'><input type="checkbox" name="Re" id="" />Remember me</p>
+      <p className='input_text'><input type="checkbox" />Remember me</p>
       <p className='input_text'>By continuing you agree to the <u><b>Terms of use</b></u> and <u><b>Privacy Policy.</b></u></p>
       
       <button className='input_field' type="submit">Log in</button>
