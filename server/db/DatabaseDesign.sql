@@ -35,3 +35,11 @@ CREATE TABLE tasks(
     project_id INT NOT NULL,
     CONSTRAINT fk_projects FOREIGN KEY(project_id) REFERENCES projects(id)
 );
+
+
+-- UPDATE_23-04-2024_________________________________________________________________________________
+
+ALTER TYPE ROLE ADD VALUE 'super_user';
+
+ALTER TABLE project_workers
+ADD role ROLE NOT NULL DEFAULT 'user';
