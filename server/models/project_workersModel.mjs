@@ -23,7 +23,7 @@ const project_workersModel = {
         const result = await pool.query("SELECT * FROM project_workers WHERE user_id=$1",
         [user_id]);
 
-        return result.rows[0];
+        return result.rows;
     },
 
     deleteProjectWorker: async (user_id, project_id) => {
