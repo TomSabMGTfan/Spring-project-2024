@@ -11,6 +11,10 @@ const projectsModel = {
     );
     return result.rows[0];
   },
+
+  deleteProject: async(id) => {
+    await pool.query('DELETE FROM projects WHERE id = $1', [id])
+  }
 };
 
 export default projectsModel;
