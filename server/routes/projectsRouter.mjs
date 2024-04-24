@@ -14,7 +14,7 @@ const router = express.Router();
 
 
 
-router.post('/', [AuthMiddleware(), createProjectValidationSchema], projectsController.createProject);
+router.post('/', [AuthMiddleware, createProjectValidationSchema], projectsController.createProject);
 
 
 
