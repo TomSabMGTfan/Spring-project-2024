@@ -1,13 +1,18 @@
 import { SUPERUSER } from '../cfg/Roles.mjs';
 import projectsModel from '../models/projectsModel.mjs'
 import project_workersModel from '../models/project_workersModel.mjs';
-
+import { validationResult } from "express-validator";
 
 
 
 const projectsController = {
     createProject: async (req, res) => {
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
             if(!req.user){
                 return res.status(401).json("Unauthorized access");
             }

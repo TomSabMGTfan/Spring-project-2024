@@ -6,13 +6,15 @@ import AuthMiddleware from '../middleware/authMiddleware.mjs';
 
 import projectsController from '../controllers/projectsController.mjs';
 
+import {createProjectValidationSchema} from '../validators/projectValidator.mjs';
+
 dotenv.config();
 
 const router = express.Router();
 
 
 
-router.post('/', AuthMiddleware(), projectsController.createProject);
+router.post('/', [AuthMiddleware(), createProjectValidationSchema], projectsController.createProject);
 
 
 
