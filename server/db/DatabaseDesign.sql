@@ -42,3 +42,33 @@ ALTER TYPE ROLE ADD VALUE 'super_user';
 
 ALTER TABLE project_workers
 ADD role ROLE NOT NULL DEFAULT 'user';
+
+-- UPDATE_24-04-2024_________________________________________________________________________________
+
+ALTER TABLE tasks
+ADD worker_id INT,
+ADD CONSTRAINT fk_users FOREIGN KEY(worker_id) REFERENCES users(id);
+
+ALTER TYPE STATUS RENAME TO TASK_STATUS;
+ALTER TYPE TASK_STATUS ADD VALUE 'to do';
+
+CREATE TYPE PROJECT_STATUS AS ENUM ('ongoing', 'done');
+
+ALTER TABLE projects
+DROP status,
+ADD status PROJECT_STATUS NOT NULL DEFAULT 'ongoing';
+
+ALTER TABLE users
+DROP role;
+
+ALTER TABLE project_workers
+DROP role;
+
+DROP TYPE ROLE;
+
+CREATE TYPE ROLE AS ENUM ('user', 'admin');
+
+ALTER TABLE project_workers
+ADD role ROLE NOT NULL DEFAULT 'user';
+
+ALTER TYPE ROLE ADD VALUE 'owner';
