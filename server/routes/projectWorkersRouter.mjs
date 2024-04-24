@@ -6,7 +6,7 @@ import AuthMiddleware from '../middleware/authMiddleware.mjs';
 
 import projectWorkersController from '../controllers/projectWorkersController.mjs';
 
-import { updatePWorkerValidationSchema, deletePWorkerValidationSchema } from '../validators/projectWorkersValidator.mjs';
+import { updatePWorkerValidationSchema, deletePWorkerValidationSchema } from '../validators/projectWorkerValidator.mjs';
 
 const router = express.Router();
 
