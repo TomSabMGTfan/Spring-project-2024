@@ -72,3 +72,7 @@ ALTER TABLE project_workers
 ADD role ROLE NOT NULL DEFAULT 'user';
 
 ALTER TYPE ROLE ADD VALUE 'owner';
+
+ALTER TABLE tasks
+ADD created_on DATE NOT NULL,
+ADD planned_end_date DATE NOT NULL;
