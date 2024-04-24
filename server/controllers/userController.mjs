@@ -24,7 +24,6 @@ const userController = {
         username,
         password: hashedPassword,
         email,
-        role: "user",
         registered_on: new Date(),
       };
 
