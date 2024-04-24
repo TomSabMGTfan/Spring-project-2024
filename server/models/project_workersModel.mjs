@@ -18,6 +18,13 @@ const project_workersModel = {
 
         return result.rows[0];
     },
+    
+    getProjectWorkersById: async (user_id) => {
+        const result = await pool.query("SELECT * FROM project_workers WHERE user_id=$1",
+        [user_id]);
+
+        return result.rows[0];
+    },
 
     deleteProjectWorker: async (user_id, project_id) => {
         const result = await pool.query("DELETE FROM project_workers WHERE user_id=$1 AND project_id=$2",
