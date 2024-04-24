@@ -1,16 +1,31 @@
 import { validationResult } from "express-validator";
 
 import tasksModel from "../models/tasksModel.mjs";
+import project_workersModel from "../models/project_workersModel.mjs";
+
+import { ADMIN, OWNER } from "../cfg/Roles.mjs";
 
 const tasksController = {
 
     createTask: async (req, res) => {
         try{
-            const {name, description, project_id} = req.body;
+            if(!req.user){
+                return res.status(401).json("Unauthorized access");
+            }
+
+            const {name, description, project_id, planned_end_date} = req.body;
+
+            const role = await project_workersModel.getProjectWorker(user_id, project_id);
+
+            if(role != ADMIN && role != OWNER){
+                return res.status(401).json("Unauthorized access");
+            }
 
             const task = {
                 name,
                 description,
+                created_on: new Date(),
+                planned_end_date,
                 project_id
             };
 
