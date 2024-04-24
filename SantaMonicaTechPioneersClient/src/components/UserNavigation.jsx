@@ -7,6 +7,7 @@ import vector4 from '../assets/Vector4.svg'
 import vector5 from '../assets/Vector5.svg'
 import techin from '../assets/techin-logo.svg'
 import greenLogo from '../assets/green-logo.svg'
+import Projects from '../assets/Projects.svg'
 
 export const UserNavigation = ()=> {
 
@@ -19,6 +20,7 @@ export const UserNavigation = ()=> {
        <img className="techin-logo" src={techin} alt="techin-logo"/>
 </div>
         <ul className="text-ul">
+          <li className="text-li"><img className="logos" src={Projects} alt="timeline"/><a className="text-list" href="#">Projects</a></li>
           <li className="text-li"><img className="logos" src={vector} alt="timeline"/><a className="text-list" href="#">Timeline</a></li>
           <li className="text-li"><img className="logos" src={vector1} alt="timeline"/><a className="text-list"href="#">Backlog</a></li>
           <li className="text-li"><img className="logos" src={vector2} alt="timeline"/><a className="text-list"href="#">Board</a></li>
