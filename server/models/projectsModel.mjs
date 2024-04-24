@@ -1,5 +1,7 @@
 import { pool } from "../db/postgresConnection.mjs";
 
+
+
 const projectsModel = {
   createProject: async (name, description) => {
     const status = "in progress";
