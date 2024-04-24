@@ -47,6 +47,7 @@ function UserDashboard() {
       <h1>Welcome, {userData.username}!</h1>
       <p>Email: {userData.email}</p>
       <p>Role: {userData.role}</p>
+      
     </div>
   );
 }

@@ -57,3 +57,18 @@ CREATE TYPE PROJECT_STATUS AS ENUM ('ongoing', 'done');
 ALTER TABLE projects
 DROP status,
 ADD status PROJECT_STATUS NOT NULL DEFAULT 'ongoing';
+
+ALTER TABLE users
+DROP role;
+
+ALTER TABLE project_workers
+DROP role;
+
+DROP TYPE ROLE;
+
+CREATE TYPE ROLE AS ENUM ('user', 'admin');
+
+ALTER TABLE project_workers
+ADD role ROLE NOT NULL DEFAULT 'user';
+
+ALTER TYPE ROLE ADD VALUE 'owner';
