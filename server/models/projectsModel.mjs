@@ -12,3 +12,5 @@ const projectsModel = {
     return result.rows[0];
   },
 };
+
+export default projectsModel;

@@ -8,7 +8,7 @@ const projectsController = {
     createProject: async (req, res) => {
         try {
             const {name, description} = req.body;
-            const createdProject = await projectsController.createProject(name, description);
+            const createdProject = await projectsModel.createProject(name, description);
             res.status(201).json(createdProject);
         } catch (error) {
             console.error(error);
