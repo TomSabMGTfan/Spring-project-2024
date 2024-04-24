@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../utils/AuthContext';
 import { Link } from 'react-router-dom'
 import "./css/RegistrationLoginform.css"
+import { FaUser, FaLock } from 'react-icons/fa';
 
 
 function LoginForm() {
@@ -57,7 +58,39 @@ function LoginForm() {
 
   return (
     <>
-    <div className='login_img'>
+    <div className='wrapper-body'>
+<div className='wrapper'>
+  <div className="from-box login">
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <h1 className='loginName'>Login</h1>
+      <div className='input-box'>
+        <input type="text" placeholder='Username' {...register('login', { required: 'Username/Email is required' })} />
+        {errors.login && <p className='input_error'>{errors.login.message}</p>}
+        <FaUser className='icon'/>
+      </div>
+      <div className='input-box'>
+        <input type="password" {...register('password', { required: 'Password is required' })} />
+        {errors.password && <p className='input_error'>{errors.password.message}</p>}
+      <FaLock className='icon' />
+      </div>
+      <div className='remeber-forgot'>
+<label><input type="checkbox"/>Remeber me</label>
+<a href="">Forgot password?</a>
+      </div>
+      <button type='submit'>Login</button>
+      <div className='register-link'>
+        <p>Don't have an account? <a href="">Register</a></p>
+      </div>
+
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+    
+    {/* <div className='login_img'>
       <img src="https://th.bing.com/th/id/OIP._0uBOMn3IRWsPloTmZqOcwHaJS?w=143&h=180&c=7&r=0&o=5&pid=1.7" alt="login" />
     </div>
     <div className='registration_form'>
@@ -82,7 +115,8 @@ function LoginForm() {
       <p className='input_text'>Don’t have an account?   <Link to='/signup' style={{color: "black"}}><u><b>Sign up</b></u></Link></p>
 
     </form>
-    </div>
+    </div> */}
+    
     </>
   );
 }

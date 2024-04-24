@@ -25,7 +25,7 @@ function Navbar() {
 				{!authUser ? (
 					<>
 					<a href="/login"><i className='header_nav_buttons'></i>Log in</a>
-					<a href="/signup"><i className="header_nav_buttons"style={{color:"red"}}>Get started</i></a>
+					<a href="/signup"><i className="header_nav_buttons"style={{color:"black"}}>Get started</i></a>
 					</>
  				) : (
 					<>

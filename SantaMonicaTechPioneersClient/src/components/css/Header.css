@@ -6,11 +6,11 @@
 }
 
 :root {
-	--mainColor: #DFC1C1;
+	--mainColor: #02020234;
 	--mainColorLight: #48BFC7;
 	--secondaryColor: #ffffff;
 	--textColor: #000000;
-	--lastWordColor: #ff0000;
+	--lastWordColor: #ffffff;
 }
 
 header {
@@ -21,6 +21,9 @@ header {
 	padding: 0 2rem;
 	background-color: var(--mainColor);
 	color: var(--textColor);
+	filter: drop-shadow(0px 10px 5px #00000059);
+	
+	
 } 
 
 .header_nav_buttons{

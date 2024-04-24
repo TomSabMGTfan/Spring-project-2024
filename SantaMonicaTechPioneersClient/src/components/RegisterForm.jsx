@@ -5,6 +5,9 @@ import "./css/RegistrationLoginform.css"
 import { registerUser } from '../api/apis';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../utils/AuthContext';
+import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
+
+
 
 function RegisterForm() {
   const {
@@ -68,7 +71,7 @@ function RegisterForm() {
 
   return (
     <>
-<div><img src="https://th.bing.com/th/id/OIP.VbnRceZBt0T-3EYcBi0LCAHaHa?rs=1&pid=ImgDetMain" alt="sign up" style={{width:"10%"}}/></div>
+{/* <div><img src="https://th.bing.com/th/id/OIP.VbnRceZBt0T-3EYcBi0LCAHaHa?rs=1&pid=ImgDetMain" alt="sign up" style={{width:"10%"}}/></div>
     <div className='registration_form'>
       <h1 className='form'>Sign up</h1>
       <h3>for free</h3>
@@ -168,7 +171,40 @@ function RegisterForm() {
       <p className='input_text'>Already have an account?   <Link to='/login' style={{color: "black"}}><u><b>Log in</b></u></Link></p>
 
     </form>
-    </div>
+    </div> */}
+        <div className='wrapper-body'>
+<div className='wrapper-register'>
+  <div className="from-box register">
+    <form action="">
+      <h1 className='loginName'>Registration</h1>
+      <div className='input-box'>
+        <input type="text" placeholder='Username' required/>
+        <FaUser className='icon'/>
+      </div>
+      <div className='input-box'>
+        <input type="email" placeholder='Email' required/>
+        <FaEnvelope className='icon'/>
+      </div>
+      <div className='input-box'>
+        <input type="password" placeholder='Password' required/>
+      <FaLock className='icon' />
+      </div>
+      <div className='input-box'>
+        <input type="password" placeholder='Repeat Password' required/>
+      <FaLock className='icon' />
+      </div>
+      <div className='remeber-forgot'>
+<label><input type="checkbox"/>I agree to the terms & conditions</label>
+      </div>
+      <button type='submit'>Register</button>
+      <div className='register-link'>
+        <p>Already have an account? <a href="">Login</a></p>
+      </div>
+
+    </form>
+  </div>
+</div>
+</div>
     </>
   );
 }
