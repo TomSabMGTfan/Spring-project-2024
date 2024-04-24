@@ -11,7 +11,10 @@ const router = express.Router();
 
 
 
-router.post('/', [AuthMiddleware(), null], tasksController.createTask);
+router.post('/', [AuthMiddleware, null], tasksController.createTask);
+router.get("/:project_id", tasksController.getTasksByProjectId);
+router.put("/", [AuthMiddleware, null], tasksController.updateTask);
+router.delete("/:id", AuthMiddleware, tasksController.deleteTask);
 
 
 
