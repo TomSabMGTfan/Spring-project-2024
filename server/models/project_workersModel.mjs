@@ -19,7 +19,7 @@ const project_workersModel = {
         return result.rows[0];
     },
     
-    getProjectWorkersById: async (user_id) => {
+    getProjectWorkersByUserId: async (user_id) => {
         const result = await pool.query("SELECT * FROM project_workers WHERE user_id=$1",
         [user_id]);
 

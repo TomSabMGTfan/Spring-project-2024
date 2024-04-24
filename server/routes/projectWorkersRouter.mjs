@@ -9,7 +9,9 @@ import projectWorkersController from '../controllers/projectWorkersController.mj
 
 const router = express.Router();
 
-router.get('/byuser/:user_id', [AuthMiddleware], projectWorkersController.getPWorkersByUser);
+router.get('/byuser/:user_id', [AuthMiddleware], projectWorkersController.getPWorkersByUserId);
+router.update("/", AuthMiddleware, projectWorkersController.updatePWorker);
+router.delete("/", AuthMiddleware, projectWorkersController.deletePWorker);
 
 
 export default router;
