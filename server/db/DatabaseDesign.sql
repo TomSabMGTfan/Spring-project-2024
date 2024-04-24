@@ -36,7 +36,7 @@ CREATE TABLE tasks(
     CONSTRAINT fk_projects FOREIGN KEY(project_id) REFERENCES projects(id)
 );
 
-
+-- UPDATE_23-04-2024_________________________________________________________________________________
 
 ALTER TYPE ROLE ADD VALUE 'super_user';
 
