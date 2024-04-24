@@ -11,7 +11,7 @@ const router = express.Router();
 router.post('/', AuthMiddleware.authenticateUser, async(req, res) => {
     try {
         const {name, description} = req.body;
-        const createdProject = await projectsController.createdProject(name, description);
+        const createdProject = await projectsController.createProject(name, description);
         res.status(201).json(createdProject)
     } catch (error) {
         console.error(err);
