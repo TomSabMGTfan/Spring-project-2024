@@ -4,7 +4,8 @@ import dotenv from 'dotenv/config';
 import AuthMiddleware from '../middleware/authMiddleware.mjs';
 
 import tasksController from '../controllers/tasksController.mjs';
-import { createTaskValidationSchema, updateTaskValidationSchema } from '../validators/taskValidator.mjs';
+import { createTaskValidationSchema, updateTaskValidationSchema, 
+         updateTaskStatusValidationSchema, updateTaskWorkerValidationSchema } from '../validators/taskValidator.mjs';
 
 
 const router = express.Router();
@@ -15,7 +16,8 @@ router.post('/', [AuthMiddleware, createTaskValidationSchema], tasksController.c
 router.get("/project/:project_id", tasksController.getTasksByProjectId);
 router.get("/user/:user_id", tasksController.getTasksByUserId);
 router.put("/", [AuthMiddleware, updateTaskValidationSchema], tasksController.updateTask);
-router.put("/user", [AuthMiddleware, updateTaskValidationSchema], tasksController.updateTaskStatus);
+router.put("/status", [AuthMiddleware, updateTaskStatusValidationSchema], tasksController.updateTaskStatus);
+router.put("/worker", [AuthMiddleware, updateTaskWorkerValidationSchema], tasksController.updateTaskWorker);
 router.delete("/:id", AuthMiddleware, tasksController.deleteTask);
 
 

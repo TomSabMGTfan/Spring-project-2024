@@ -114,6 +114,12 @@ export const updateTaskValidationSchema = checkSchema({
                 } 
             }
         }
+    },
+    worker_id: {
+        isInt:{
+            options: {min: 1},
+            errorMessage: "worker_id must be a valid positive integer"
+        }
     }
 });
 
@@ -139,4 +145,19 @@ export const updateTaskStatusValidationSchema = checkSchema({
             }
         }
     }
+});
+
+export const updateTaskWorkerValidationSchema = checkSchema({
+    id: {
+        isInt:{
+            options: {min: 1},
+            errorMessage: "project_id must be a valid positive integer"
+        }
+    },
+    worker_id: {
+        isInt:{
+            options: {min: 1},
+            errorMessage: "worker_id must be a valid positive integer"
+        }
+    },
 });

@@ -37,7 +37,11 @@ const tasksModel = {
     updateTaskStatus: async (id, status) => {
         const result = await pool.query("UPDATE tasks SET status=$1 WHERE id=$2 RETURNING *", [status, id]);
         return result.rows[0];
-    }
+    },
+    updateTaskWorker: async (id, worker_id) => {
+        const result = await pool.query("UPDATE tasks SET worker_id=$1 WHERE id=$2 RETURNING *", [worker_id, id]);
+        return result.rows[0];
+    },
 };
 
 export default tasksModel;

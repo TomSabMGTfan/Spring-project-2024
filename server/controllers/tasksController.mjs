@@ -124,6 +124,35 @@ const tasksController = {
         }
     },
 
+    updateTaskWorker: async (req,res)=>{
+        try{
+            if(!req.user){
+                return res.status(401).json("Unauthorized access");
+            }
+
+            const role = await project_workersModel.getProjectWorker(req.user.id, project_id);
+
+            if(role != ADMIN && role != OWNER){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
+            const {id, worker_id} = req.body;
+
+            const result = await tasksModel.updateTaskWorker(id, worker_id);
+
+            return res.status(200).json(result);
+        }
+        catch(error){
+            console.log(error);
+            return res.status(500).json({message: "Failed to update a task, an error has occured"});
+        }
+    },
+
     deleteTask: async(req, res) => {
         try{
             if(!req.user){
