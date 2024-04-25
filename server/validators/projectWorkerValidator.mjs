@@ -20,7 +20,7 @@ export const updatePWorkerValidationSchema = checkSchema({
     project_id: {
         isInt:{
             options: {min: 1},
-            errorMessage: "user_id must be a valid positive integer"
+            errorMessage: "project_id must be a valid positive integer"
         }
     }
 });
@@ -35,7 +35,7 @@ export const deletePWorkerValidationSchema = checkSchema({
     project_id: {
         isInt:{
             options: {min: 1},
-            errorMessage: "user_id must be a valid positive integer"
+            errorMessage: "project_id must be a valid positive integer"
         }
     }
 });
