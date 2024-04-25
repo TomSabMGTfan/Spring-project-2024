@@ -15,8 +15,12 @@ const tasksController = {
 
             const {name, description, project_id, planned_end_date} = req.body;
 
-            const role = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            const pWorker = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            if(!pWorker){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
 
+            const {role} = pWorker;
             if(role != ADMIN && role != OWNER){
                 return res.status(401).json("You dont have privileges to perform this action");
             }
@@ -30,7 +34,7 @@ const tasksController = {
                 name,
                 description,
                 created_on: new Date(),
-                planned_end_date,
+                planned_end_date: new Date(planned_end_date),
                 project_id
             };
 
@@ -77,9 +81,13 @@ const tasksController = {
             if(!req.user){
                 return res.status(401).json("Unauthorized access");
             }
+            const {id, name, description, project_id, status, created_on, planned_end_date, worker_id} = req.body;
+            const pWorker = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            if(!pWorker){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
 
-            const role = await project_workersModel.getProjectWorker(req.user.id, project_id);
-
+            const {role} = pWorker;
             if(role != ADMIN && role != OWNER){
                 return res.status(401).json("You dont have privileges to perform this action");
             }
@@ -89,7 +97,6 @@ const tasksController = {
                 return res.status(400).json({ errors: errors.array() });
             }
 
-            const {id, name, description, status, created_on, planned_end_date, worker_id} = req.body;
 
             const task = {
                 id, name, description, status, created_on, planned_end_date, worker_id
@@ -107,12 +114,22 @@ const tasksController = {
 
     updateTaskStatus: async (req,res)=>{
         try{
+            if(!req.user){
+                return res.status(401).json("Unauthorized access");
+            }
+
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
 
             const {id, status} = req.body;
+
+            const task = await tasksModel.getTaskByTaskAndUserId(id, req.user.id);
+            console.log(task);
+            if(!task){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
 
             const result = await tasksModel.updateTaskStatus(id, status);
 
@@ -126,22 +143,36 @@ const tasksController = {
 
     updateTaskWorker: async (req,res)=>{
         try{
-            if(!req.user){
-                return res.status(401).json("Unauthorized access");
-            }
-
-            const role = await project_workersModel.getProjectWorker(req.user.id, project_id);
-
-            if(role != ADMIN && role != OWNER){
-                return res.status(401).json("You dont have privileges to perform this action");
-            }
-
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
             }
 
             const {id, worker_id} = req.body;
+
+            const task = await tasksModel.getTaskById(id);
+
+            if(!task){
+                return res.status(400).json("Task does not exist");
+            }
+            const {project_id} = task;
+
+            if(!req.user){
+                return res.status(401).json("Unauthorized access");
+            }
+
+            const pWorker = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            
+            if(!pWorker){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
+
+            const {role} = pWorker;
+
+            if(role != ADMIN && role != OWNER){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
+
 
             const result = await tasksModel.updateTaskWorker(id, worker_id);
 
@@ -158,18 +189,30 @@ const tasksController = {
             if(!req.user){
                 return res.status(401).json("Unauthorized access");
             }
+            const id = req.params.id;
 
-            const role = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            const task = await tasksModel.getTaskById(id);
+
+            if(!task){
+                return res.status(400).json("Task does not exist");
+            }
+            const {project_id} = task;
+            const pWorker = await project_workersModel.getProjectWorker(req.user.id, project_id);
+
+            if(!pWorker){
+                return res.status(401).json("You dont have privileges to perform this action");
+            }
+
+            const {role} = pWorker;
 
             if(role != ADMIN && role != OWNER){
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            const id = req.params.id;
 
             await tasksModel.deleteTask(id);
 
-            return res.status(200);
+            return res.status(200).json();
         }
         catch(error){
             console.log(error);

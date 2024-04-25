@@ -38,8 +38,8 @@ const projectWorkersController = {
                 return res.status(401).json("Unauthorized access");
             }
 
-            const currentUserRole = await project_workersModel.getProjectWorker(req.user.id, project_id);
-            const otherUserRole = await project_workersModel.getProjectWorker(user_id, project_id);
+            const {role:currentUserRole} = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            const {role:otherUserRole} = await project_workersModel.getProjectWorker(user_id, project_id);
 
             if(otherUserRole === OWNER){
                 return res.status(401).json("You dont have privileges to perform this action");
@@ -77,8 +77,8 @@ const projectWorkersController = {
                 return res.status(401).json("Unauthorized access");
             }
 
-            const currentUserRole = await project_workersModel.getProjectWorker(req.user.id, project_id);
-            const otherUserRole = await project_workersModel.getProjectWorker(user_id, project_id);
+            const {role:currentUserRole} = await project_workersModel.getProjectWorker(req.user.id, project_id);
+            const {role:otherUserRole} = await project_workersModel.getProjectWorker(user_id, project_id);
 
             if(otherUserRole === OWNER){
                 return res.status(401).json("You dont have privileges to perform this action");

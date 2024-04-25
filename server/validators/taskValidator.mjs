@@ -33,15 +33,18 @@ export const createTaskValidationSchema = checkSchema({
         }
     },
     planned_end_date:{
-        isDate:{
+        matches:{
+            options: /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/,
             errorMessage: "Planned end date mus be a valid Date"
         },
         custom:{
             options: (value) => {
-                if(value < Date.now()){
-                    throw new Error("Planned end date must be greater than current date");
+                if((new Date(value)) < Date.now()){
+                    return false;
                 } 
-            }
+                return true;
+            },
+            errorMessage: "Planned end date must be greater than current date"
         }
     }
 });
@@ -87,9 +90,11 @@ export const updateTaskValidationSchema = checkSchema({
         custom:{
             options: (value) => {
                 if(value != TODO && value != INPROGRESS && value != DONE){
-                    throw new Error("Invalid status provided");
+                    return false;
                 }
-            }
+                return true;
+            },
+            errorMessage: "Invalid status provided"
         }
     },
     project_id: {
@@ -105,14 +110,17 @@ export const updateTaskValidationSchema = checkSchema({
     },
     planned_end_date:{
         isDate:{
+            format: "DD-MM-YYYY",
             errorMessage: "Planned end date mus be a valid Date"
         },
         custom:{
             options: (value) => {
-                if(value < Date.now()){
-                    throw new Error("Planned end date must be greater than current date");
+                if((new Date(value)) < Date.now()){
+                    return false;
                 } 
-            }
+                return true;
+            },
+            errorMessage: "Planned end date must be greater than current date"
         }
     },
     worker_id: {
@@ -140,9 +148,11 @@ export const updateTaskStatusValidationSchema = checkSchema({
         custom:{
             options: (value) => {
                 if(value != TODO && value != INPROGRESS && value != DONE){
-                    throw new Error("Invalid status provided");
+                    return false;
                 }
-            }
+                return true;
+            },
+            errorMessage: "Invalid status provided"
         }
     }
 });
