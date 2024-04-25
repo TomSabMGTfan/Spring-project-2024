@@ -19,6 +19,7 @@ const projectWorkersController = {
 
     updatePWorker: async (req,res) => {
         try{
+            
             const {role, user_id, project_id} = req.body;
 
             if(!req.user){
@@ -34,6 +35,11 @@ const projectWorkersController = {
 
             if(currentUserRole == USER){
                 return res.status(401).json("You dont have privileges to perform this action");
+            }
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
             }
 
             const pWorker = {
@@ -68,6 +74,11 @@ const projectWorkersController = {
 
             if(currentUserRole == USER){
                 return res.status(401).json("You dont have privileges to perform this action");
+            }
+            
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
             }
 
             await project_workersModel.deleteProjectWorker(user_id, project_id);

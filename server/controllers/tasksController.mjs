@@ -21,6 +21,11 @@ const tasksController = {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
             const task = {
                 name,
                 description,
@@ -63,6 +68,11 @@ const tasksController = {
 
             if(role != ADMIN && role != OWNER){
                 return res.status(401).json("You dont have privileges to perform this action");
+            }
+            
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
             }
 
             const {id, name, description, created_on, planned_end_date, worker_id} = req.body;
