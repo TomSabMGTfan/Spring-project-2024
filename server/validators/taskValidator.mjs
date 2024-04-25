@@ -1,4 +1,5 @@
 import { checkSchema } from 'express-validator';
+import { TODO, INPROGRESS, DONE } from '../cfg/Task_Status.mjs';
 
 export const createTaskValidationSchema = checkSchema({
     name: {
@@ -76,6 +77,21 @@ export const updateTaskValidationSchema = checkSchema({
             errorMessage: "Description must be at least 10 characters with a max of 5000 characters"
         }
     },
+    status:{
+        notEmpty:{
+            errorMessage: "Status cannot be empty"
+        },
+        isString:{
+            errorMessage: "Status must be a valid String"
+        },
+        custom:{
+            options: (value) => {
+                if(value != TODO && value != INPROGRESS && value != DONE){
+                    throw new Error("Invalid status provided");
+                }
+            }
+        }
+    },
     project_id: {
         isInt:{
             options: {min: 1},
@@ -96,6 +112,30 @@ export const updateTaskValidationSchema = checkSchema({
                 if(value < Date.now()){
                     throw new Error("Planned end date must be greater than current date");
                 } 
+            }
+        }
+    }
+});
+
+export const updateTaskStatusValidationSchema = checkSchema({
+    id: {
+        isInt:{
+            options: {min: 1},
+            errorMessage: "project_id must be a valid positive integer"
+        }
+    },
+    status:{
+        notEmpty:{
+            errorMessage: "Status cannot be empty"
+        },
+        isString:{
+            errorMessage: "Status must be a valid String"
+        },
+        custom:{
+            options: (value) => {
+                if(value != TODO && value != INPROGRESS && value != DONE){
+                    throw new Error("Invalid status provided");
+                }
             }
         }
     }

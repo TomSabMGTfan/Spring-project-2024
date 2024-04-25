@@ -11,26 +11,33 @@ const tasksModel = {
         return result.rows[0];
     },
 
-    getTaskByProjectId: async (id) => {
+    getTasksByProjectId: async (id) => {
         const result = await pool.query("SELECT * FROM tasks WHERE project_id=$1", [id]);
 
         return result.rows;
     },
+    getTasksByUserId: async(id)=>{
+        const result = await pool.query("SELECT * FROM tasks WHERE user_id=$1", [id]);
 
+        return result.rows;
+    },
     deleteTask: async (id) => {
         await pool.query("DELETE FROM tasks WHERE id=$1", [id]);
     },
 
     updateTask: async (task) => {
 
-        const {id, name, description, created_on, planned_end_date, worker_id} = task;
+        const {id, name, description, status, created_on, planned_end_date, worker_id} = task;
 
-        const result = await pool.query("UPDATE tasks SET name=$1, description=$2, created_on=$3, planned_end_date=$4, worker_id=$5 WHERE id=$6 RETURNING *",
-        [name, description, created_on, planned_end_date, worker_id, id]);
+        const result = await pool.query("UPDATE tasks SET name=$1, description=$2, status=$3, created_on=$4, planned_end_date=$5, worker_id=$6 WHERE id=$7 RETURNING *",
+        [name, description, status, created_on, planned_end_date, worker_id, id]);
 
         return result.rows[0];
+    },
+    updateTaskStatus: async (id, status) => {
+        const result = await pool.query("UPDATE tasks SET status=$1 WHERE id=$2 RETURNING *", [status, id]);
+        return result.rows[0];
     }
-
 };
 
 export default tasksModel;

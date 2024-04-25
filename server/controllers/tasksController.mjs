@@ -48,7 +48,21 @@ const tasksController = {
         try{
             const id = req.params.project_id;
 
-            const result = await tasksModel.getTaskByProjectId(id);
+            const result = await tasksModel.getTasksByProjectId(id);
+
+            return res.status(200).json(result);
+        }
+        catch(error){
+            console.log(error);
+            return res.status(500).json({message: "Failed to get a task, an error has occured"});
+        }
+    },
+
+    getTasksByUserId: async (req,res) => {
+        try{
+            const id = req.params.user_id;
+
+            const result = await tasksModel.getTasksByUserId(id);
 
             return res.status(200).json(result);
         }
@@ -75,10 +89,10 @@ const tasksController = {
                 return res.status(400).json({ errors: errors.array() });
             }
 
-            const {id, name, description, created_on, planned_end_date, worker_id} = req.body;
+            const {id, name, description, status, created_on, planned_end_date, worker_id} = req.body;
 
             const task = {
-                id, name, description, created_on, planned_end_date, worker_id
+                id, name, description, status, created_on, planned_end_date, worker_id
             }
 
             const result = await tasksModel.updateTask(task);
@@ -90,7 +104,26 @@ const tasksController = {
             return res.status(500).json({message: "Failed to update a task, an error has occured"});
         }
     },
-    
+
+    updateTaskStatus: async (req,res)=>{
+        try{
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
+            const {id, status} = req.body;
+
+            const result = await tasksModel.updateTaskStatus(id, status);
+
+            return res.status(200).json(result);
+        }
+        catch(error){
+            console.log(error);
+            return res.status(500).json({message: "Failed to update a task, an error has occured"});
+        }
+    },
+
     deleteTask: async(req, res) => {
         try{
             if(!req.user){

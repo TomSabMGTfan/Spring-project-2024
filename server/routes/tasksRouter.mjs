@@ -12,8 +12,10 @@ const router = express.Router();
 
 
 router.post('/', [AuthMiddleware, createTaskValidationSchema], tasksController.createTask);
-router.get("/:project_id", tasksController.getTasksByProjectId);
+router.get("/project/:project_id", tasksController.getTasksByProjectId);
+router.get("/user/:user_id", tasksController.getTasksByUserId);
 router.put("/", [AuthMiddleware, updateTaskValidationSchema], tasksController.updateTask);
+router.put("/user", [AuthMiddleware, updateTaskValidationSchema], tasksController.updateTaskStatus);
 router.delete("/:id", AuthMiddleware, tasksController.deleteTask);
 
 

@@ -16,7 +16,19 @@ const projectWorkersController = {
             return res.status(500).json({message: "Failed to get a project worker, an error has occured"});
         }
     },
+    getPWorkersByProjectId: async (req, res) => {
+        try{
+            const id = req.params.project_id;
 
+            const result = await project_workersModel.getProjectWorkersByProjectId(id);
+
+            return res.status(200).json(result);
+        }
+        catch(error){
+            console.log(error);
+            return res.status(500).json({message: "Failed to get a project worker, an error has occured"});
+        }
+    },
     updatePWorker: async (req,res) => {
         try{
             

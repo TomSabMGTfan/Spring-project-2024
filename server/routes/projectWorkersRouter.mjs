@@ -10,7 +10,8 @@ import { updatePWorkerValidationSchema, deletePWorkerValidationSchema } from '..
 
 const router = express.Router();
 
-router.get('/byuser/:user_id', AuthMiddleware, projectWorkersController.getPWorkersByUserId);
+router.get('/user/:user_id', AuthMiddleware, projectWorkersController.getPWorkersByUserId);
+router.get('/project/:project_id', AuthMiddleware, projectWorkersController.getPWorkersByProjectId);
 router.put("/", [AuthMiddleware, updatePWorkerValidationSchema], projectWorkersController.updatePWorker);
 router.delete("/", [AuthMiddleware, deletePWorkerValidationSchema], projectWorkersController.deletePWorker);
 
