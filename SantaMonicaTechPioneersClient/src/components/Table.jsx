@@ -3,7 +3,7 @@ import React from 'react';
 
 
 
-const Table = () => {
+export const Table = () => {
   return (
     <div>
       <h1>Table</h1>
@@ -11,4 +11,4 @@ const Table = () => {
   )
 }
 
-export default Table
+
