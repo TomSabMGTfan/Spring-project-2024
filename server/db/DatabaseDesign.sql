@@ -1,5 +1,5 @@
 
-CREATE TYPE ROLE AS ENUM ('user', 'admin');
+CREATE TYPE ROLE AS ENUM ('user', 'admin'); -- also 'owner'
 
 CREATE TABLE users ( 
     id SERIAL PRIMARY KEY, 
