@@ -9,7 +9,7 @@ export const createTaskValidationSchema = checkSchema({
             errorMessage: "Name must be a valid String"
         },
         isLength:{
-            options: {min:2, max:50},
+            options: {min:3, max:100},
             errorMessage: "Name must be at least 2 characters with a max of 50 characters"
         }
     },
@@ -21,7 +21,7 @@ export const createTaskValidationSchema = checkSchema({
             errorMessage: "Description must be a valid String"
         },
         isLength:{
-            options: {min:10, max:5000},
+            options: {min:10, max:2000},
             errorMessage: "Description must be at least 10 characters with a max of 5000 characters"
         }
     },
@@ -60,7 +60,7 @@ export const updateTaskValidationSchema = checkSchema({
             errorMessage: "Name must be a valid String"
         },
         isLength:{
-            options: {min:2, max:50},
+            options: {min:3, max:100},
             errorMessage: "Name must be at least 2 characters with a max of 50 characters"
         }
     },
@@ -72,7 +72,7 @@ export const updateTaskValidationSchema = checkSchema({
             errorMessage: "Description must be a valid String"
         },
         isLength:{
-            options: {min:10, max:5000},
+            options: {min:10, max:2000},
             errorMessage: "Description must be at least 10 characters with a max of 5000 characters"
         }
     },

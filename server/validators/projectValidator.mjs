@@ -6,7 +6,7 @@ export const createProjectValidationSchema = checkSchema({
             errorMessage:"Name cannot be empty"
         },
         isLength: {
-            options: {min: 2, max:20},
+            options: {min: 2, max:255},
             errorMessage:"Name must be at least 2 characters with a max of 20 characters"
         }
     },
