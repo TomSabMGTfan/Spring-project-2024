@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./App.css";
 import './App.css'
-import {Table} from './components/Table'
+
 
 
 function App() {
@@ -31,10 +31,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route
             path="/dashboard"
-            element={
-              
+            element={            
               <PrivateRoute roles={["user"]}>
-                
                 <UserDashboard />
               </PrivateRoute>
             }

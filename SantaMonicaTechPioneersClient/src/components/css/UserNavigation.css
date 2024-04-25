@@ -1,5 +1,6 @@
 .dashboard_body{
     min-height: 80vh;
+    display: grid;
 }
 
 .Left-Nav{
