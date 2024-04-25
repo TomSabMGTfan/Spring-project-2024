@@ -3,6 +3,9 @@ import { fetchUserData } from '../api/apis';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../utils/AuthContext';
 import {UserNavigation} from './UserNavigation';
+import Table from './Table'
+
+// naudoti useContext, kad gauti prisijungusio vartotojo duomenis
 
 function UserDashboard() {
   const { user: authUser } = useContext(AuthContext);
@@ -44,6 +47,7 @@ function UserDashboard() {
   return (
     <div className='dashboard_body'>
       <UserNavigation />
+      <Table/>
       <h1>Welcome, {userData.username}!</h1>
       <p>Email: {userData.email}</p>
       <p>Role: {userData.role}</p>

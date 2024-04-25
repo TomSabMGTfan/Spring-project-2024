@@ -46,9 +46,9 @@ function RegisterForm() {
 
     try {
       // išsiunčiame užklausą į serverį, kad užregistruoti vartotoją
-      await registerUser(data);
-      setSuccessMessage('Registration successful!');
-      navigate('/login');
+      await registerUser(data).then(()=> setSuccessMessage('Registration successful!'));
+      setTimeout(()=>navigate('/login'),3000)
+      
     } catch (error) {
       // console.log(error.response.data);
       // jeigu iš serverio gauname klaidą, tai ją apdorojame ir nurodome, kad klaida yra email lauke
