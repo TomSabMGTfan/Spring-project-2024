@@ -57,7 +57,9 @@ ALTER TABLE project_workers
 ADD role ROLE NOT NULL DEFAULT 'user';
 
 -- UPDATE_24-04-2024_________________________________________________________________________________
+-- You will need to run this code 2 times
 
+-- 1 PART
 ALTER TABLE tasks
 ADD worker_id INT,
 ADD CONSTRAINT fk_users FOREIGN KEY(worker_id) REFERENCES users(id);
@@ -66,6 +68,8 @@ ALTER TYPE STATUS RENAME TO TASK_STATUS;
 ALTER TYPE TASK_STATUS ADD VALUE 'to do';
 
 CREATE TYPE PROJECT_STATUS AS ENUM ('ongoing', 'done');
+
+-- 2 PART
 
 ALTER TABLE projects
 DROP status,
