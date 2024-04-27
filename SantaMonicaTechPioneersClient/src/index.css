@@ -13,15 +13,15 @@ a {
 
 
 
-body {
+/* body {
   margin: 0;
   /*display: flex;
   place-items: center;*/
-  min-width: 320px;
-  min-height: 100vh;
+  /* min-width: 320px;
+  min-height: 100vh; */
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -36,6 +36,6 @@ button {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
+} */ */
 
 
