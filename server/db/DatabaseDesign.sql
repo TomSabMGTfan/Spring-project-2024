@@ -88,7 +88,7 @@ ALTER TYPE ROLE ADD VALUE 'owner';
 
 ALTER TABLE tasks
 ADD created_on DATE NOT NULL,
-ADD planned_end_date DATE NOT NULL
+ADD planned_end_date DATE NOT NULL,
 DROP status,
 ADD status TASK_STATUS NOT NULL DEFAULT 'to do';
 
