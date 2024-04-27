@@ -10,6 +10,38 @@ const project_workersModel = {
         [user_id, project_id, role]);
 
         return result.rows[0];
+    },
+
+    getProjectWorker: async (user_id, project_id) => {
+        const result = await pool.query("SELECT * FROM project_workers WHERE user_id=$1 AND project_id=$2",
+        [user_id, project_id]);
+
+        return result.rows[0];
+    },
+    
+    getProjectWorkersByUserId: async (user_id) => {
+        const result = await pool.query("SELECT * FROM project_workers WHERE user_id=$1",
+        [user_id]);
+
+        return result.rows;
+    },
+    getProjectWorkersByProjectId: async (project_id) => {
+        const result = await pool.query("SELECT * FROM project_workers WHERE project_id=$1",
+        [project_id]);
+
+        return result.rows;
+    },
+    deleteProjectWorker: async (user_id, project_id) => {
+        const result = await pool.query("DELETE FROM project_workers WHERE user_id=$1 AND project_id=$2",
+        [user_id, project_id]);
+    },
+
+    updateProjectWorkerRole: async (pWorker) => {
+        const {user_id, project_id, role} = pWorker;
+        const result = await pool.query("UPDATE project_workers SET role=$1 WHERE user_id=$2 AND project_id=$3 RETURNING *",
+        [role, user_id, project_id]);
+
+        return result.rows[0];
     }
 };
 

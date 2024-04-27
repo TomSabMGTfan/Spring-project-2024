@@ -1,4 +1,4 @@
-import { SUPERUSER } from '../cfg/Roles.mjs';
+import { OWNER } from '../cfg/Roles.mjs';
 import projectsModel from '../models/projectsModel.mjs'
 import project_workersModel from '../models/project_workersModel.mjs';
 import { validationResult } from "express-validator";
@@ -23,7 +23,7 @@ const projectsController = {
             const pWorker = {
                 user_id: req.user.id,
                 project_id: createdProject.id,
-                role: SUPERUSER
+                role: OWNER
             }
 
             const result = await project_workersModel.createProjectWorker(pWorker);

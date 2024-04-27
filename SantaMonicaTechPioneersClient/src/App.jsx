@@ -5,7 +5,6 @@ import RegistrationForm from "./components/RegisterForm"
 import {Home} from './components/homepage'
 import LoginForm from "./components/LoginForm";
 import UserDashboard from "./components/UserDashboard";
-import AdminDashboard from "./components/AdminDashboard";
 import PrivateRoute from "./routes/privateRoutes";
 import { AuthContext } from "./utils/AuthContext";
 
@@ -14,6 +13,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./App.css";
 import './App.css'
+
+
 
 function App() {
   
@@ -30,20 +31,12 @@ function App() {
         <Route
             path="/dashboard"
             element={
-              <PrivateRoute roles={["user"]}>
+              <PrivateRoute>
                 <UserDashboard />
               </PrivateRoute>
             }
           />
-          <Route
-            path="/admin-dashboard"
-            element={
-              <PrivateRoute roles={["admin"]}>
-                <AdminDashboard />
-              </PrivateRoute>
-            }
-          />
-     
+
       </Routes>
     </Router>
     <Footer />

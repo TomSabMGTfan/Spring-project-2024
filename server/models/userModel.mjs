@@ -5,10 +5,11 @@ const userModel = {
 
 	// User creation
 	createUser: async (newUser) => {
-		const { username, password, email, registered_on, role} = newUser;
+		const { username, password, email, registered_on} = newUser;
 
 		// Sending query to database
-		const result = await pool.query('INSERT INTO users (username, password, email, registered_on, role) VALUES ($1, $2, $3, $4, $5) RETURNING *', [username, password, email, registered_on, role]);
+		const result = await pool.query('INSERT INTO users (username, password, email, registered_on) VALUES ($1, $2, $3, $4) RETURNING *',
+		 [username, password, email, registered_on]);
 			
 		return result.rows[0];
 	},
