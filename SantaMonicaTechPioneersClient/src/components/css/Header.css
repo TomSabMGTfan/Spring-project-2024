@@ -5,6 +5,94 @@
 	
 }
 
+nav {
+	background-color: #394045;
+	padding: 16px 80px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+
+.logo {
+	font-size: 32px;
+	color: #ffffff;
+	font-weight: bold;
+}
+ul {
+	list-style: none;
+}
+
+ul li {
+	display: inline;
+	margin-right: 20px;
+}
+
+ul li a {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 20px;
+}
+
+ul li a i{
+	margin-right: 5px;
+	color: #DFC1C1;
+}
+
+.logo-collor {
+	position: relative;
+	color: #52616d;
+	text-transform: uppercase;
+	-webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
+	line-height: 0.70em;
+	outline: none;
+	animation: animate 15s linear infinite;
+}
+
+@keyframes animate 
+{ 35%              
+	{
+	color: #ffffff;
+	text-shadow: none;
+}
+ 80%
+	{
+	color: #fff;
+	text-shadow: 0 0 1px #fff,
+	0 0 1px #fff,
+	0 0 5px #fff,
+	0 0 5px #fff,
+	0 0 1px #fff;
+
+
+}
+}
+
+.logged-name{
+	color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 :root {
 	--mainColor: #DFC1C1;
 	--mainColorLight: #48BFC7;
@@ -76,7 +164,32 @@ header div,
 nav {
 	display: flex;
 	align-items: center;
-}
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* -----------nereikalinga dalis---------------- */
 /* @media only screen and (max-width: 1420px) {
 	header .nav-btn {
