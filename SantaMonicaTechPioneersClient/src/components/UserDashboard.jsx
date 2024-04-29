@@ -3,11 +3,35 @@ import { fetchUserData } from '../api/apis';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../utils/AuthContext';
 import {UserNavigation} from './UserNavigation';
-import Table from './Table'
-
-// naudoti useContext, kad gauti prisijungusio vartotojo duomenis
+import {Table} from './Table';
+import {Modal} from "./Modal";
 
 function UserDashboard() {
+
+  const [modalOpen, setModalOpen] = useState(false); 
+
+  const [rows, setRows] = useState ([{id: "", member:"Dev1",task:"To do styling",progress:"inprogress",deadline:"june 22" },
+  {id: "", member:"Dev2",task:"To create page",progress:"todo",deadline:"june" },
+  {id: "", member:"Dev3",task:"Fix structure",progress:"done",deadline:"june 11th" }]);
+
+  const [rowToEdit, setRowToEdit] = useState(null)
+
+  const handleDeleteRow = (targetIndex) => {setRows(rows.filter((_, idx) => idx !== targetIndex));}
+
+  const handleEditRow = (idx) => {
+    setRowToEdit(idx);
+    setModalOpen(true);
+  }
+
+const handleSubmit = (newRow) => {
+  rowToEdit === null ?
+  setRows([...rows, newRow]) :
+  setRows(rows.map((currRow, idx) => {
+    if (idx !== rowToEdit) return currRow
+    return newRow;
+  }))
+}
+
   const { user: authUser } = useContext(AuthContext);
   console.log('authUser in UserDashboard:', authUser); 
   const [userData, setUserData] = useState(null);
@@ -47,12 +71,23 @@ function UserDashboard() {
   return (
     <div className='dashboard_body'>
       <UserNavigation />
-      <Table/>
+      <div className="app-table">
+      <div className="loged-info">
       <h1>Welcome, {userData.username}!</h1>
       <p>Email: {userData.email}</p>
-      <p>Role: {userData.role}</p>
-      
-    </div>
+      <p>Role: {userData.role}</p></div>
+                  <Table rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+<button className="btn" onClick={() => setModalOpen(true)}>Add</button>
+                  {modalOpen && <Modal closeModal={() =>{
+                    setModalOpen(false);
+                    setRowToEdit(null);
+                  }}
+                  onSubmit={handleSubmit}
+                  defaultValue={rowToEdit !==null && rows[rowToEdit]}
+                   />}
+                {/* </div> */}
+                
+    </div></div>
   );
 }
 
