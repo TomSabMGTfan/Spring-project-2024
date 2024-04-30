@@ -49,3 +49,46 @@ export const fetchUserData = async (userId) => {
     throw error;
   }
 };
+
+export const TaskModel = {
+  getProjectTasks: async(project_id) => {
+    try{
+      const response = await apiClient.get(`/tasks/project/${project_id}`);
+      return response;
+    }
+    catch(error){
+      console.log(error);
+    }
+  },
+
+  updateTask: async(task) => {
+    try{
+      const response = await apiClient.put(`/tasks`, task);
+      return response;
+    }
+    catch(error){
+      console.log(error);
+    }
+  },
+
+  deleteTask: async(task_id) => {
+    try{
+      const response = await apiClient.delete(`/tasks/${task_id}`);
+      return response;
+    }
+    catch(error){
+      console.log(error);
+    }
+  },
+
+  createTask: async(task) => {
+    try{
+      const response = await apiClient.post(`/tasks`, task);
+      return response;
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+}
+

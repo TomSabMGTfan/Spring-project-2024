@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./App.css";
 import './App.css'
+import { ProjectPage } from './components/ProjectPage/ProjectPage';
 
 
 
@@ -36,7 +37,7 @@ function App() {
               </PrivateRoute>
             }
           />
-
+        <Route path='projects/:id' element={<ProjectPage />} />
       </Routes>
     </Router>
     <Footer />
