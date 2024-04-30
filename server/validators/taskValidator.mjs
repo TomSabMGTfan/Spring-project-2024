@@ -103,11 +103,6 @@ export const updateTaskValidationSchema = checkSchema({
             errorMessage: "project_id must be a valid positive integer"
         }
     },
-    created_on:{
-        isDate:{
-            errorMessage: "Created on mus be a valid Date"
-        }
-    },
     planned_end_date:{
         isDate:{
             format: "DD-MM-YYYY",

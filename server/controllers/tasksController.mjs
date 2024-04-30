@@ -81,7 +81,7 @@ const tasksController = {
             if(!req.user){
                 return res.status(401).json("Unauthorized access");
             }
-            const {id, name, description, project_id, status, created_on, planned_end_date, worker_id} = req.body;
+            const {id, name, description, project_id, status, planned_end_date, worker_id} = req.body;
             const pWorker = await project_workersModel.getProjectWorker(req.user.id, project_id);
             if(!pWorker){
                 return res.status(401).json("You dont have privileges to perform this action");
