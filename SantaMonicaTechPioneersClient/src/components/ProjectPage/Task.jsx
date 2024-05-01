@@ -1,4 +1,4 @@
-import '../css/Table.css';
+import '../css/TaskList.css';
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
 export const Task = ({ task, is_role_admin_or_owner, edit, remove }) => {
@@ -6,6 +6,8 @@ export const Task = ({ task, is_role_admin_or_owner, edit, remove }) => {
     const { id, name, description, created_on, planned_end_date, status, worker_id } = task;
 
     const worker = {};
+
+    let cssStatus = status.replace(/\s/g, '');
 
     return <tr>
         {/* ID */}
@@ -18,7 +20,7 @@ export const Task = ({ task, is_role_admin_or_owner, edit, remove }) => {
         <td className="expand">{description}</td>
         {/* Status */}
         <td>
-            <span className={`label label-${status}`}>{status}</span>
+            <span className={`label label-${cssStatus}`}>{status}</span>
         </td>
         {/* Task creation date */}
         <td>{created_on.split('T')[0]}</td>

@@ -1,4 +1,3 @@
-import '../css/Table.css';
 import '../css/ProjectPage.css';
 import { TaskList } from './TaskList';
 import { useParams } from 'react-router-dom';
@@ -7,7 +6,6 @@ import { useContext } from 'react';
 
 export const ProjectPage = () => {
     const {id: project_id} = useParams(); 
-    console.log()
     if(!project_id){
         return <div>404 Not Found</div>;
     }

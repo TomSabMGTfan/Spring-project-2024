@@ -68,6 +68,7 @@ export const TaskModel = {
     }
     catch(error){
       console.log(error);
+      return error.response;
     }
   },
 
@@ -78,6 +79,7 @@ export const TaskModel = {
     }
     catch(error){
       console.log(error);
+      return error.response;
     }
   },
 
