@@ -33,7 +33,16 @@ const projectsController = {
             console.error(error);
             res.status(500).json({message: "failed to create a project, an error has occured "})
         }
-    }
+    },
+
+    deleteProject: async(req, res) => {
+        try {
+            
+        } catch (error) {
+            
+        }
+    },
+
 };
 
 
