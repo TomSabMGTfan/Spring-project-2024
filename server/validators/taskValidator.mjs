@@ -11,7 +11,7 @@ export const createTaskValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:3, max:100},
-            errorMessage: "Name must be at least 2 characters with a max of 50 characters"
+            errorMessage: "Name must be at least 3 characters with a max of 100 characters"
         }
     },
     description:{
@@ -65,7 +65,7 @@ export const updateTaskValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:3, max:100},
-            errorMessage: "Name must be at least 2 characters with a max of 50 characters"
+            errorMessage: "Name must be at least 3 characters with a max of 100 characters"
         }
     },
     description:{
@@ -77,7 +77,7 @@ export const updateTaskValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:10, max:2000},
-            errorMessage: "Description must be at least 10 characters with a max of 5000 characters"
+            errorMessage: "Description must be at least 10 characters with a max of 2000 characters"
         }
     },
     status:{
@@ -115,7 +115,7 @@ export const updateTaskValidationSchema = checkSchema({
                 } 
                 return true;
             },
-            errorMessage: "Planned end date must be greater than current date"
+            errorMessage: "Planned end date must be greater than the date that this task was created"
         }
     },
 });
