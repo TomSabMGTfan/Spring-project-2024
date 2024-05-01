@@ -53,7 +53,7 @@ export const updateTaskValidationSchema = checkSchema({
     id: {
         isInt:{
             options: {min: 1},
-            errorMessage: "project_id must be a valid positive integer"
+            errorMessage: "Id must be a valid positive integer"
         }
     },
     name: {
@@ -118,12 +118,6 @@ export const updateTaskValidationSchema = checkSchema({
             errorMessage: "Planned end date must be greater than current date"
         }
     },
-    worker_id: {
-        isInt:{
-            options: {min: 1},
-            errorMessage: "worker_id must be a valid positive integer"
-        }
-    }
 });
 
 export const updateTaskStatusValidationSchema = checkSchema({

@@ -99,7 +99,7 @@ const tasksController = {
 
 
             const task = {
-                id, name, description, status, created_on, planned_end_date, worker_id
+                id, name, description, status, planned_end_date, worker_id
             }
 
             const result = await tasksModel.updateTask(task);
