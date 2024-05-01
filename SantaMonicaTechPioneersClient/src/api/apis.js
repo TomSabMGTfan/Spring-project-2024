@@ -72,6 +72,17 @@ export const TaskModel = {
     }
   },
 
+  updateTaskStatus: async(task) => {
+    try{
+      const response = await apiClient.put(`/tasks/status`, task);
+      return response;
+    }
+    catch(error){
+      console.log(error);
+      return error.response;
+    }
+  },
+
   deleteTask: async(task_id) => {
     try{
       const response = await apiClient.delete(`/tasks/${task_id}`);
@@ -90,7 +101,20 @@ export const TaskModel = {
     }
     catch(error){
       console.log(error);
+      return error.response;
     }
   }
 }
 
+export const pWorkerModel = {
+  getPWorkerByUserAndProjectId: async (user_id, project_id) => {
+    try{
+      const response = await apiClient.get(`/pworkers/${user_id}/${project_id}`);
+      return response;
+    }
+    catch(error){
+      console.log(error);
+      return error.response;
+    }
+  }
+}

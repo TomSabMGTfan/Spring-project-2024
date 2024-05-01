@@ -8,7 +8,7 @@ const projectWorkersController = {
     getPWorkersByUserId: async (req, res) => {
         try{
             const id = req.params.user_id;
-            console.log(id);
+            
             const result = await project_workersModel.getProjectWorkersByUserId(id);
 
             return res.status(200).json(result);

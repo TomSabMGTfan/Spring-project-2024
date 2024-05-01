@@ -1,12 +1,13 @@
-import '../css/TaskList.css';
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import '../css/Table.css';
+import { BsFillTrashFill, BsFillPencilFill, BsFillEyeFill } from "react-icons/bs";
+import { AuthContext } from '../../utils/AuthContext';
+import { useContext } from 'react';
 
-export const Task = ({ task, is_role_admin_or_owner, edit, remove }) => {
+export const Task = ({ task, isAdminOrOwner, view, edit, editStatus, remove }) => {
 
-    const { id, name, description, created_on, planned_end_date, status, worker_id } = task;
+    const { id, name, description, created_on, planned_end_date, status, worker_username } = task;
 
-    const worker = {};
-
+    const { user } = useContext(AuthContext);
     let cssStatus = status.replace(/\s/g, '');
     // Make all status words first letter capital
     let displayStatus = status.split(' ').map((value) => value = value[0].toUpperCase() + value.substring(1)).join(" ");
@@ -17,9 +18,9 @@ export const Task = ({ task, is_role_admin_or_owner, edit, remove }) => {
         {/* Name */}
         <td>{name}</td>
         {/* Worker */}
-        <td>{worker.username}</td>
+        <td>{worker_username}</td>
         {/* Description */}
-        <td className="expand">{description}</td>
+        <td className="expand">{description.substring(0, 10) + " ..."}</td>
         {/* Status */}
         <td>
             <span className={`label label-${cssStatus}`}>{displayStatus}</span>
@@ -31,13 +32,22 @@ export const Task = ({ task, is_role_admin_or_owner, edit, remove }) => {
 
         {/* Buttons */}
 
-        {is_role_admin_or_owner && 
-            <td>
-                <span className="actions">
-                    <BsFillPencilFill onClick={() => edit(id)} />
-                    <BsFillTrashFill className="delete-btn" onClick={() => remove(id)} />
-                </span>
-            </td>
-        }
+        <td>
+            <span className="actions">
+                <BsFillEyeFill onClick={() => view(id)} />
+                {isAdminOrOwner ?
+
+                    <>
+                        <BsFillPencilFill onClick={() => edit(id)} />
+                        <BsFillTrashFill className="delete-btn" onClick={() => remove(id)} />
+                    </>
+                    :
+                    (user.username === worker_username ?
+
+                        <BsFillPencilFill onClick={() => editStatus(id)} />
+                        : <></>)
+                }
+            </span>
+        </td>
     </tr>;
 }

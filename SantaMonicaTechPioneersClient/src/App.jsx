@@ -37,7 +37,11 @@ function App() {
               </PrivateRoute>
             }
           />
-        <Route path='projects/:id' element={<ProjectPage />} />
+        <Route path='projects/:id' element={
+          <PrivateRoute>
+            <ProjectPage />
+          </PrivateRoute>
+        } />
       </Routes>
     </Router>
     <Footer />
