@@ -78,7 +78,7 @@ const tasksController = {
             const id = req.params.user_id;
 
             let result = await tasksModel.getTasksByUserId(id);
-            rresult = await Promise.all(result.map(async (value) => {
+            result = await Promise.all(result.map(async (value) => {
                 if(value.worker_id){
                     const user = await userModel.getUserById(value.worker_id);
                     const {username: worker_username} = user;
