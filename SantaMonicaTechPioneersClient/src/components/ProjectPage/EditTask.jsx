@@ -14,16 +14,19 @@ export const EditTask = ({ closeEditTask, updateTask, tasks, task_id }) => {
 
 
     const onFormSubmit = async (data) => {
-        // TODO Check for validation errors
-
-
         const errors = await updateTask({...data, id:task_id});
         if(!errors){
             closeEditTask();
             return;
         }
 
-        
+        for(let i = 0; i < errors.length; i++){
+            setError(errors[i].path, {
+              type: "manual",
+              message: errors[i].msg
+            });
+        }
+
     }
 
 
@@ -37,10 +40,18 @@ export const EditTask = ({ closeEditTask, updateTask, tasks, task_id }) => {
                     {/* Name */}
                     <div className="form-group">
                         <label>Task</label>
-                        <textarea {...register("name", {
+                        <textarea className="name-txtarea" maxLength={100} rows={3} {...register("name", {
                             value: task.name,
-                            // TODO VALIDATION
+                            minLength: {
+                                value: 3,
+                                message: "Name must be at least 3 characters with a max of 100 characters"
+                            },
+                            maxLength: {
+                                value: 100,
+                                message: "Name must be at least 3 characters with a max of 100 characters"
+                            }
                         })} />
+                        {errors.name && <div className="error">{errors.name.message}</div>}
                     </div>
 
                     {/* Description */}
@@ -48,8 +59,16 @@ export const EditTask = ({ closeEditTask, updateTask, tasks, task_id }) => {
                         <label>Description</label>
                         <textarea {...register("description", {
                             value: task.description,
-                            // TODO VALIDATION
+                            minLength: {
+                                value: 10,
+                                message: "Description must be at least 10 characters with a max of 2000 characters"
+                            },
+                            maxLength: {
+                                value: 2000,
+                                message: "Description must be at least 10 characters with a max of 2000 characters"
+                            }
                         })} />
+                        {errors.description && <div className="error">{errors.description.message}</div>}
                     </div>
 
                     {/* Worker */}
@@ -57,8 +76,8 @@ export const EditTask = ({ closeEditTask, updateTask, tasks, task_id }) => {
                         <label>Worker</label>
                         <textarea {...register("worker_id", {
                             value: task.worker_id,
-                            // TODO VALIDATION
                         })} />
+                        {errors.worker_id && <div className="error">{errors.worker_id.message}</div>}
                     </div>
 
                     {/* STATUS */}
@@ -66,12 +85,12 @@ export const EditTask = ({ closeEditTask, updateTask, tasks, task_id }) => {
                         <label>Status</label>
                         <select {...register("status", {
                             value: task.status,
-                            // TODO VALIDATION
                         })}>
                             <option value="to do">To Do</option>
                             <option value="in progress">In Progress</option>
                             <option value="done">Done</option>
                         </select>
+                        {errors.status && <div className="error">{errors.status.message}</div>}
                     </div>
 
                     {/* Deadline */}
@@ -79,10 +98,9 @@ export const EditTask = ({ closeEditTask, updateTask, tasks, task_id }) => {
                         <label>Deadline</label>
                         <input type="date" {...register("planned_end_date", {
                             value: task.planned_end_date.split('T')[0],
-                            // TODO VALIDATION
                         })} />
                     </div>
-
+                    {errors.planned_end_date && <div className="error">{errors.planned_end_date.message}</div>}
                     
                     <button type="submit" className="btn">Submit</button>
                 </form>
