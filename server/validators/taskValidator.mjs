@@ -11,7 +11,7 @@ export const createTaskValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:3, max:100},
-            errorMessage: "Name must be at least 2 characters with a max of 50 characters"
+            errorMessage: "Name must be at least 3 characters with a max of 100 characters"
         }
     },
     description:{
@@ -53,7 +53,7 @@ export const updateTaskValidationSchema = checkSchema({
     id: {
         isInt:{
             options: {min: 1},
-            errorMessage: "project_id must be a valid positive integer"
+            errorMessage: "Id must be a valid positive integer"
         }
     },
     name: {
@@ -65,7 +65,7 @@ export const updateTaskValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:3, max:100},
-            errorMessage: "Name must be at least 2 characters with a max of 50 characters"
+            errorMessage: "Name must be at least 3 characters with a max of 100 characters"
         }
     },
     description:{
@@ -77,7 +77,7 @@ export const updateTaskValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:10, max:2000},
-            errorMessage: "Description must be at least 10 characters with a max of 5000 characters"
+            errorMessage: "Description must be at least 10 characters with a max of 2000 characters"
         }
     },
     status:{
@@ -103,11 +103,6 @@ export const updateTaskValidationSchema = checkSchema({
             errorMessage: "project_id must be a valid positive integer"
         }
     },
-    created_on:{
-        isDate:{
-            errorMessage: "Created on mus be a valid Date"
-        }
-    },
     planned_end_date:{
         isDate:{
             format: "DD-MM-YYYY",
@@ -120,15 +115,9 @@ export const updateTaskValidationSchema = checkSchema({
                 } 
                 return true;
             },
-            errorMessage: "Planned end date must be greater than current date"
+            errorMessage: "Planned end date must be greater than the date that this task was created"
         }
     },
-    worker_id: {
-        isInt:{
-            options: {min: 1},
-            errorMessage: "worker_id must be a valid positive integer"
-        }
-    }
 });
 
 export const updateTaskStatusValidationSchema = checkSchema({

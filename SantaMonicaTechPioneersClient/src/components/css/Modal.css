@@ -38,6 +38,21 @@
 .form-group label {
     margin-bottom: 0.2rem;
 }
+
+.name-txtarea{
+    resize: none;
+}
+
+.description-txtarea{
+    min-height: 10rem;
+    max-height: 24rem;
+    resize: vertical;
+}
+
+.worker-txtarea{
+    resize: none;
+}
+
 .error{
     background-color: #DFC1C1;
     color: black;

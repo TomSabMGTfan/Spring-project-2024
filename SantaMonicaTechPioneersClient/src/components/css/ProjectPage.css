@@ -1,0 +1,24 @@
+.project-page{
+    min-height: 42rem;
+
+}
+
+.Grid-Container{
+    grid-template-columns: 1fr 6fr;
+    display: grid;
+    
+}
+
+.Grid-Item{
+    margin: 1rem;
+}
+
+.Grid-Side{
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.Grid-Main{
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
