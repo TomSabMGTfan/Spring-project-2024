@@ -2,7 +2,7 @@
   padding: 4rem 4rem;
 }
 .footer{
-  background-color: #DFC1C1;
+  background-color: #394045;
   /* position: absolute; */
   right: 0;
   left: 0;
@@ -29,11 +29,11 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  color: #000000;
+  color: #ffffff;
   margin-left: 15rem;
 }
 .sb__footer-links-div p a:hover{
-  color: #F4F5F8;
+  color: #696969;
 }
 
 .sb__footer{
