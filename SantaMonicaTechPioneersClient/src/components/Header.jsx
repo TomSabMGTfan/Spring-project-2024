@@ -36,7 +36,7 @@ function Navbar() {
 				<li><a href="/"><i class="fas fa-home"></i>Home</a></li>
 				<li><a href=""><i class="fas fa-info-circle"></i>About</a></li>
 				<li><a href="/login"><i class="fa fa-sign-in"></i>Login</a></li>
-				<li><a href="/signup"><i class="fa fa-pencil-square-o"></i>Register</a></li>
+				<li className="register-btn"><a href="/signup"><i class="fa fa-pencil-square-o"></i>Register</a></li>
 				</ul>
 				</>
 			) : (
