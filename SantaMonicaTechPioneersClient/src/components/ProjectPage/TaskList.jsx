@@ -3,7 +3,7 @@ import { EditTask } from "./EditTask";
 import { EditTaskStatus } from "./EditTaskStatus";
 import { CreateTask } from "./CreateTask";
 import {ViewTask} from "./ViewTask";
-import { TaskModel } from "../../api/apis";
+import TaskModel from "../../api/tasks";
 import { useEffect, useState } from "react";
 import '../css/Table.css';
 
