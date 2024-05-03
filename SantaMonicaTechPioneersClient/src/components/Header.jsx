@@ -50,7 +50,7 @@ function Navbar() {
 					<li><a href="/"><i class="fas fa-home"></i>Home</a></li>
 					<li><a href=""><i class="fas fa-info-circle"></i>About</a></li>
 						<li><a href=""><i class="fas fa-envelope"></i>Contacts</a></li>
-						<li><a href="dashboard"><i class="fas fa-cogs"></i>Back to project</a></li>
+						<li><a href="/dashboard"><i class="fas fa-cogs"></i>Back to project</a></li>
 						<li><a href="" onClick={logoutUser}><i class="fas fa-sign-out" ></i>Logout</a></li>
 						{/* <button className="header_nav_buttons"style={{background:"none"}} onClick={logoutUser}>Logout</button> */}
 					</ul>

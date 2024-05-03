@@ -20,7 +20,7 @@ export const UserNavigation = ()=> {
        <img className="techin-logo" src={techin} alt="techin-logo"/>
 </div>
         <ul className="text-ul">
-          <li className="text-li"><img className="logos" src={Projects} alt="timeline"/><a className="text-list" href="#">Projects</a></li>
+          <li className="text-li"><img className="logos" src={Projects} alt="timeline"/><a className="text-list" href="/projects/dashboard">Projects</a></li>
           <li className="text-li"><img className="logos" src={vector} alt="timeline"/><a className="text-list" href="#">Timeline</a></li>
           <li className="text-li"><img className="logos" src={vector1} alt="timeline"/><a className="text-list"href="#">Backlog</a></li>
           <li className="text-li"><img className="logos" src={vector2} alt="timeline"/><a className="text-list"href="#">Board</a></li>
