@@ -3,7 +3,7 @@ import { TaskList } from './TaskList';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../utils/AuthContext';
 import { useContext, useEffect, useState } from 'react';
-import { pWorkerModel } from '../../api/apis';
+import pWorkerModel from '../../api/pWorkers';
 
 export const ProjectPage = () => {
     const { id: project_id } = useParams();

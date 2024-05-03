@@ -1,10 +1,11 @@
+import { ONGOING } from "../cfg/Projects.mjs";
 import { pool } from "../db/postgresConnection.mjs";
 
 
 
 const projectsModel = {
   createProject: async (name, description) => {
-    const status = "ongoing";
+    const status = ONGOING;
     const result = await pool.query(
       "INSERT INTO projects (name, description, status) VALUES ($1, $2, $3) RETURNING *",
       [name, description, status]
@@ -13,7 +14,8 @@ const projectsModel = {
   },
 
   getProjectById: async(id) => {
-    await pool.query('SELECT FROM projects where id = $1 RETURNING *', [id])
+   const result =  await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
+   return result.rows[0];
   },
 
   deleteProject: async(id) => {
@@ -23,9 +25,9 @@ const projectsModel = {
   },
 
   updateProject: async(projects) => { 
-    const {name, description, status} = projects
+    const {name, description, status, id} = projects;
 
-    const result = await pool.query("UPDATE projects SET name=$1, description=$2, status=$3 WHERE id=$4 RETURNING *", [name, description, status]) 
+    const result = await pool.query("UPDATE projects SET name=$1, description=$2, status=$3 WHERE id=$4 RETURNING *", [name, description, status, id]) 
     return result.rows[0]
   }
 };
