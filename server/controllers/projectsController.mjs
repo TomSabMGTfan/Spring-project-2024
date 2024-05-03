@@ -55,7 +55,7 @@ const projectsController = {
                 
                 // checking if the authenticated user has permission to delete the project 
                 const pWorker = await project_workersModel.getProjectWorker(req.user.id, id);
-                if(!pWorker || (pWorker.role !== ADMIN && pWorker.role !== OWNER)) {
+                if(!pWorker || (pWorker.role !== OWNER)) {
                     return res.status(401).json({message: "You dont have the privileges to delete this project"})
                 }
 
@@ -114,21 +114,21 @@ const projectsController = {
                 res.status(401).json({message: "you dont have the authorization to update this project"})
             }
 
-            const projectId = req.params.id;
+            // const projectId = req.params.id;
 
-            const {name, description, status} = req.body;
+            const {id, name, description, status} = req.body;
 
-            const project = await projectsModel.getProjectById(projectId);
+            const project = await projectsModel.getProjectById(id);
             if(!project) {
                 return res.status(400).json({message: "project does not exist"});
             }
 
-            const pWorker = await project_workersModel.getProjectWorker(req.user.id, projectId);
+            const pWorker = await project_workersModel.getProjectWorker(req.user.id, id);
             if(!pWorker || (pWorker.role !== OWNER && pWorker.role !== ADMIN)) {
                 res.status(401).json({message: "you dont have privileges to update this task"})
             }
 
-            await projectsModel.updateProject({id: projectId, name, description, status});
+            await projectsModel.updateProject({id, name, description, status});
             return res.status(200).json({message: "project updated successfully"})
 
 

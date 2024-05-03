@@ -68,7 +68,7 @@ export const updateProjectValidationSchema = checkSchema({
         },
         custom:{
             options: (value) => {
-                if(value != TODO && value != INPROGRESS && value != DONE){
+                if(value != ONGOING && value != DONE){
                     return false;
                 }
                 return true;
