@@ -14,7 +14,8 @@ const projectsModel = {
   },
 
   getProjectById: async(id) => {
-    await pool.query('SELECT FROM projects where id = $1 RETURNING *', [id])
+   const result =  await pool.query('SELECT * FROM projects WHERE id = $1', [id]);
+   return result.rows[0];
   },
 
   deleteProject: async(id) => {

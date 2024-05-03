@@ -75,27 +75,6 @@ export const updateProjectValidationSchema = checkSchema({
             },
             errorMessage: "Invalid status provided"
         }
-    },
-    project_id: {
-        isInt:{
-            options: {min: 1},
-            errorMessage: "project_id must be a valid positive integer"
-        }
-    },
-    planned_end_date:{
-        isDate:{
-            format: "DD-MM-YYYY",
-            errorMessage: "Planned end date mus be a valid Date"
-        },
-        custom:{
-            options: (value) => {
-                if((new Date(value)) < Date.now()){
-                    return false;
-                } 
-                return true;
-            },
-            errorMessage: "Planned end date must be greater than the date that this task was created"
-        }
     }
       
 })

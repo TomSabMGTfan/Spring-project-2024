@@ -96,11 +96,7 @@ const projectsController = {
                 return res.status(401).json({message: "You dont have access to this project"})
             }
 
-            // const projectWorkers = await project_workersModel.getProjectWorkersByProjectId(projectId);
-
-            // const tasks = await tasksModel.getTasksByProjectId(projectId);
-
-            return res.status(200).json({project, projectWorkers, tasks});
+            return res.status(200).json(project);
 
         } catch (error) {
             console.error("error fetching project details", error);
@@ -114,8 +110,6 @@ const projectsController = {
                 res.status(401).json({message: "you dont have the authorization to update this project"})
             }
 
-            // const projectId = req.params.id;
-
             const {id, name, description, status} = req.body;
 
             const project = await projectsModel.getProjectById(id);
@@ -124,7 +118,7 @@ const projectsController = {
             }
 
             const pWorker = await project_workersModel.getProjectWorker(req.user.id, id);
-            if(!pWorker || (pWorker.role !== OWNER && pWorker.role !== ADMIN)) {
+            if(!pWorker || (pWorker.role !== OWNER)) {
                 res.status(401).json({message: "you dont have privileges to update this task"})
             }
 
