@@ -1,15 +1,83 @@
-.section_pading{
+
+footer {
+background-color: #394045;
+}
+
+.footerContainer {
+  width: 100%;
+  padding: 15px 80px;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.socialIcons {
+  display: flex;
+  justify-content: center;
+}
+
+.socialIcons a {
+  text-decoration: none;
+  padding: 5px ;
+  background-color: white;
+  margin: 5px;
+  border-radius: 50%;
+}
+
+.socialIcons a i {
+  font-size: 2em;
+  color: black;
+  opacity: 0.9;
+}
+
+.socialIcons a:hover {
+  background-color: #f78898;
+  transition: 0.5s;
+}
+
+.socialIcons a i:hover {
+  color: white;
+  transition: 0.5s;
+}
+
+.copyOne p {
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 15px;
+}
+
+.designer {
+  opacity: 0.7;
+  text-transform: 1px;
+  font-weight: 400;
+  margin: 0px 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .section_pading{
   padding: 4rem 4rem;
 }
 .footer{
-  background-color: #394045;
+  background-color: #394045; */
   /* position: absolute; */
-  right: 0;
-  left: 0;
+  /* right: 0;
+  left: 0; */
    /* bottom: -50vh;  */
-}
+/* } */
 
-
+/* 
 .sb__footer-links{
   display: flex;
   justify-content: space-between;
@@ -64,6 +132,28 @@
   margin: 2.5rem 0;
   cursor: pointer;
 }
+
+
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* -------------------nereikalinga dalis---------------- */
 /* @media only screen and (max-width: 1420px){

@@ -76,6 +76,8 @@ align-items: center;}
   background: url(../../assets/Background7.jpg) no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -1;
+  position: relative;
   }
 
 
@@ -94,11 +96,13 @@ color: #394045;
   margin: 10px 0 30px;
   color: #394045;
   font-size: 30px;
+  animation-delay: 0.5s;
 }
 
 .content .pgr-btn {
   padding: 15px 80px;
   font-size: 20px;
+  animation-delay: 1s;
 }
 
 .pgr-btn {
@@ -118,9 +122,30 @@ transition: 0.5s;
   border-top-right-radius: 30px;
 }
 
+.feature-img.anim {
+  animation-delay: 1.5s;
+}
+
+
 .feature-img {
   width: 700px;
   position: absolute;
   bottom: 0;
-  right: 8%;
+  right: 5%;
+  z-index:0;
 }
+
+.anim {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: moveup 0.5s linear forwards;
+}
+
+@keyframes moveup {
+  100%{
+    opacity: 1;
+    transform: translateY(0px);
+
+  }
+}
+

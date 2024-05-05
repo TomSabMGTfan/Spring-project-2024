@@ -209,3 +209,6 @@ form .register-link {
   padding: 40px;
 }
 
+input:required {
+  color: red;
+}

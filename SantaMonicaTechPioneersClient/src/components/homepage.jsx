@@ -19,15 +19,15 @@ return (
     <>
     <div className="container">
     <div className="content">
-            <h1>Start </h1>
-            <h1>Team Work</h1>
-            <p>Collaborative effort of a group to achieve a common goal or <br></br>to
+            <h1 className="anim">Start </h1>
+            <h1 className="anim">Team Work</h1>
+            <p className="anim">Collaborative effort of a group to achieve a common goal or <br></br>to
         complete a task in an effective and efficient way !</p>
-        <a href="" className="pgr-btn">Join now</a>
+        <a href="/singup" className="pgr-btn anim">Join now</a>
     </div>
     
     <div>
-        <img src={img1} alt="labas" className="feature-img" />
+        <img src={img1} alt="labas" className="feature-img anim" />
     </div>
     
     </div>
