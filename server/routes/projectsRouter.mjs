@@ -15,9 +15,10 @@ const router = express.Router();
 
 
 router.post('/', [AuthMiddleware, createProjectValidationSchema], projectsController.createProject);
-router.delete('/:id', AuthMiddleware,  projectsController.deleteProject); // need validation schema for 2024-05-02
-router.get('/:id', AuthMiddleware, projectsController.getProjectById); // need validation schema 2024-05-02
-router.put('/', [AuthMiddleware, updateProjectValidationSchema], projectsController.updateProject); // need validation schema test 
+router.delete('/:id', AuthMiddleware,  projectsController.deleteProject); 
+router.get('/:id', AuthMiddleware, projectsController.getProjectById); 
+router.put('/', [AuthMiddleware, updateProjectValidationSchema], projectsController.updateProject); // 
+router.get('/projects/:id', AuthMiddleware, projectsController.getMyProjects); // did not test 
 
 
 

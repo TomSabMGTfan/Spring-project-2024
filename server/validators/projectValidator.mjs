@@ -10,7 +10,7 @@ export const createProjectValidationSchema = checkSchema({
         },
         isLength: {
             options: {min: 2, max:255},
-            errorMessage:"Name must be at least 2 characters with a max of 20 characters"
+            errorMessage:"Name must be at least 3 characters with a max of 255 characters"
         }
     },
     description: {
@@ -44,7 +44,7 @@ export const updateProjectValidationSchema = checkSchema({
             },
             isLength: {
                 options: {min: 3, max: 100},
-                errorMessage: "Name must be at least 3 characters with a max of 100 characters"
+                errorMessage: "Name must be at least 3 characters with a max of 255 characters"
             }
         },
       description: {
@@ -56,7 +56,7 @@ export const updateProjectValidationSchema = checkSchema({
         },
         isLength:{
             options: {min:10, max:2000},
-            errorMessage: "Description must be at least 10 characters with a max of 2000 characters"
+            errorMessage: "Description must be at least 10 characters with a max of 500 characters"
         }
       },
       status:{

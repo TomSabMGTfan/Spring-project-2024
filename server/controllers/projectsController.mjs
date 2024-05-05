@@ -131,6 +131,20 @@ const projectsController = {
             res.status(500).json({message: "server error"})
 
         }
+    },
+
+    getMyProjects: async(req, res) => {
+        try {
+            const {user_id} = req.params;
+
+            const projects = await projectsModel.getMyProjects(user_id);
+
+            res.status(200).json({message:"projects retrieved successfully", projects})
+
+        } catch (error) {
+            console.error(err);
+            res.status(500).json({message: "failed to retrieve projects"})
+        }
     }
 };
 
