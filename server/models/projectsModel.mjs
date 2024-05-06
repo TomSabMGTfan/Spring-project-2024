@@ -2,6 +2,7 @@ import { ONGOING } from "../cfg/Projects.mjs";
 import { pool } from "../db/postgresConnection.mjs";
 import project_workersModel from "./project_workersModel.mjs";
 import tasksModel from "./tasksModel.mjs";
+import { DONE, INPROGRESS, TODO } from "../cfg/Task_Status.mjs"
 
 const projectsModel = {
   createProject: async (name, description) => {
@@ -37,27 +38,27 @@ const projectsModel = {
   },
 
   getMyProjects: async (user_id) => {
-    const projects = await projectsModel.getMyProjects(user_id);
+    const result = await pool.query("SELECT id, name, description, status FROM project_workers RIGHT JOIN projects ON project_workers.project_id = projects.id WHERE user_id = $1", [user_id]);
+    const projects = result.rows;
 
-    const projectsWithUsersAndTasks = await Promise.all(projects.map(async (project) => {
-      const projectWorkers = await project_workersModel.getProjectWorkersByProjectId(project.project_id);
-      const tasks = await tasksModel.getTasksByProjectId(project.project_id);
+    const newProjects = await Promise.all(projects.map(async (project) => {
+      const pWorker = await project_workersModel.getProjectWorker(user_id, project.id);
+      const tasks = await tasksModel.getTasksByProjectId(project.id);
 
-      const completedTasks = tasks.filter(task => task.status === "done").length;
-      const inProgressTasks = tasks.filter(task => task.status = "in progress").length;
-      const toDoTasks = tasks.filter(task => task.status = "to do").length;
+      const completedTasks = tasks.filter(task => task.status === DONE).length;
+      const inProgressTasks = tasks.filter(task => task.status === INPROGRESS).length;
+      const toDoTasks = tasks.filter(task => task.status === TODO).length;
 
       return {
-        project_id: project.project_id,
-        project_name: project.project_name,
-        project_description: project.project_description,
-        project_status: project.project_status,
-        user_role: project.user_role,
-        completed_tasks: completedTasks,
-        in_progress_tasks: inProgressTasks,
-        to_do_tasks: toDoTasks
+        ...project,
+        userRole: pWorker.role,
+        completedTasks,
+        inProgressTasks,
+        toDoTasks
       };
     }));
+
+    return newProjects;
   },
 };
 
