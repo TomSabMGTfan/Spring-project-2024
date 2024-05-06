@@ -137,7 +137,7 @@ const projectsController = {
         try {
             const {user_id} = req.params;
 
-            const projects = await projectsModel.getMyProjects(user_id);
+            const projects = await projectsModel.getMyProjects(req.user.id);
 
             res.status(200).json({message:"projects retrieved successfully", projects})
 

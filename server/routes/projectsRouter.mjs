@@ -18,7 +18,7 @@ router.post('/', [AuthMiddleware, createProjectValidationSchema], projectsContro
 router.delete('/:id', AuthMiddleware,  projectsController.deleteProject); 
 router.get('/:id', AuthMiddleware, projectsController.getProjectById); 
 router.put('/', [AuthMiddleware, updateProjectValidationSchema], projectsController.updateProject); // 
-router.get('/projects/:id', AuthMiddleware, projectsController.getMyProjects); // did not test 
+router.get('/projects', AuthMiddleware, projectsController.getMyProjects); // did not test 
 
 
 
