@@ -6,63 +6,63 @@ import { ADMIN, OWNER, USER } from "../cfg/Roles.mjs";
 
 const projectWorkersController = {
     getPWorkersByUserId: async (req, res) => {
-        try{
+        try {
             const id = req.params.user_id;
-            
+
             const result = await project_workersModel.getProjectWorkersByUserId(id);
 
             return res.status(200).json(result);
         }
-        catch(error){
+        catch (error) {
             console.log(error);
-            return res.status(500).json({message: "Failed to get a project worker, an error has occured"});
+            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
         }
     },
-    getPWorkerByUserAndProjectId: async(req, res)=>{
-        try{
-            const {user_id, project_id} = req.params;
+    getPWorkerByUserAndProjectId: async (req, res) => {
+        try {
+            const { user_id, project_id } = req.params;
 
             const result = await project_workersModel.getProjectWorker(user_id, project_id);
 
             return res.status(200).json(result);
         }
-        catch(error){
+        catch (error) {
             console.log(error);
-            return res.status(500).json({message: "Failed to get a project worker, an error has occured"});
+            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
         }
     },
     getPWorkersByProjectId: async (req, res) => {
-        try{
+        try {
             const id = req.params.project_id;
 
             const result = await project_workersModel.getProjectWorkersByProjectId(id);
 
             return res.status(200).json(result);
         }
-        catch(error){
+        catch (error) {
             console.log(error);
-            return res.status(500).json({message: "Failed to get a project worker, an error has occured"});
+            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
         }
     },
 
-    createPWorker:async(req, res)=>{
-         try{
-            
-            const {user_id, project_id} = req.body;
+    createPWorker: async (req, res) => {
+        try {
 
-            if(!req.user){
+            const { user_id, project_id } = req.body;
+
+            if (!req.user) {
                 return res.status(401).json("Unauthorized access");
             }
 
             const currWorker = await project_workersModel.getProjectWorker(req.user.id, project_id);
 
-            if(!currWorker){
+            if (!currWorker) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            const {role} = currWorker;
+            const { role } = currWorker;
 
-            if(role == USER){
+            if (role == USER) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
@@ -72,7 +72,7 @@ const projectWorkersController = {
             }
 
             const ifExists = await project_workersModel.getProjectWorker(user_id, project_id);
-            if(ifExists){
+            if (ifExists) {
                 return res.status(400).json({ message: "User already exists in the project" });
             }
 
@@ -82,43 +82,43 @@ const projectWorkersController = {
 
             const result = await project_workersModel.createProjectWorker(pWorker);
 
-            return res.status(200).json(result);
+            return res.status(201).json(result);
 
         }
-        catch(error){
+        catch (error) {
             console.log(error);
-            return res.status(500).json({message: "Failed to create a project worker, an error has occured"});
+            return res.status(500).json({ message: "Failed to create a project worker, an error has occured" });
         }
     },
 
-    updatePWorker: async (req,res) => {
-        try{
-            
-            const {role, user_id, project_id} = req.body;
+    updatePWorker: async (req, res) => {
+        try {
 
-            if(!req.user){
+            const { role, user_id, project_id } = req.body;
+
+            if (!req.user) {
                 return res.status(401).json("Unauthorized access");
             }
 
             const currentUserRole = await project_workersModel.getProjectWorker(req.user.id, project_id);
             const otherUserRole = await project_workersModel.getProjectWorker(user_id, project_id);
 
-            if(!currentUserRole){
+            if (!currentUserRole) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            if(!otherUserRole){
+            if (!otherUserRole) {
                 return res.status(400).json("This user is a project worker");
             }
 
-            const {role: currentRole} = currentUserRole;
-            const {role: otherRole} = otherUserRole;
+            const { role: currentRole } = currentUserRole;
+            const { role: otherRole } = otherUserRole;
 
-            if(otherRole === OWNER){
+            if (otherRole === OWNER) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            if(currentRole == USER){
+            if (currentRole == USER) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
@@ -136,42 +136,42 @@ const projectWorkersController = {
             return res.status(200).json(result);
 
         }
-        catch(error){
+        catch (error) {
             console.log(error);
-            return res.status(500).json({message: "Failed to update a project worker, an error has occured"});
+            return res.status(500).json({ message: "Failed to update a project worker, an error has occured" });
         }
     },
 
-    deletePWorker: async (req,res) => {
-        try{
-            const {user_id, project_id} = req.body;
+    deletePWorker: async (req, res) => {
+        try {
+            const { user_id, project_id } = req.body;
 
-            if(!req.user){
+            if (!req.user) {
                 return res.status(401).json("Unauthorized access");
             }
 
             const currentUserRole = await project_workersModel.getProjectWorker(req.user.id, project_id);
             const otherUserRole = await project_workersModel.getProjectWorker(user_id, project_id);
 
-            if(!currentUserRole){
+            if (!currentUserRole) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            if(!otherUserRole){
+            if (!otherUserRole) {
                 return res.status(400).json("This user is not a project worker");
             }
 
-            const {role: currentRole} = currentUserRole;
-            const {role: otherRole} = otherUserRole;
+            const { role: currentRole } = currentUserRole;
+            const { role: otherRole } = otherUserRole;
 
-            if(otherRole === OWNER){
+            if (otherRole === OWNER) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            if(currentRole == USER){
+            if (currentRole == USER) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
-            
+
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({ errors: errors.array() });
@@ -182,9 +182,9 @@ const projectWorkersController = {
             return res.status(200).json();
 
         }
-        catch(error){
+        catch (error) {
             console.log(error);
-            return res.status(500).json({message: "Failed to delete a project worker, an error has occured"});
+            return res.status(500).json({ message: "Failed to delete a project worker, an error has occured" });
         }
     }
 }
