@@ -9,7 +9,7 @@ export const createProjectValidationSchema = checkSchema({
             errorMessage: "Name must be a valid String"
         },
         isLength: {
-            options: {min: 2, max:255},
+            options: {min: 3, max:255},
             errorMessage:"Name must be at least 3 characters with a max of 255 characters"
         }
     },
@@ -43,7 +43,7 @@ export const updateProjectValidationSchema = checkSchema({
                 errorMessage: "Name must be a valid string"
             },
             isLength: {
-                options: {min: 3, max: 100},
+                options: {min: 3, max: 255},
                 errorMessage: "Name must be at least 3 characters with a max of 255 characters"
             }
         },
@@ -55,7 +55,7 @@ export const updateProjectValidationSchema = checkSchema({
             errorMessage: "Description must be a valid String"
         },
         isLength:{
-            options: {min:10, max:2000},
+            options: {min:10, max:500},
             errorMessage: "Description must be at least 10 characters with a max of 500 characters"
         }
       },
