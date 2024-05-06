@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookies from "universal-cookie";
 
 const BASE_URL = 'http://localhost:3000/api';
 
@@ -18,8 +19,9 @@ apiClient.interceptors.request.use(
     // Web browser išsaugo token localStorage, naudodama localStorage.setItem('token', token).
     // Vėlesnėse užklausose į serverį, o vėliau browser gauna token iš localStorage naudodama const token = localStorage.getItem('token') ir įtraukia jį į užklausą.
     // Serveris patikrina token, kad patikrintų naudotojo tapatybę ir teises.
+    const cookies = new Cookies();
 
-    const token = localStorage.getItem('token');
+    const token = cookies.get("token");
     // jeigu token yra, tai pridedame tokeną prie užklausos
     if (token) {
       // iš config.headers.Authorization pridedame tokeną prie užklausos ir nurodome, kad tokenas yra Bearer tokena
