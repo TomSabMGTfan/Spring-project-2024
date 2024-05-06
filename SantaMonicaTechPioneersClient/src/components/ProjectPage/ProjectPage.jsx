@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../utils/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 import pWorkerModel from '../../api/pWorkers';
+import { UsersProvider } from './UserList/hooks/useUsers';
+import { UserList } from './UserList/UserList';
 
 export const ProjectPage = () => {
     const { id: project_id } = useParams();
@@ -24,7 +26,6 @@ export const ProjectPage = () => {
 
     const [isAdminOrOwner, setIsAdminOrOwner] = useState(false);
 
-
     useEffect(() => {
         (async () => {
             const response = await pWorkerModel.getPWorkerByUserAndProjectId(user.id, project_id);
@@ -38,10 +39,9 @@ export const ProjectPage = () => {
         })();
     }, []);
 
-    if(error){
+    if (error) {
         return <div>{error}</div>
     }
-
 
     return <div className='project-page'>
         <div className='Grid-Container'>
@@ -54,6 +54,9 @@ export const ProjectPage = () => {
             </div>
             <div className='Grid-Item Grid-Main'>
                 <TaskList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                <UsersProvider project_id={project_id}>
+                    <UserList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                </UsersProvider>
             </div>
         </div>
     </div>;
