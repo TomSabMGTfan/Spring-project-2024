@@ -55,7 +55,7 @@ export const updateProjectValidationSchema = checkSchema({
             errorMessage: "Description must be a valid String"
         },
         isLength:{
-            options: {min:10, max:2000},
+            options: {min:10, max:500},
             errorMessage: "Description must be at least 10 characters with a max of 500 characters"
         }
       },
