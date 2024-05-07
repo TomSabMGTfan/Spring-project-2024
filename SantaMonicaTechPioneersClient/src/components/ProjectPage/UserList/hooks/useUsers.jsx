@@ -10,19 +10,15 @@ export const UsersProvider = ({ children, project_id }) => {
     const [users, setUsers] = useState();
     const [fetchUsers, setFetchUsers] = useState(false);
 
-    const [currentId, setCurrentId] = useState(0);
-
     const [showCreatePWorkerForm, setShowCreatePWorkerForm] = useState(false);
 
-    const OpenCreatePWorkerForm = useCallback((id) => {
-        setCurrentId(id);
+    const OpenCreatePWorkerForm = useCallback(() => {
         setShowCreatePWorkerForm(true);
-    }, [currentId, showCreatePWorkerForm]);
+    }, [showCreatePWorkerForm]);
 
     const CloseCreatePWorkerForm = useCallback(() => {
-        setCurrentId(0);
         setShowCreatePWorkerForm(false);
-    }, [currentId, showCreatePWorkerForm]);
+    }, [showCreatePWorkerForm]);
 
     const CreatePWorker = useCallback(async (pWorker) => {
         const response = await pWorkerModel.createPWorker(pWorker);
@@ -30,7 +26,7 @@ export const UsersProvider = ({ children, project_id }) => {
     });
 
     const UpdatePWorker = useCallback(async (pWorker) => {
-        const response = await pWorkerModel.UpdatePWorker(pWorker);
+        const response = await pWorkerModel.updatePWorker(pWorker);
         return [response.status, response.data];
     });
 
@@ -40,7 +36,7 @@ export const UsersProvider = ({ children, project_id }) => {
     });
 
     // Switching value just to force state change
-    const FecthUsers = useCallback(() => setFetchUsers(v => !v), [fetchUsers]);
+    const FetchUsers = useCallback(() => setFetchUsers(v => !v), [fetchUsers]);
 
 
     useEffect(() => {
@@ -49,16 +45,13 @@ export const UsersProvider = ({ children, project_id }) => {
             if (response.status === 200) {
                 setUsers(response.data);
             }
-            else {
-                // TODO no fing clue
-            }
         })();
     }, [fetchUsers]);
 
 
     return (
         <UsersContext.Provider value={{
-            users, FecthUsers, showCreatePWorkerForm, OpenCreatePWorkerForm, CloseCreatePWorkerForm, CreatePWorker, UpdatePWorker, DeletePWorker
+            users, FetchUsers, showCreatePWorkerForm, OpenCreatePWorkerForm, CloseCreatePWorkerForm, CreatePWorker, UpdatePWorker, DeletePWorker
         }}>{users && children}</UsersContext.Provider>
     )
 }

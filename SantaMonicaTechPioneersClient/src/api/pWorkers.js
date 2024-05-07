@@ -45,7 +45,7 @@ const pWorkerModel = {
   deletePWorker: async (pWorker) => {
     // pWorker must have: user_id, project_id
     try {
-      const response = await apiClient.delete(`/pworkers/`, pWorker);
+      const response = await apiClient.delete(`/pworkers/`, { data: pWorker });
       return response;
     }
     catch (error) {
@@ -54,7 +54,7 @@ const pWorkerModel = {
     }
   },
   createPWorker: async (pWorker) => {
-    // pWorker must have: user_id, project_id
+    // pWorker must have: username, project_id
     try {
       const response = await apiClient.post(`/pworkers/`, pWorker);
       return response;
