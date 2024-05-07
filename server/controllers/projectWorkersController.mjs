@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 
 import project_workersModel from "../models/project_workersModel.mjs";
+import userModel from "../models/userModel.mjs";
 
 import { ADMIN, OWNER, USER } from "../cfg/Roles.mjs";
 
@@ -48,7 +49,7 @@ const projectWorkersController = {
     createPWorker: async (req, res) => {
         try {
 
-            const { user_id, project_id } = req.body;
+            const { username, project_id } = req.body;
 
             if (!req.user) {
                 return res.status(401).json("Unauthorized access");
@@ -71,9 +72,16 @@ const projectWorkersController = {
                 return res.status(400).json({ errors: errors.array() });
             }
 
+            const { id: user_id } = await userModel.getUserByUsername(username);
+
             const ifExists = await project_workersModel.getProjectWorker(user_id, project_id);
             if (ifExists) {
-                return res.status(400).json({ message: "User already exists in the project" });
+                return res.status(400).json({
+                    errors: {
+                        path: "username",
+                        msg: "User already exists in the project"
+                    }
+                });
             }
 
             const pWorker = {
