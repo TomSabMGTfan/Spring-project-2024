@@ -18,7 +18,7 @@ export const UserList = ({ isAdminOrOwner, project_id }) => {
                     <tr>
                         <th>Username</th>
                         <th>Role</th>
-                        {isAdminOrOwner && <th>Actions</th>}
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
