@@ -45,7 +45,7 @@ export const CreateProjectForm = () => {
                 {errors.name && <p>{errors.name.message}</p>}
             </div>
             <div>
-            <label htmlFor='name'>Project descrption</label>
+            <label htmlFor='name'>Project description</label>
                 <input type='text'{...register('description', {
                     required: 'Project description is required',
                     minLength: 3,
