@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useForm } from "react-hook-form";
 import { useProjects } from './hooks/useProject';
 
-export const CreateProjectForm = () => {
+export const CreateProjectForm = ({ onClose }) => {
     const {
         register,
         handleSubmit,

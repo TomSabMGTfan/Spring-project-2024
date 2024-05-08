@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 import ProjectModel from "../../../../api/projects";
+import { CreateProjectForm } from '../CreateProjectForm';
 
 const ProjectContext = createContext();
 
@@ -12,7 +13,7 @@ const ProjectContext = createContext();
 
     const [fetchProjects, setFetchProjects] = useState(false);
 
-    const [showForm, setShowForm] = useState(false)
+    const [showForm, setShowForm] = useState(false);
 
     const FetchProjects = useCallback(() => {setFetchProjects(v => !v), [fetchProjects]})
 
@@ -48,6 +49,7 @@ const ProjectContext = createContext();
     return (
         <ProjectContext.Provider value={ {projects, createProject, 
         updateProject, deleteProject, FetchProjects, fetchProjects  }}>
+            {showForm && <CreateProjectForm onClose={ () => setShowForm(false)} />}
         {projects && children}
         </ProjectContext.Provider>
     );

@@ -5,7 +5,7 @@ import { CreateProjectForm } from './CreateProjectForm'
 
 
 export const ProjectList = () => {
-    const { projects, fetchProjects } = useProjects();
+    const { projects, fetchProjects, setShowForm } = useProjects();
 
     return (
         <div>
@@ -24,7 +24,9 @@ export const ProjectList = () => {
                     ))}
                 </tbody>
             </table>
-            {/* {<button onClick={}>Create new project</button>} */}
+            <div>
+                <button onClick={() => setShowForm(true)}>Create new project</button>
+            </div>
         </div>
     );
 };
