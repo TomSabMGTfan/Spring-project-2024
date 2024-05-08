@@ -3,6 +3,8 @@ import { fetchUserData } from "../../api/apis";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
 import { UserNavigation } from "./UserNavigation";
+import { ProjectList } from "./ProjectList/ProjectList"
+import { ProjectsProvider } from "./ProjectList/hooks/useProject";
 
 
 
@@ -49,6 +51,11 @@ function UserDashboard() {
       <UserNavigation />
       <div className="app-table">
         <h2>Projects</h2>
+        <ProjectsProvider>
+
+        <ProjectList />
+
+        </ProjectsProvider>
       </div>
     </div>
   );
