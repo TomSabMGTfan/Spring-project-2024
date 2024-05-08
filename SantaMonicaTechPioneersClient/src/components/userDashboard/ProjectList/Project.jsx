@@ -5,7 +5,7 @@ import { useAuth } from '../../../hooks/useAuth';
 
 export const Project = ({project}) => {
 
-    const auth = useAuth()
+    const auth = useAuth();
 
     const {deleteProject, updateProject, fetchProjects} = useProjects();
 
