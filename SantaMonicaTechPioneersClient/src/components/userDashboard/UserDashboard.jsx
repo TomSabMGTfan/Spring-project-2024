@@ -48,7 +48,7 @@ function UserDashboard() {
     <div className="dashboard_body">
       <UserNavigation />
       <div className="app-table">
-    <h2>Projects</h2>
+        <h2>Projects</h2>
       </div>
     </div>
   );
