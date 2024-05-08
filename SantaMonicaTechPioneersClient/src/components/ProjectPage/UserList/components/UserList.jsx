@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUsers } from './hooks/useUsers'
+import { useUsers } from '../hooks/useUsers'
 import { User } from './User';
 import { CreateUserForm } from "./CreateUserForm"
 

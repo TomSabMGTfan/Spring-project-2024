@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import "../css/Modal.css";
+import "../../../css/Modal.css";
 
-export const CreateTask = ({ closeCreateTask, createTask}) => {
+export const CreateTask = ({ closeCreateTask, createTask }) => {
 
     const {
         register,
@@ -13,15 +13,15 @@ export const CreateTask = ({ closeCreateTask, createTask}) => {
 
     const onFormSubmit = async (data) => {
         const errors = await createTask(data);
-        if(!errors){
+        if (!errors) {
             closeCreateTask();
             return;
         }
 
-        for(let i = 0; i < errors.length; i++){
+        for (let i = 0; i < errors.length; i++) {
             setError(errors[i].path, {
-              type: "manual",
-              message: errors[i].msg
+                type: "manual",
+                message: errors[i].msg
             });
         }
 
@@ -73,7 +73,7 @@ export const CreateTask = ({ closeCreateTask, createTask}) => {
                         <input type="date" {...register("planned_end_date")} />
                         {errors.planned_end_date && <div className="error">{errors.planned_end_date.message}</div>}
                     </div>
-                    
+
                     <button type="submit" className="btn">Submit</button>
                 </form>
             </div>

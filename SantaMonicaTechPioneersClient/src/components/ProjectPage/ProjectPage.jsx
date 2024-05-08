@@ -1,11 +1,11 @@
 import '../css/ProjectPage.css';
-import { TaskList } from './TaskList';
+import { TaskList } from './TaskList/components/TaskList';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../utils/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 import pWorkerModel from '../../api/pWorkers';
 import { UsersProvider } from './UserList/hooks/useUsers';
-import { UserList } from './UserList/UserList';
+import { UserList } from './UserList/components/UserList';
 
 export const ProjectPage = () => {
     const { id: project_id } = useParams();

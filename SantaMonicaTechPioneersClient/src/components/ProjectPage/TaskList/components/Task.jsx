@@ -1,6 +1,6 @@
-import '../css/Table.css';
+import '../../../css/Modal.css';
 import { BsFillTrashFill, BsFillPencilFill, BsFillEyeFill } from "react-icons/bs";
-import { AuthContext } from '../../utils/AuthContext';
+import { AuthContext } from '../../../../utils/AuthContext';
 import { useContext } from 'react';
 
 export const Task = ({ task, isAdminOrOwner, view, edit, editStatus, remove }) => {

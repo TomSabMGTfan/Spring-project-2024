@@ -1,6 +1,6 @@
-import "../css/Modal.css";
+import "../../../css/Modal.css";
 
-export const ViewTask = ( {tasks, task_id, closeViewTask} ) => {
+export const ViewTask = ({ tasks, task_id, closeViewTask }) => {
 
     const task = tasks.find(value => value.id === task_id);
 
@@ -32,7 +32,7 @@ export const ViewTask = ( {tasks, task_id, closeViewTask} ) => {
                     {/* Worker */}
                     <div className="form-group">
                         <label>Worker</label>
-                        <textarea readOnly className="worker-txtarea" value={task.wroker_username}/>
+                        <textarea readOnly className="worker-txtarea" value={task.wroker_username} />
                     </div>
 
                     {/* STATUS */}

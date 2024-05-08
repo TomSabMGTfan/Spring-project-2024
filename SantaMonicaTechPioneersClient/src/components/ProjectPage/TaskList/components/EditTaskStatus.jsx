@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "../css/Modal.css";
+import "../../../css/Modal.css";
 
 export const EditTaskStatus = ({ closeEditTaskStatus, updateTaskStatus, tasks, task_id }) => {
 
@@ -14,16 +14,16 @@ export const EditTaskStatus = ({ closeEditTaskStatus, updateTaskStatus, tasks, t
 
 
     const onFormSubmit = async (data) => {
-        const errors = await updateTaskStatus({...data, id:task_id});
-        if(!errors){
+        const errors = await updateTaskStatus({ ...data, id: task_id });
+        if (!errors) {
             closeEditTaskStatus();
             return;
         }
 
-        for(let i = 0; i < errors.length; i++){
+        for (let i = 0; i < errors.length; i++) {
             setError(errors[i].path, {
-              type: "manual",
-              message: errors[i].msg
+                type: "manual",
+                message: errors[i].msg
             });
         }
 
