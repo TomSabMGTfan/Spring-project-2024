@@ -5,6 +5,7 @@ import { AuthContext } from '../../utils/AuthContext';
 import { useContext, useEffect, useState } from 'react';
 import pWorkerModel from '../../api/pWorkers';
 import { UsersProvider } from './UserList/hooks/useUsers';
+import { TasksProvider } from './TaskList/hooks/useTasks';
 import { UserList } from './UserList/components/UserList';
 import ProjectModel from '../../api/projects';
 
@@ -37,10 +38,6 @@ export const ProjectPage = () => {
         })();
     }, []);
 
-    if (isNotFound) {
-        return <div>Project not found</div>
-    }
-
     return <div className='project-page'>
         <div className='Grid-Container'>
             <div className='Grid-Item Grid-Side'>
@@ -52,14 +49,17 @@ export const ProjectPage = () => {
             </div>
             <div className='Grid-Item Grid-Main'>
                 {
-                    project ?
-                        <>
-                            <TaskList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
-                            <UsersProvider project_id={project_id}>
-                                <UserList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
-                            </UsersProvider>
-                        </> :
-                        <div>Loading ...</div>
+                    isNotFound ? <div>Project not found</div> :
+                        (project ?
+                            <>
+                                <TasksProvider project_id={project_id}>
+                                    <TaskList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                                </TasksProvider>
+                                <UsersProvider project_id={project_id}>
+                                    <UserList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                                </UsersProvider>
+                            </> :
+                            <div>Loading ...</div>)
                 }
             </div>
         </div>
