@@ -56,23 +56,23 @@ export const TasksProvider = ({ children, project_id }) => {
 
     const CreateTask = async (data) => {
         const task = { ...data, project_id };
-        const response = await TaskModel.createTask(task);
+        const response = await TasksModel.createTask(task);
         return [response.status, response.data];
     };
 
     const UpdateTask = async (data) => {
         const task = { ...data, project_id };
-        const response = await TaskModel.UpdateTask(task);
+        const response = await TasksModel.updateTask(task);
         return [response.status, response.data];
     };
 
     const UpdateTaskStatus = async (task) => {
-        const response = await TaskModel.UpdateTaskStatus(task);
+        const response = await TasksModel.updateTaskStatus(task);
         return [response.status, response.data];
     };
 
     const DeleteTask = async (id) => {
-        const response = await TaskModel.deleteTask(id);
+        const response = await TasksModel.deleteTask(id);
         return [response.status, response.data];
     };
 
