@@ -6,41 +6,39 @@ import { useContext, useEffect, useState } from 'react';
 import pWorkerModel from '../../api/pWorkers';
 import { UsersProvider } from './UserList/hooks/useUsers';
 import { UserList } from './UserList/components/UserList';
+import ProjectModel from '../../api/projects';
 
 export const ProjectPage = () => {
     const { id: project_id } = useParams();
-    let error = 0;
-    if (!project_id) {
-        error = 404;
-    }
+    const [project, setProject] = useState({});
+    const [isNotFound, setIsNotFound] = useState(false);
 
     const { user } = useContext(AuthContext);
-
-    // TODO check if project exists
-    const project = {};
-
-
-    if (!user) {
-        error = 401;
-    }
 
     const [isAdminOrOwner, setIsAdminOrOwner] = useState(false);
 
     useEffect(() => {
         (async () => {
+            const project_response = await ProjectModel.getProjectById(project_id);
+            if (project_response.status !== 200) {
+                setIsNotFound(true);
+                return () => { };
+            }
+
+            console.log("TRUE")
+
+            setProject(project_response.data);
+
             const response = await pWorkerModel.getPWorkerByUserAndProjectId(user.id, project_id);
             if (response.status === 200) {
                 const pWorker = response.data;
                 setIsAdminOrOwner(pWorker.role == "admin" || pWorker.role == "owner" ? true : false);
             }
-            else if (response.status === 401) {
-                error = 401;
-            }
         })();
     }, []);
 
-    if (error) {
-        return <div>{error}</div>
+    if (isNotFound) {
+        return <div>Project not found</div>
     }
 
     return <div className='project-page'>
@@ -53,10 +51,16 @@ export const ProjectPage = () => {
                 <div>User list</div>
             </div>
             <div className='Grid-Item Grid-Main'>
-                <TaskList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
-                <UsersProvider project_id={project_id}>
-                    <UserList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
-                </UsersProvider>
+                {
+                    project ?
+                        <>
+                            <TaskList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                            <UsersProvider project_id={project_id}>
+                                <UserList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                            </UsersProvider>
+                        </> :
+                        <div>Loading ...</div>
+                }
             </div>
         </div>
     </div>;
