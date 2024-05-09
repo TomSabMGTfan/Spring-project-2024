@@ -176,7 +176,7 @@ const projectWorkersController = {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
-            if (currentRole == USER) {
+            if (currentRole == USER && currentUserRole.id !== otherUserRole.id) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
 
