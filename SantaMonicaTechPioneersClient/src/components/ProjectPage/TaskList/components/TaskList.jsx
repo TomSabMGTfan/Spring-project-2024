@@ -3,12 +3,10 @@ import { EditTask } from "./EditTaskForm";
 import { EditTaskStatus } from "./EditTaskStatusForm";
 import { CreateTask } from "./CreateTaskForm";
 import { ViewTask } from "./ViewTaskForm";
-import TaskModel from "../../../../api/tasks";
-import { useEffect, useState } from "react";
 import '../../../css/Table.css';
 import { useTasks } from "../hooks/useTasks";
 
-export const TaskList = ({ project_id, isAdminOrOwner }) => {
+export const TaskList = ({ isAdminOrOwner }) => {
 
     const { tasks, showCreateForm, showUpdateForm, showUpdateStatusForm, showViewForm, OpenCreateForm } = useTasks();
 

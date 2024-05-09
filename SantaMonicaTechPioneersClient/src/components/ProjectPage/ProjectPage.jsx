@@ -10,7 +10,10 @@ import { UserList } from './UserList/components/UserList';
 import ProjectModel from '../../api/projects';
 
 export const ProjectPage = () => {
-    const { id: project_id } = useParams();
+    let { id: project_id } = useParams();
+    if (isNaN(project_id)) {
+        project_id = 0;
+    }
     const [project, setProject] = useState({});
     const [isNotFound, setIsNotFound] = useState(false);
 
@@ -26,8 +29,6 @@ export const ProjectPage = () => {
                 return () => { };
             }
 
-            console.log("TRUE")
-
             setProject(project_response.data);
 
             const response = await pWorkerModel.getPWorkerByUserAndProjectId(user.id, project_id);
@@ -36,14 +37,16 @@ export const ProjectPage = () => {
                 setIsAdminOrOwner(pWorker.role == "admin" || pWorker.role == "owner" ? true : false);
             }
         })();
-    }, []);
+    }, [project_id]);
 
     return <div className='project-page'>
+        <div>
+            <h3>Name: {project.name}</h3>
+            <div>Description: {project.description}</div>
+            <div>Status: {project.status}</div>
+        </div>
         <div className='Grid-Container'>
             <div className='Grid-Item Grid-Side'>
-                <div>
-                    <h3>Project name</h3>
-                </div>
                 <div>Task list</div>
                 <div>User list</div>
             </div>
@@ -53,7 +56,7 @@ export const ProjectPage = () => {
                         (project ?
                             <>
                                 <TasksProvider project_id={project_id}>
-                                    <TaskList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
+                                    <TaskList isAdminOrOwner={isAdminOrOwner} />
                                 </TasksProvider>
                                 <UsersProvider project_id={project_id}>
                                     <UserList project_id={project_id} isAdminOrOwner={isAdminOrOwner} />
