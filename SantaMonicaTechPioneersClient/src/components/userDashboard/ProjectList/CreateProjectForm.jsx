@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useForm } from "react-hook-form";
 import { useProjects } from './hooks/useProject';
 
-export const CreateProjectForm = ({ onClose }) => {
+export const CreateProjectForm = () => {
     const {
         register,
         handleSubmit,
@@ -10,16 +10,16 @@ export const CreateProjectForm = ({ onClose }) => {
         setError,
     } = useForm();
 
-    const { fetchProjects, createProject, closeCreateProjectForm } = useProjects();
+    const { FetchProjects, createProject, CloseCreateForm } = useProjects();
 
     const onFormSubmit = useCallback(async (data) => {
-      
+
 
         const [status, responseData] = await createProject(data);
 
         if (status === 201) {
-            fetchProjects();
-            closeCreateProjectForm();
+            FetchProjects();
+            CloseCreateForm();
         } else if (status === 400) {
             for (let i = 0; i < responseData.errors.length; i++) {
                 setError(responseData.errors[i].path, {
@@ -36,24 +36,17 @@ export const CreateProjectForm = ({ onClose }) => {
     return (
         <form onSubmit={handleSubmit(onFormSubmit)}>
             <div>
-                <label htmlFor='name'>Project Name</label>
-                <input type='text'{...register('name', {
-                    required: 'Project name is required',
-                    minLength: 3,
-                    maxLength: 255,
-                } )} />
+                <label htmlFor='name'>Name</label>
+                <input type='text'{...register('name')} />
                 {errors.name && <p>{errors.name.message}</p>}
             </div>
             <div>
-            <label htmlFor='name'>Project description</label>
-                <input type='text'{...register('description', {
-                    required: 'Project description is required',
-                    minLength: 3,
-                    maxLength: 255,
-                } )} />
+                <label htmlFor='description'>Description</label>
+                <input type='text'{...register('description')} />
+                {errors.description && <p>{errors.description.message}</p>}
             </div>
 
-            <button type ='submit'>Create Project</button>
+            <button type='submit'>Create Project</button>
         </form>
     )
 }

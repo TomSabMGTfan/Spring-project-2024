@@ -1,23 +1,14 @@
 import React, { useCallback } from 'react';
 import { useProjects } from './hooks/useProject';
-import { useAuth } from '../../../hooks/useAuth';
+import { Link } from "react-router-dom";
 
-
-export const Project = ({project}) => {
-
-    const auth = useAuth();
-
-    const {deleteProject, updateProject, fetchProjects} = useProjects();
+export const Project = ({ project }) => {
+    const { deleteProject, OpenUpdateForm, FetchProjects } = useProjects();
 
     const RemoveProject = useCallback(async () => {
-        if(project.role === 'owner') {
-            alert("cannot remove owner of the project")
-            return;
-        }
-
-        const [status] = await deleteProject(project.project_id);
+        const [status] = await deleteProject(project.id);
         if (status === 200) {
-            fetchProjects();
+            FetchProjects();
         } else {
             alert('error occured while removing the project')
         }
@@ -27,13 +18,36 @@ export const Project = ({project}) => {
 
     return (
         <tr>
-            <td>{project.name}</td>
-            <td>{project.status}</td>
             <td>
-                {project.role !== 'owner' && <button onClick={updateProject}>
-                    {project.status === 'Ongoing' ? 'Done' : 'Ongoing'}
-                </button> }
-                { <button onClick={RemoveProject}>Remove</button>}
+                {project.name}
+            </td>
+            <td>
+                {project.status}
+            </td>
+            <td>
+                {project.description.substring(0, 10) + " ..."}
+            </td>
+            <td>
+                {project.userRole}
+            </td>
+            <td>
+                {project.toDoTasks}
+            </td>
+            <td>
+                {project.inProgressTasks}
+            </td>
+            <td>
+                {project.completedTasks}
+            </td>
+            <td>
+                {project.userRole === "owner" &&
+                    <>
+                        <button onClick={() => OpenUpdateForm(project)}>Update</button>
+                        <button onClick={RemoveProject}>Remove</button>
+                    </>}
+            </td>
+            <td>
+                <Link to={`/projects/${project.id}`}>Go to project</Link>
             </td>
         </tr>
     );
