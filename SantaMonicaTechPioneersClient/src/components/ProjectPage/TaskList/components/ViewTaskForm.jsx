@@ -33,7 +33,7 @@ export const ViewTask = () => {
                     {/* Worker */}
                     <div className="form-group">
                         <label>Worker</label>
-                        <textarea readOnly className="worker-txtarea" value={task.wroker_username} />
+                        <textarea readOnly className="worker-txtarea" value={task.worker_username} />
                     </div>
 
                     {/* STATUS */}
