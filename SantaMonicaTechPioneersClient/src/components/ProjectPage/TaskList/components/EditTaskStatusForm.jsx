@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
-import "../css/Modal.css";
+import "../../../css/Modal.css";
+import { useTasks } from "../hooks/useTasks";
 
-export const EditTaskStatus = ({ closeEditTaskStatus, updateTaskStatus, tasks, task_id }) => {
-
-    const task = tasks.find(value => value.id === task_id);
+export const EditTaskStatus = () => {
 
     const {
         register,
@@ -12,19 +11,27 @@ export const EditTaskStatus = ({ closeEditTaskStatus, updateTaskStatus, tasks, t
         setError,
     } = useForm();
 
+    const { activeTask: task, CloseUpdateStatusForm, UpdateTaskStatus, FetchTasks } = useTasks();
 
     const onFormSubmit = async (data) => {
-        const errors = await updateTaskStatus({...data, id:task_id});
-        if(!errors){
-            closeEditTaskStatus();
+        const [status, response] = await UpdateTaskStatus({ ...data, id: task.id });
+        if (status === 200) {
+            FetchTasks();
+            CloseUpdateForm();
             return;
         }
-
-        for(let i = 0; i < errors.length; i++){
-            setError(errors[i].path, {
-              type: "manual",
-              message: errors[i].msg
-            });
+        else if (status === 400) {
+            const errors = response.errors;
+            for (let i = 0; i < errors.length; i++) {
+                setError(errors[i].path, {
+                    type: "manual",
+                    message: errors[i].msg
+                });
+            }
+        }
+        else {
+            // TODO >>>
+            alert("Error occured");
         }
 
     }
@@ -32,7 +39,7 @@ export const EditTaskStatus = ({ closeEditTaskStatus, updateTaskStatus, tasks, t
 
     return (
         <div className="modal-container" onClick={(e) => {
-            if (e.target.className === "modal-container") closeEditTaskStatus();
+            if (e.target.className === "modal-container") CloseUpdateForm();
         }}>
             <div className="modal">
                 <form onSubmit={handleSubmit(onFormSubmit)}>

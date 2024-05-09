@@ -1,12 +1,13 @@
-import "../css/Modal.css";
+import "../../../css/Modal.css";
+import { useTasks } from "../hooks/useTasks";
 
-export const ViewTask = ( {tasks, task_id, closeViewTask} ) => {
+export const ViewTask = () => {
 
-    const task = tasks.find(value => value.id === task_id);
+    const { activeTask: task, CloseViewForm } = useTasks();
 
     return (
         <div className="modal-container" onClick={(e) => {
-            if (e.target.className === "modal-container") closeViewTask();
+            if (e.target.className === "modal-container") CloseViewForm();
         }}>
             <div className="modal">
                 <div>
@@ -32,7 +33,7 @@ export const ViewTask = ( {tasks, task_id, closeViewTask} ) => {
                     {/* Worker */}
                     <div className="form-group">
                         <label>Worker</label>
-                        <textarea readOnly className="worker-txtarea" value={task.wroker_username}/>
+                        <textarea readOnly className="worker-txtarea" value={task.wroker_username} />
                     </div>
 
                     {/* STATUS */}

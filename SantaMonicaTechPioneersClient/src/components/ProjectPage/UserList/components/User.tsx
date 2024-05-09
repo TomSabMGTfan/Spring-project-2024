@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { useUsers } from './hooks/useUsers'
-import { useAuth } from "../../../hooks/useAuth";
+import { useUsers } from '../hooks/useUsers'
+import { useAuth } from "../../../../hooks/useAuth";
 
 export const User = ({ user, isAdminOrOwner }) => {
 

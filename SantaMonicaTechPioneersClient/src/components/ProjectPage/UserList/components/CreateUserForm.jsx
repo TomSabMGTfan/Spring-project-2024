@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useForm } from "react-hook-form";
-import { useUsers } from './hooks/useUsers';
+import { useUsers } from '../hooks/useUsers';
 
 export const CreateUserForm = ({ project_id }) => {
     const {
