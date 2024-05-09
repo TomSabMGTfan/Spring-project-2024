@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import "./css/RegistrationLoginform.css"
 import { registerUser } from '../api/apis';
 import { Link } from 'react-router-dom'
@@ -27,7 +27,7 @@ function RegisterForm() {
   const { user, token } = useContext(AuthContext);
   useEffect(() => {
     // If user is logged in then redirect him to home page
-    if(token && user){
+    if (token && user) {
       navigate("/");
       return;
     }
@@ -47,15 +47,15 @@ function RegisterForm() {
 
     try {
       // išsiunčiame užklausą į serverį, kad užregistruoti vartotoją
-      await registerUser(data).then(()=> setSuccessMessage('Registration successful!'));
-      setTimeout(()=>navigate('/login'),3000)
-      
+      await registerUser(data).then(() => setSuccessMessage('Registration successful!'));
+      setTimeout(() => navigate('/login'), 3000)
+
     } catch (error) {
       // console.log(error.response.data);
       // jeigu iš serverio gauname klaidą, tai ją apdorojame ir nurodome, kad klaida yra email lauke
       if (error.response && error.response.status === 400) {
         const errors = error.response.data.errors;
-        for(let i = 0; i < errors.length; i++){
+        for (let i = 0; i < errors.length; i++) {
           setError(errors[i].path, {
             type: "manual",
             message: errors[i].msg
@@ -69,207 +69,104 @@ function RegisterForm() {
 
   return (
     <>
-    <div className='wrapper-body'>
-<div className='wrapper-register'>
-<div className="from-box register">
-<form action="" onSubmit={handleSubmit(onSubmit)}>
-<h1 className='loginName'>Registration</h1>
-<div className='input-box'>
-<input type="text" placeholder='Enter your username' {...register('username', { 
-required: {
-  value: true,
-  message: "Username is required"
-}, 
-minLength: {
-  value: 3,
-  message: "Username must be in between 3 and 20 characters"
-}, 
-maxLength: {
-  value: 20,
-  message: "Username must be in between 3 and 20 characters"
-} 
-})}/>
-{errors.username && <p className='input_error'>{errors.username.message}</p>}
-<FaUser className='icon'/>
+      <div className='wrapper-body'>
+        <div className='wrapper-register'>
+          <div className="from-box register">
+            <form action="" onSubmit={handleSubmit(onSubmit)}>
+              <h1 className='loginName'>Registration</h1>
+              <div className='input-box'>
+                <input type="text" placeholder='Enter your username' {...register('username', {
+                  required: {
+                    value: true,
+                    message: "Username is required"
+                  },
+                  minLength: {
+                    value: 3,
+                    message: "Username must be in between 3 and 20 characters"
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Username must be in between 3 and 20 characters"
+                  }
+                })} />
+                {errors.username && <p className='input_error'>{errors.username.message}</p>}
+                <FaUser className='icon' />
 
-</div>
-<div className='input-box'>
-<input type="email" placeholder='Enter your email address' {...register('email', {
-required: {
-  value: true,
-  message: "Email is required"
-},
-pattern: {
-  value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  message: 'Please enter a valid email',
-} 
-})} />
-{errors.email && <p className='input_error'>{errors.email.message}</p>}
-<FaEnvelope className='icon'/>
-</div>
+              </div>
+              <div className='input-box'>
+                <input type="email" placeholder='Enter your email address' {...register('email', {
+                  required: {
+                    value: true,
+                    message: "Email is required"
+                  },
+                  pattern: {
+                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: 'Please enter a valid email',
+                  }
+                })} />
+                {errors.email && <p className='input_error'>{errors.email.message}</p>}
+                <FaEnvelope className='icon' />
+              </div>
 
-<div className='input-box'>
-<input type="password" placeholder='Enter your password' {...register('password', { 
-  required: {
-    value: true,
-    message: "Password is required"
-  }, 
-  minLength: {
-    value: 8,
-    message: "Password must be in between 8 and 128 characters"
-  }, 
-  maxLength: {
-    value: 128,
-    message: "Password must be in between 8 and 128 characters"
-  },
-  pattern:{
-    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
-    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-  } 
-})}/>
-{errors.password && <p className='input_error'>{errors.password.message}</p>}
-<FaLock className='icon' />
-</div>
+              <div className='input-box'>
+                <input type="password" placeholder='Enter your password' {...register('password', {
+                  required: {
+                    value: true,
+                    message: "Password is required"
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Password must be in between 8 and 128 characters"
+                  },
+                  maxLength: {
+                    value: 128,
+                    message: "Password must be in between 8 and 128 characters"
+                  },
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
+                    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+                  }
+                })} />
+                {errors.password && <p className='input_error'>{errors.password.message}</p>}
+                <FaLock className='icon' />
+              </div>
 
-<div className='input-box'>
-<input type="password" placeholder='Enter again your password' {...register('repeatPassword', { 
-  required: {
-    value: true,
-    message: "Password is required"
-  }, 
-  minLength: {
-    value: 8,
-    message: "Password must be in between 8 and 128 characters"
-  }, 
-  maxLength: {
-    value: 128,
-    message: "Password must be in between 8 and 128 characters"
-  },
-  pattern:{
-    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
-    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-  } 
-})}/>
-{errors.repeatPassword && <p className='input_error'>{errors.repeatPassword.message}</p>} 
-<FaLock className='icon' />
-</div>
+              <div className='input-box'>
+                <input type="password" placeholder='Enter again your password' {...register('repeatPassword', {
+                  required: {
+                    value: true,
+                    message: "Password is required"
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Password must be in between 8 and 128 characters"
+                  },
+                  maxLength: {
+                    value: 128,
+                    message: "Password must be in between 8 and 128 characters"
+                  },
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
+                    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+                  }
+                })} />
+                {errors.repeatPassword && <p className='input_error'>{errors.repeatPassword.message}</p>}
+                <FaLock className='icon' />
+              </div>
 
-<div className='remeber-forgot'>
-<label><input type="checkbox" required />I agree to the terms & conditions</label>
-</div>
-<button type='submit'>Register</button>
-<div className='register-link'>
-<p>Already have an account? <a href="/login">Login</a></p>
-</div>
+              <div className='remeber-forgot'>
+                <label><input type="checkbox" required />I agree to the terms & conditions</label>
+              </div>
+              <button type='submit'>Register</button>
+              <div className='register-link'>
+                <p>Already have an account? <Link to="/login">Login</Link></p>
+              </div>
 
-</form>
-</div>
-</div>
-</div>
-{/* <div><img src="https://th.bing.com/th/id/OIP.VbnRceZBt0T-3EYcBi0LCAHaHa?rs=1&pid=ImgDetMain" alt="sign up" style={{width:"10%"}}/></div>
-<div className='registration_form'>
-<h1 className='form'>Sign up</h1>
-<h3>for free</h3>
-
-<form className='registration_form_body' onSubmit={handleSubmit(onSubmit)}>
-
-<p className='input_text'>Username</p>
-<input className='input_field' {...register('username', { 
-required: {
-  value: true,
-  message: "Username is required"
-}, 
-minLength: {
-  value: 3,
-  message: "Username must be in between 3 and 20 characters"
-}, 
-maxLength: {
-  value: 20,
-  message: "Username must be in between 3 and 20 characters"
-} 
-})} placeholder="  Enter your username" />
-{errors.username && <p className='input_error'>{errors.username.message}</p>}
-
-
-
-<p className='input_text'>Email</p>
-<input className='input_field' {...register('email', {
-required: {
-  value: true,
-  message: "Email is required"
-},
-pattern: {
-  value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  message: 'Please enter a valid email',
-} 
-})} placeholder="  Enter your email address" />
-{errors.email && <p className='input_error'>{errors.email.message}</p>}
-
-<p className='input_text'>Password</p>
-<input className='input_field'
-type="password"
-{...register('password', { 
-  required: {
-    value: true,
-    message: "Password is required"
-  }, 
-  minLength: {
-    value: 8,
-    message: "Password must be in between 8 and 128 characters"
-  }, 
-  maxLength: {
-    value: 128,
-    message: "Password must be in between 8 and 128 characters"
-  },
-  pattern:{
-    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
-    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-  } 
-})}
-placeholder="  Enter your password"
-/>
-{errors.password && <p className='input_error'>{errors.password.message}</p>}
-
-<p className='input_text'>Repeat password</p>
-<input className='input_field'
-type="password"
-{...register('repeatPassword', { 
-  required: {
-    value: true,
-    message: "Password is required"
-  }, 
-  minLength: {
-    value: 8,
-    message: "Password must be in between 8 and 128 characters"
-  }, 
-  maxLength: {
-    value: 128,
-    message: "Password must be in between 8 and 128 characters"
-  },
-  pattern:{
-    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&~#^_+=\-';,./|":<>?])[A-Za-z\d@$!%*?&~#^_+=\-';,./|":<>?]{8,128}$/,
-    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-  } 
-})}
-placeholder="  Enter your password"
-/>
-{errors.repeatPassword && <p className='input_error'>{errors.repeatPassword.message}</p>}
-
-<br/>
-<p className='input_text'>By creating an account, you agree to the <u><b>Terms of use</b></u> and <u><b>Privacy Policy.</b></u></p>
-
-
-
-
-
-{serverError ? <p>{serverError}</p> : successMessage && <p>{successMessage}</p>}
-
-<button className='input_field' type="submit">Sign up</button>
-<p className='input_text'>Already have an account?   <Link to='/login' style={{color: "black"}}><u><b>Log in</b></u></Link></p>
-
-</form>
-</div> */}
-</>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

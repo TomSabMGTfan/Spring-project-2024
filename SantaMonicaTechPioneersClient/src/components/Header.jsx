@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import './css/Header.css'
 import { AuthContext } from "../utils/AuthContext"
-
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
@@ -23,44 +23,29 @@ function Navbar() {
 				<nav ref={navRef}>
 					{!authUser ? (
 						<>
-							<div className="logo"><a href="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></a></div>
+							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
 							<div>
 							</div>
-							{/* <ul>
-					<li><a href=""><i class="fas fa-home"></i>Home</a></li>
-					<li><a href=""><i class="fas fa-info-circle"></i>About</a></li>
-					<li><a href=""><i class="fas fa-cogs"></i>Services</a></li>
-					<li><a href=""><i class="fas fa-log-in"></i>Contacts</a></li>
-				</ul> */}
 							<ul>
-								<li><a href="/"><i className="fas fa-home"></i>Home</a></li>
-								<li><a href=""><i className="fas fa-info-circle"></i>About</a></li>
-								<li><a href="/login"><i className="fa fa-sign-in"></i>Login</a></li>
-								<li className="register-btn"><a href="/signup"><i className="fa fa-pencil-square-o"></i>Register</a></li>
+								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
+								<li><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
+								<li><Link to="/login"><i className="fa fa-sign-in"></i>Login</Link></li>
+								<li className="register-btn"><Link to="/signup"><i className="fa fa-pencil-square-o"></i>Register</Link></li>
 							</ul>
 						</>
 					) : (
 						<>
 
-							<div className="logo"><a href="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></a></div>
-							<div>
-								{/* <h5> {authUser ?` Logged in as ${authUser.username}` : ''}</h5> */}
-							</div>
+							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
 							<ul>
-								<li><a href="/"><i className="fas fa-home"></i>Home</a></li>
-								<li><a href=""><i className="fas fa-info-circle"></i>About</a></li>
-								<li><a href=""><i className="fas fa-envelope"></i>Contacts</a></li>
-								<li><a href="/dashboard"><i className="fas fa-cogs"></i>Back to project</a></li>
-								<li><a href="" onClick={logoutUser}><i className="fas fa-sign-out" ></i>Logout</a></li>
-								{/* <button className="header_nav_buttons"style={{background:"none"}} onClick={logoutUser}>Logout</button> */}
+								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
+								<li><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
+								<li><Link to=""><i className="fas fa-envelope"></i>Contacts</Link></li>
+								<li><Link to="/dashboard"><i className="fas fa-cogs"></i>Back to project</Link></li>
+								<li><Link to="" onClick={logoutUser}><i className="fas fa-sign-out" ></i>Logout</Link></li>
 							</ul>
 						</>
 					)}
-					{/* <button
-						className="nav-btn nav-close-btn"
-						onClick={showNavbar}>
-						<FaTimes />
-					</button> */}
 				</nav>
 			</header>
 
