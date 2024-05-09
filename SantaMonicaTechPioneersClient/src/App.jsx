@@ -23,8 +23,8 @@ function App() {
 
   return (
     <>
-      <Header />
       <Router>
+        <Header />
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path='/Signup' element={<RegistrationForm />} />
@@ -43,8 +43,8 @@ function App() {
             </PrivateRoute>
           } />
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
     </>
   )
 }
