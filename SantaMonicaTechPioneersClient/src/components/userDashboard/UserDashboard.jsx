@@ -1,14 +1,19 @@
-import { useEffect, useState, useContext } from 'react';
-import { fetchUserData } from '../api/apis';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../utils/AuthContext';
-import {UserNavigation} from './UserNavigation';
+import { useEffect, useState, useContext } from "react";
+import { fetchUserData } from "../../api/apis";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../utils/AuthContext";
+import { UserNavigation } from "./UserNavigation";
+import { ProjectList } from "./ProjectList/ProjectList"
+import { ProjectsProvider } from "./ProjectList/hooks/useProject";
+
+
 
 function UserDashboard() {
   const { user: authUser } = useContext(AuthContext);
-  console.log('authUser in UserDashboard:', authUser); 
+  console.log("authUser in UserDashboard:", authUser);
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
+  // const { users } = useUsers();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -16,7 +21,7 @@ function UserDashboard() {
       // jeigu nėra, tai nukreipiame vartotoją į pagrindinį puslapį '/'
       // todėl gauname user null arba undefined, nes vartotojas atsijungė arba neprisijungė
       if (!authUser) {
-        navigate('/');
+        navigate("/");
         return;
       }
       try {
@@ -27,13 +32,13 @@ function UserDashboard() {
           // ir nustatome userData state objekte
           setUserData(data);
         } else {
-          console.error('No data in response');
+          console.error("No data in response");
         }
       } catch (error) {
-        console.error('Failed to fetch user data:', error);
+        console.error("Failed to fetch user data:", error);
       }
     };
-  
+
     fetchUser();
   }, [authUser, navigate]);
 
@@ -42,15 +47,17 @@ function UserDashboard() {
   }
 
   return (
-    <div className='dashboard_body'>
+    <div className="dashboard_body">
       <UserNavigation />
       <div className="app-table">
-      <div className="loged-info">
-      <h1>Welcome, {userData.username}!</h1>
-      <p>Email: {userData.email}</p>
-      <p>Role: {userData.role}</p></div>
-                
-    </div></div>
+        <h2>Projects</h2>
+        <ProjectsProvider>
+
+        <ProjectList />
+
+        </ProjectsProvider>
+      </div>
+    </div>
   );
 }
 

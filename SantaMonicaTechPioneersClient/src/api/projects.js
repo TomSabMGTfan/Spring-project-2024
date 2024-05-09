@@ -45,7 +45,7 @@ const ProjectModel = {
     },
     getMyProjects: async () => {
         try{
-            const response = await apiClient.get("/");
+            const response = await apiClient.get("/projects");
             return response;
         }
         catch(error){
