@@ -27,7 +27,7 @@ export const Home = () => {
                 </div>
 
                 <div>
-                    <img src={img1} alt="labas" className="feature-img" />
+                    {/* <img src={img1} alt="labas" className="feature-img" /> */}
                 </div>
 
             </div>
