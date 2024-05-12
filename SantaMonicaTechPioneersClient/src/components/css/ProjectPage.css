@@ -1,24 +1,59 @@
 .project-page{
-    min-height: 42rem;
-
+    min-height: 42rem; 
+    box-sizing: border-box;  
+    display: grid;
+   
+    
+        min-height: 90vh;
+        background: url(../../assets/Background7-fotor-2024051211119.jpg) no-repeat;
+        background-size: cover;
+        background-position: center;
+        
+        
 }
 
 .Grid-Container{
-    grid-template-columns: 1fr 6fr;
-    display: grid;
     
+         display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
 .Grid-Item{
     margin: 1rem;
 }
 
-.Grid-Side{
-    grid-column-start: 1;
-    grid-column-end: 1;
+.Grid-Item-Grid-login-information{
+    grid-column: 1 / 1;
+    grid-row: 1 /  1;
 }
+.Grid-Item-Grid-Side-navigation{
+   
+    grid-column: 2 / 1;
+    grid-row: 2 /  3;
+    
+    }
 
 .Grid-Main{
-    grid-column-start: 2;
-    grid-column-end: 2;
+    
+    grid-column: 2 / span 4 / 5;
+    grid-row: 1 /  span 3;
+}
+
+.User-hub-table{
+    background: transparent;
+    
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 1);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px ;
+}
+.User-hub-table-owner-section{
+  padding-top: 1rem;
+}
+.active-link, .passive-link{
+    color: black;
+    text-decoration: none;
+    display: block;
 }

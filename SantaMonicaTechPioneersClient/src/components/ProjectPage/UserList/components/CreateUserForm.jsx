@@ -39,17 +39,26 @@ export const CreateUserForm = ({ project_id }) => {
     });
 
     return (
+        <div className="modal-container" onClick={(e) => {
+            if (e.target.className === "modal-container") CloseCreatePWorkerForm();
+        }}>
+            <div className="modal">
         <form onSubmit={handleSubmit(OnFormSubmit)}>
             <div>
                 <label htmlFor="username">Username</label>
                 <input type="text" {...register("username", {
                     minLength: 3,
-                    maxLength: 20
+                    maxLength: 20,
+                    message:`${errors.username && <p>{errors.username.message}</p>}`
+
                 })} />
                 {errors.username && <p>{errors.username.message}</p>}
             </div>
 
             <button type='submit'>Add user</button>
         </form>
+        </div>
+         </div>
     )
 }
+
