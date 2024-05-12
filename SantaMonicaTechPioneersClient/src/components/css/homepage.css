@@ -8,9 +8,9 @@
   grid-template-columns: 20rem 30rem 20rem 20rem;
   grid-template-rows: 10rem 10rem 10rem 10rem 10rem;
   }
-  
-.content {
 
+.content {
+padding-left: 5rem;
 grid-column: 1 / 3;
     grid-row: 2 /  3;
 }
