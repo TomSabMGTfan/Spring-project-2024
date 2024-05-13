@@ -77,10 +77,10 @@ const projectWorkersController = {
             const ifExists = await project_workersModel.getProjectWorker(user_id, project_id);
             if (ifExists) {
                 return res.status(400).json({
-                    errors: {
+                    errors: [{
                         path: "username",
                         msg: "User already exists in the project"
-                    }
+                    }]
                 });
             }
 
