@@ -8,7 +8,7 @@ import UserDashboard from "./components/userDashboard/UserDashboard";
 import PrivateRoute from "./routes/privateRoutes";
 import { AuthContext } from "./utils/AuthContext";
 import ExplorePage from './components/search/ExplorePage';
-
+import { SearchProvider } from './components/search/hooks/useSearch';
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -24,14 +24,13 @@ function App() {
   const { user: authUser, logoutUser } = useContext(AuthContext);
 
   return (
-    <>
-      <Router>
-        
+    <Router>
+      <SearchProvider> 
         <Header />
         <Routes>
           <Route path="/login" element={<LoginForm />} />
-          <Route path='/Signup' element={<RegistrationForm />} />
-          <Route path='/' element={<Home />} />
+          <Route path="/signup" element={<RegistrationForm />} />
+          <Route path="/" element={<Home />} />
           <Route path="/explore" element={<ExplorePage />} />
           <Route
             path="/dashboard"
@@ -41,16 +40,19 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path='projects/:id' element={
-            <PrivateRoute>
-              <ProjectPage />
-            </PrivateRoute>
-          } />
+          <Route
+            path="/projects/:id"
+            element={
+              <PrivateRoute>
+                <ProjectPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
         <Footer />
-      </Router>
-    </>
-  )
+      </SearchProvider>
+    </Router>
+  );
 }
 
 export default App

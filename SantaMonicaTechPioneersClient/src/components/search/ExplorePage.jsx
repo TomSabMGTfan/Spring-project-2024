@@ -1,11 +1,12 @@
 import React from "react";
+import "../css/ExplorePage.css"
 
 
 function ExplorePage() {
     return (
-        <div>
+        <div className="pataisome">
             <h1>Explore projects</h1>
-            <p>This is the Explore page content</p>
+            <input type="text" placeholder="Search.." name="search"></input>
         </div>
     );
 }
