@@ -1,4 +1,4 @@
-import { checkSchema } from 'express-validator';
+import { checkSchema, param } from 'express-validator';
 import { ONGOING, DONE } from '../cfg/Projects.mjs';
 
 export const createProjectValidationSchema = checkSchema({
@@ -79,3 +79,24 @@ export const updateProjectValidationSchema = checkSchema({
     }
 
 })
+
+export const searchProjectValidationSchema = checkSchema({
+    id: {
+        in: ["params"],
+        isInt: {
+            options: { min: 1 },
+            errorMessage: "Id must be a valid positive integer"
+        }
+    },
+    search: {
+        in: ["query"],
+        isString: {
+            errorMessage: "Search must be a valid string"
+        },
+        isLength: {
+            options: { min: 1, max: 100 },
+            errorMessage: "Search must be atleast 1 character with a max of 100 characters"
+        }
+    }
+
+});

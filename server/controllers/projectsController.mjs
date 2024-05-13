@@ -143,6 +143,20 @@ const projectsController = {
             console.error(error);
             res.status(500).json({ message: "failed to retrieve projects" })
         }
+    },
+
+    searchProjects: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const { search } = req.query;
+
+            const searchResult = projectsModel.searchProjects(id, search);
+
+            return res.status(200).json(searchResult);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: "Error occured" })
+        }
     }
 };
 
