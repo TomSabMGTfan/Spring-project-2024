@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import UserDashboard from "./components/userDashboard/UserDashboard";
 import PrivateRoute from "./routes/privateRoutes";
 import { AuthContext } from "./utils/AuthContext";
+import ExplorePage from './components/search/ExplorePage';
 
 
 import Footer from "./components/Footer";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path='/Signup' element={<RegistrationForm />} />
           <Route path='/' element={<Home />} />
+          <Route path="/explore" element={<ExplorePage />} />
           <Route
             path="/dashboard"
             element={

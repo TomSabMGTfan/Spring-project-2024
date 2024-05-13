@@ -27,6 +27,7 @@ function Navbar() {
 							<div>
 							</div>
 							<ul>
+								<li><Link to="/explore">Explore</Link></li>
 								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
 								<li><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
 								<li><Link to="/login"><i className="fa fa-sign-in"></i>Login</Link></li>
@@ -38,6 +39,7 @@ function Navbar() {
 
 							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
 							<ul>
+							    <li><Link to="/explore"></Link>Explore</li>
 								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
 								<li><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
 								<li><Link to=""><i className="fas fa-envelope"></i>Contacts</Link></li>
