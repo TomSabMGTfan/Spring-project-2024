@@ -33,9 +33,8 @@
   grid-row: 1 / span 3;
 }
 
-.User-hub-table {
-  background: transparent;
-
+table.user {
+  
   outline: none;
   border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 40px;

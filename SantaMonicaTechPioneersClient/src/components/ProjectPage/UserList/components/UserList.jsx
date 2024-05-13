@@ -13,7 +13,11 @@ export const UserList = ({ isAdminOrOwner, project_id }) => {
                 showCreatePWorkerForm && isAdminOrOwner &&
                 < CreateUserForm project_id={project_id} />
             }
-            <table>
+            <div>
+            <h3 className="table-header">Users List</h3>
+        </div>
+            <table className='table  user'>
+
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -24,12 +28,13 @@ export const UserList = ({ isAdminOrOwner, project_id }) => {
                 <tbody>
                     {users.map((value) => <User key={value.user_id} user={value} isAdminOrOwner={isAdminOrOwner}></User>)}
                 </tbody>
+                <div>{
+                isAdminOrOwner &&
+                <button  className='btn btn-new-task' onClick={OpenCreatePWorkerForm}>Add user to project</button>
+            }</div>
             </table>
 
-            {
-                isAdminOrOwner &&
-                <button onClick={OpenCreatePWorkerForm}>Add user to project</button>
-            }
+            
 
         </div>
     )
