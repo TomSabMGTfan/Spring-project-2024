@@ -13,7 +13,7 @@ export const registerUserValidationSchema = checkSchema({
 		isString: {
 			errorMessage: 'Username must be a string!',
 		},
-		custom:{
+		custom: {
 			options: async (value) => {
 				const existingUser = await userModel.getUserByUsername(value);
 				if (existingUser) {
@@ -50,7 +50,7 @@ export const registerUserValidationSchema = checkSchema({
 		custom: {
 			options: (value, { req }) => value === req.body.password,
 			errorMessage: "Passwords do not match"
-        },
+		},
 	},
 	email: {
 		isEmail: {
@@ -120,3 +120,13 @@ export const validateUserId = [
 		.isInt()
 		.withMessage('ID must be an integer')
 ];
+
+export const searchUsernameValidationSchema = checkSchema({
+	search: {
+		in: ["query"],
+		isLength: {
+			options: { min: 3, max: 20 },
+			errorMessage: 'Search query must be at least 3 characters with a max of 20 characters',
+		}
+	}
+});
