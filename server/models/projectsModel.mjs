@@ -60,6 +60,11 @@ const projectsModel = {
 
     return newProjects;
   },
+
+  searchProjects: async (id, word) => {
+    const result = await pool.query("SELECT * FROM projects WHERE name ILIKE '%$1%' OR description ILIKE '%$1%' LIMIT 20 OFFSET $2", [word, id * 20 - 20]);
+    return result.rows;
+  }
 };
 
 export default projectsModel;

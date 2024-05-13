@@ -17,7 +17,7 @@ export const TaskList = ({ isAdminOrOwner }) => {
         {showViewForm && <ViewTask />}
 
         <div>
-            <h3>Task List</h3>
+            <h3 className="table-header">Task List</h3>
         </div>
 
         <table className="table">
@@ -38,8 +38,9 @@ export const TaskList = ({ isAdminOrOwner }) => {
             <tbody>
                 {tasks.map((value) => <Task task={value} isAdminOrOwner={isAdminOrOwner} key={value.id} />)}
             </tbody>
+            {isAdminOrOwner && <button className="btn btn-new-task" onClick={OpenCreateForm}>Create new task</button>}
         </table>
 
-        {isAdminOrOwner && <button className="btn btn-new-task" onClick={OpenCreateForm}>Create new task</button>}
+        
     </div>;
 }

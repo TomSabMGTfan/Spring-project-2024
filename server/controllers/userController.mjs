@@ -62,9 +62,9 @@ const userController = {
           .status(400)
           .json({
             errors: [
-              { 
+              {
                 path: "login",
-                msg: "User with the given email/username does not exist" 
+                msg: "User with the given email/username does not exist"
               },
             ],
           });
@@ -75,12 +75,14 @@ const userController = {
       if (!passwords_match) {
         return res
           .status(400)
-          .json({ errors: [
-            { 
-              path: "password",
-              msg: "Incorrect password" 
-            }
-          ] });
+          .json({
+            errors: [
+              {
+                path: "password",
+                msg: "Incorrect password"
+              }
+            ]
+          });
       }
 
       // Deleting password field from user object
@@ -120,6 +122,24 @@ const userController = {
         .json({ message: "An error has occurred while retrieving the user" });
     }
   },
+
+  searchUsername: async (req, res) => {
+    try {
+
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { search } = req.query;
+      const usernames = await userModel.searchUsername(search);
+
+      return res.status(200).json(usernames);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: "An error occured on the server" });
+    }
+  }
 };
 
 export default userController;

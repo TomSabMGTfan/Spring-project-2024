@@ -18,6 +18,7 @@ import { ProjectPage } from './components/ProjectPage/ProjectPage';
 
 
 
+
 function App() {
 
   const { user: authUser, logoutUser } = useContext(AuthContext);
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
       <Router>
+        
         <Header />
         <Routes>
           <Route path="/login" element={<LoginForm />} />

@@ -4,14 +4,6 @@ import { Link } from 'react-router-dom'
 import './css/homepage.css';
 import img1 from "../assets/Background8.png";
 
-
-
-
-
-
-
-
-
 export const Home = () => {
     const { user, logoutUser } = useContext(AuthContext);
 
@@ -26,7 +18,7 @@ export const Home = () => {
                     {!user && <Link to="/signup" className="pgr-btn">Join now</Link>}
                 </div>
 
-                <div>
+                <div className="homepage-picture">
                     <img src={img1} alt="labas" className="feature-img" />
                 </div>
 
