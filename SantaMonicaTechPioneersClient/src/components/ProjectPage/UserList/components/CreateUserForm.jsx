@@ -44,7 +44,7 @@ export const CreateUserForm = ({ project_id }) => {
         }}>
             <div className="modal">
         <form onSubmit={handleSubmit(OnFormSubmit)}>
-            <div>
+            <div className='form-group'>
                 <label htmlFor="username">Username</label>
                 <input type="text" {...register("username", {
                     minLength: 3,
