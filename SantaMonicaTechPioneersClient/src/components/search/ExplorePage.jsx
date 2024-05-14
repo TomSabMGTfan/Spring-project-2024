@@ -10,7 +10,7 @@ function ExplorePage() {
 
     const [searchQuery, setSearchQuery] = useState('');
 
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState();
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
@@ -18,20 +18,19 @@ function ExplorePage() {
 
     const handleSearchSubmit = async(event) => {
         event.preventDefault();
-        try {
-            const [status, data] = await searchProjects(searchQuery);
+            const [status, data] = await searchProjects(1, searchQuery);
             if(status === 200) {
                 setSearchResults(data);
             } else {
-                console.error('Failed to search projects');
+                console.log('Failed to search projects');
             }
-        } catch (error) {
-            console.error('Error searching projects:', error);
-        }
     }
+// atskiras mygtukas su onclick, load more t.t
 
+// page index state, start 1 , onclick load more -- page index + 1 , request await search projects  (page index), prie senu pridet naujus indexus. 
 
     return (
+        // fix as Create user form 
         <div className="pataisome">
             <h1>Explore projects</h1>
             <form onSubmit={handleSearchSubmit}>
@@ -45,7 +44,7 @@ function ExplorePage() {
                 <button type="submit">Search</button>
             </form>
             <div>
-                {searchResults.map((result) => (
+                {searchResults && searchResults.map((result) => (
                     <div key={result.id}>
                         <h3>{result.name}</h3>
                         <p>{result.description}</p>

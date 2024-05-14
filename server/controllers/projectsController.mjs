@@ -145,12 +145,18 @@ const projectsController = {
         }
     },
 
-    searchProjects: async (req, res) => {
+    searchProjects: async (req, res) => { 
+        
+        
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
             const { id } = req.params;
             const { search } = req.query;
-
-            const searchResult = projectsModel.searchProjects(id, search);
+            const searchResult =  await projectsModel.searchProjects(id, search);
 
             return res.status(200).json(searchResult);
         } catch (error) {
