@@ -1,5 +1,5 @@
 .app-table{
-    display:flex;
+    display:grid;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -11,18 +11,34 @@
    width: 100%; 
 }
 .table{
-    display: block;
+    display: grid;
     overflow: hidden;
     table-layout: auto;
     border-collapse: collapse;
-    box-shadow: 0px 10px 10px #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    backdrop-filter: blur(15px);
+    background-color: #7335827c;
+    border: 2px solid #76b3e24b;
+    border-radius: 10px;
+    color: white;
+    padding: 40px;
     border-radius: 10px;
     white-space: nowrap;
     width: 60em;
     max-width: 80%;
     margin: auto;
     overflow-x: auto;
+    
 }
+.table-header{
+    display: grid;
+    justify-content: center;
+}
+.btn-new-task{
+ width: 10rem;
+}
+   
+
 .table thead {
     background-color: #DFC1C1;
     color: #222;
@@ -63,10 +79,10 @@
     background-color: #50a848;
 }
 .actions{
-display:flex;
-justify-content: space-around;
-
+display:grid;
+grid-template-columns: 1fr 1fr 1fr;
 }
+
 .actions svg{
     cursor: pointer;
 }
@@ -77,4 +93,9 @@ justify-content: space-around;
     display: flex;
     flex-direction:column;
  margin-bottom: 50px;
+}
+
+.btn-new-task{
+    float: right;
+    margin-right: 1rem;
 }

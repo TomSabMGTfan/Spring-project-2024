@@ -5,12 +5,12 @@ const userModel = {
 
 	// User creation
 	createUser: async (newUser) => {
-		const { username, password, email, registered_on} = newUser;
+		const { username, password, email, registered_on } = newUser;
 
 		// Sending query to database
 		const result = await pool.query('INSERT INTO users (username, password, email, registered_on) VALUES ($1, $2, $3, $4) RETURNING *',
-		 [username, password, email, registered_on]);
-			
+			[username, password, email, registered_on]);
+
 		return result.rows[0];
 	},
 
@@ -45,6 +45,12 @@ const userModel = {
 
 		return result.rows[0];
 	},
+
+	searchUsername: async (search) => {
+		const result = await pool.query("SELECT username FROM users WHERE username LIKE $1||'%' LIMIT 20", [search]);
+
+		return result.rows;
+	}
 
 };
 

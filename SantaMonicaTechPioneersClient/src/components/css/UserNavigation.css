@@ -1,7 +1,15 @@
 .dashboard_body{
-    min-height: 80vh;
-    display:flex; 
+    background: url(../../assets/Background7.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 20rem 30rem 20rem 20rem;
+    grid-template-rows: 10rem 10rem 10rem 10rem 10rem;
+    }
     
+.app-table{
+    grid-column: 2 / span 3;
+    grid-row: 2 /  5;
 }
 
 .Left-Nav{
