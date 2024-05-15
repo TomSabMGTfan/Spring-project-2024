@@ -1,39 +1,38 @@
-import React from "react";
-import "../css/ExplorePage.css"
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "../css/ExplorePage.css";
 import { useSearch } from "./hooks/useSearch";
 
-
 function ExplorePage() {
-
-    const {searchProjects} = useSearch();
-
+    const { searchProjects } = useSearch();
     const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
-    const [searchResults, setSearchResults] = useState();
+    useEffect(() => {
+        const fetchSearchResults = async () => {
+            if (searchQuery.trim() !== '') {
+                const [status, data] = await searchProjects(1, searchQuery);
+                if (status === 200) {
+                    setSearchResults(data);
+                } else {
+                    console.log('Failed to search projects');
+                }
+            } else {
+                setSearchResults([]);
+            }
+        };
+
+        // Fetch search results only if searchQuery is not empty
+        fetchSearchResults();
+    }, [searchProjects, searchQuery]);
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
     };
 
-    const handleSearchSubmit = async(event) => {
-        event.preventDefault();
-            const [status, data] = await searchProjects(1, searchQuery);
-            if(status === 200) {
-                setSearchResults(data);
-            } else {
-                console.log('Failed to search projects');
-            }
-    }
-// atskiras mygtukas su onclick, load more t.t
-
-// page index state, start 1 , onclick load more -- page index + 1 , request await search projects  (page index), prie senu pridet naujus indexus. 
-
     return (
-        // fix as Create user form 
         <div className="pataisome">
             <h1>Explore projects</h1>
-            <form onSubmit={handleSearchSubmit}>
+            <form>
                 <input
                     type="text"
                     placeholder="Search.."
@@ -41,7 +40,6 @@ function ExplorePage() {
                     value={searchQuery}
                     onChange={handleSearchInputChange}
                 />
-                <button type="submit">Search</button>
             </form>
             <div>
                 {searchResults && searchResults.map((result) => (
