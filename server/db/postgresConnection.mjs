@@ -1,5 +1,6 @@
 import pg from "pg";
 import dotenv from "dotenv";
+import { LogError, LogInfo } from "../Logger/Logger.mjs";
 
 dotenv.config();
 
@@ -20,11 +21,12 @@ export const connectDB = () => {
     // Connecting to the database
     pool.connect((err) => {
       if (err) {
-        console.error("connection error", err.stack);
-        reject(err);
-      } 
+        LogError("Error occured while connecting to the database.", err);
+        reject();
+      }
       else {
-        resolve("Database connected successfully");
+        LogInfo("Database connected successfully.");
+        resolve();
       }
     });
   });

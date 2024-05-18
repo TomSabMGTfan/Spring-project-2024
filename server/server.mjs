@@ -8,7 +8,9 @@ import { connectDB } from './db/postgresConnection.mjs';
 
 import mainRouter from './routes/mainRouter.mjs';
 
-import { LogInfo, LoggingMiddleware } from './middleware/logger.mjs';
+import { LoggingMiddleware } from './middleware/LoggingMiddleware.mjs';
+import { LogInfo, LogError } from './Logger/Logger.mjs';
+import { ErrorHandlingMiddleware } from './middleware/ErrorHandlingMiddleware.mjs';
 
 const app = express();
 
@@ -16,9 +18,7 @@ const app = express();
 const startServer = async () => {
 	try {
 		// Connecting to database
-		const message = await connectDB();
-		LogInfo(message);
-
+		await connectDB();
 
 		app.use(cors());
 
@@ -30,17 +30,20 @@ const startServer = async () => {
 		// API routes
 		app.use('/api', mainRouter);
 
+		app.use(ErrorHandlingMiddleware);
+
+
 		// Configuring port
 		const port = process.env.PORT;
 
 		// Starting server
 		app.listen(port, () => {
 			// Logging
-			LogInfo(`Server is running and listening on port ${port}`);
+			LogInfo(`Server is running and listening on port ${port}.`);
 		});
 
 	} catch (error) {
-		console.error('Failed to connect to database', error);
+		LogError("Error occured while starting a server.", error);
 
 		process.exit(1);
 	}

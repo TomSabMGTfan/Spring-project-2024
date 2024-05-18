@@ -31,8 +31,7 @@ const projectsController = {
 
             res.status(201).json(createdProject);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "failed to create a project, an error has occured " })
+            next(error);
         }
     },
 
@@ -71,8 +70,7 @@ const projectsController = {
             return res.status(200).json({ message: "Project deleted successfully" })
 
         } catch (error) {
-            console.error("error deleting projects", error);
-            return res.status(500).json({ message: "Server error " });
+            next(error);
         }
     },
 
@@ -99,8 +97,7 @@ const projectsController = {
             return res.status(200).json(project);
 
         } catch (error) {
-            console.error("error fetching project details", error);
-            return res.status(500).json({ message: "server error" })
+            next(error);
         }
     },
 
@@ -127,27 +124,23 @@ const projectsController = {
 
 
         } catch (error) {
-            console.error("error updating project", error);
-            res.status(500).json({ message: "server error" })
+            next(error);
 
         }
     },
 
-    getMyProjects: async (req, res) => {
+    getMyProjects: async (req, res, next) => {
         try {
             const projects = await projectsModel.getMyProjects(req.user.id);
 
             res.status(200).json(projects);
 
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "failed to retrieve projects" })
+            next(error);
         }
     },
 
     searchProjects: async (req, res) => {
-
-
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -160,8 +153,7 @@ const projectsController = {
 
             return res.status(200).json(searchResult);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Error occured" })
+            next(error);
         }
     }
 };
