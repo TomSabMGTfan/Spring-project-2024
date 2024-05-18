@@ -32,9 +32,11 @@ function App() {
         <Route path="/signup" element={<RegistrationForm />} />
         <Route path="/" element={<Home />} />
         <Route path="/explore" element={
-          <SearchProvider>
-            <ExplorePage />
-          </SearchProvider>} />
+          <PrivateRoute>
+            <SearchProvider>
+              <ExplorePage />
+            </SearchProvider>
+          </PrivateRoute>} />
         <Route
           path="/dashboard"
           element={
