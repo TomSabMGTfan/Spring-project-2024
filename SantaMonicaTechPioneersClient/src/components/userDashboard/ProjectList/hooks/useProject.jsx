@@ -1,8 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 import ProjectModel from "../../../../api/projects";
-import { CreateProjectForm } from '../CreateProjectForm';
-import { Spinner } from '../../../Spinner';
 
 const ProjectContext = createContext();
 
@@ -74,10 +72,6 @@ export const ProjectsProvider = ({ children }) => {
             setIsLoading(false)
         })();
     }, [fetchProjects]);
-
-if (isLoading){
-    return <Spinner/>
-}
 
     return (
         <ProjectContext.Provider value={{
