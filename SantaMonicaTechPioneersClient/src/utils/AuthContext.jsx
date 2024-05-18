@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [cookies, setCookies, removeCookies] = useCookies();
   const [token, setToken] = useState(cookies.token || null);
   const [user, setUser] = useState(null);
+  const [loggedOut, setLoggedOut] = useState(false);
 
   useEffect(() => {
     const token = cookies.token;
@@ -19,9 +20,14 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
     }
     else {
-      alert("Session expired.");
-      setToken(null);
-      setUser(null);
+      if (!loggedOut) {
+        alert("Session expired.");
+        setToken(null);
+        setUser(null);
+      }
+      else {
+        setLoggedOut(false);
+      }
     }
     setIsLoading(false);
   }, [cookies.token]);
@@ -58,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     removeCookies("token");
     setToken(null);
     setUser(null);
+    setLoggedOut(true);
   };
 
   return (
