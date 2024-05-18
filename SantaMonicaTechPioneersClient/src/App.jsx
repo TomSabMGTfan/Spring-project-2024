@@ -25,36 +25,43 @@ function App() {
 
   return (
     <Router>
+      <div className='main'>
 
-      <Header />
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<RegistrationForm />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/explore" element={
-          <PrivateRoute>
-            <SearchProvider>
-              <ExplorePage />
-            </SearchProvider>
-          </PrivateRoute>} />
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <UserDashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/projects/:id"
-          element={
-            <PrivateRoute>
-              <ProjectPage />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-      <Footer />
+        <div>
+          <Header />
+
+        </div>
+        <div className='main-content'>
+          <Routes>
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<RegistrationForm />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/explore" element={
+              <PrivateRoute>
+                <SearchProvider>
+                  <ExplorePage />
+                </SearchProvider>
+              </PrivateRoute>} />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <UserDashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/projects/:id"
+              element={
+                <PrivateRoute>
+                  <ProjectPage />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </Router >
   );
 }

@@ -15,6 +15,33 @@ nav {
 	
 }
 
+.link{
+	display: inline-block;
+}
+
+@media only screen and (max-width: 1360px) {
+	nav {
+		flex-direction: column;
+		padding: 3vh 0;
+	}
+
+	.logo{
+		padding-bottom: 3vh;
+	}
+}
+
+@media only screen and (max-width: 755px){
+	nav{
+		padding: 3vh;
+	}
+}
+
+@media only screen and (max-width: 540px){
+	.logo{
+		padding-bottom: 6vh;
+	}
+}
+
 .logo {
 	font-size: 32px;
 	color: #ffffff;

@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: 20rem 30rem 20rem 20rem;
     grid-template-rows: 10rem 10rem 10rem 10rem 10rem;
+    height: auto;
     }
     
 .app-table{

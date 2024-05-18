@@ -8,7 +8,6 @@ import { ProjectsProvider } from "./ProjectList/hooks/useProject";
 import { Spinner } from "../Spinner";
 
 
-
 function UserDashboard() {
   const { user: authUser } = useContext(AuthContext);
   console.log("authUser in UserDashboard:", authUser);
@@ -44,7 +43,7 @@ function UserDashboard() {
   }, [authUser, navigate]);
 
   if (!userData) {
-    return <Spinner /> ;
+    return <Spinner />;
   }
 
   return (
@@ -54,7 +53,7 @@ function UserDashboard() {
         <h2>Projects</h2>
         <ProjectsProvider>
 
-        <ProjectList />
+          <ProjectList />
 
         </ProjectsProvider>
       </div>

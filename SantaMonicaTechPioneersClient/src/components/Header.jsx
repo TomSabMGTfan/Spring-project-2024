@@ -24,8 +24,7 @@ function Navbar() {
 					{!authUser ? (
 						<>
 							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
-							<div>
-							</div>
+
 							<ul>
 								<li><Link to="/explore">Explore</Link></li>
 								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
@@ -39,52 +38,17 @@ function Navbar() {
 
 							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
 							<ul>
-							    <li><Link to="/explore">Explore</Link></li>
-								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
-								<li><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
-								<li><Link to=""><i className="fas fa-envelope"></i>Contacts</Link></li>
-								<li><Link to="/dashboard"><i className="fas fa-cogs"></i>Back to project</Link></li>
-								<li><Link to="" onClick={logoutUser}><i className="fas fa-sign-out" ></i>Logout</Link></li>
+								<li className="link"><Link to="/explore">Explore</Link></li>
+								<li className="link"><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
+								<li className="link"><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
+								<li className="link"><Link to=""><i className="fas fa-envelope"></i>Contacts</Link></li>
+								<li className="link"><Link to="/dashboard"><i className="fas fa-cogs"></i>Dashboard</Link></li>
+								<li className="link"><Link to="" onClick={logoutUser}><i className="fas fa-sign-out" ></i>Logout</Link></li>
 							</ul>
 						</>
 					)}
 				</nav>
 			</header>
-
-
-
-
-
-			{/* <header>
-					
-					<h5> {authUser ?` Logged in as ${authUser.username}` : ''}</h5>
-					<h3><a href="/#">Santa Monica Tech Pioneers</a></h3>
-		
-					<nav ref={navRef} >
-						{!authUser ? (
-							<>
-							<a href="/login"><i className='header_nav_buttons'></i>Log in</a>
-							<a href="/signup"><i className="header_nav_buttons"style={{color:"red"}}>Get started</i></a>
-							</>
-						 ) : (
-							<>
-							<a href="#Contact"><i className="header_nav_buttons">Contact</i></a>
-							<a href="dashboard"><i className="header_nav_buttons"></i>Back to Projects</a>
-							<>
-								<button className="header_nav_buttons"style={{background:"none"}} onClick={logoutUser}>Logout</button>
-							</>
-							</>
-		
-						)}
-						<button
-						className="nav-btn nav-close-btn"
-						onClick={showNavbar}>
-						<FaTimes />
-					</button>
-					</nav>
-				
-				</header> */}
-
 		</>
 	);
 }
