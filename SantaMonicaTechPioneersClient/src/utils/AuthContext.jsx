@@ -18,8 +18,13 @@ export const AuthProvider = ({ children }) => {
       setToken(token);
       setUser(user);
     }
+    else {
+      alert("Session expired.");
+      setToken(null);
+      setUser(null);
+    }
     setIsLoading(false);
-  }, []);
+  }, [cookies.token]);
 
   const loginUser = async (data) => {
     try {
