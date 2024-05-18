@@ -15,8 +15,7 @@ const projectWorkersController = {
             return res.status(200).json(result);
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
+            next(error);
         }
     },
     getPWorkerByUserAndProjectId: async (req, res) => {
@@ -28,8 +27,7 @@ const projectWorkersController = {
             return res.status(200).json(result);
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
+            next(error);
         }
     },
     getPWorkersByProjectId: async (req, res) => {
@@ -41,8 +39,7 @@ const projectWorkersController = {
             return res.status(200).json(result);
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
+            next(error);
         }
     },
 
@@ -94,8 +91,7 @@ const projectWorkersController = {
 
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to create a project worker, an error has occured" });
+            next(error);
         }
     },
 
@@ -145,8 +141,7 @@ const projectWorkersController = {
 
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to update a project worker, an error has occured" });
+            next(error);
         }
     },
 
@@ -191,8 +186,7 @@ const projectWorkersController = {
 
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to delete a project worker, an error has occured" });
+            next(error);
         }
     }
 }

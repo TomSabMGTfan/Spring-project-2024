@@ -34,13 +34,8 @@ const userController = {
       delete createUser.password;
 
       res.status(201).json(createUser);
-    } catch (err) {
-      // Logging
-      console.error(err);
-
-      res
-        .status(500)
-        .json({ message: "An error occurred while creating the user." });
+    } catch (error) {
+      next(error);
     }
   },
 
@@ -94,11 +89,8 @@ const userController = {
       });
 
       res.status(200).json({ message: "Logged in successfully", token });
-    } catch (err) {
-      // Logging
-      console.log(err);
-
-      res.status(500).json({ message: "An error occurred while logging in." });
+    } catch (error) {
+      next(error);
     }
   },
 
@@ -117,9 +109,7 @@ const userController = {
 
       res.status(200).json(user);
     } catch (error) {
-      res
-        .status(500)
-        .json({ message: "An error has occurred while retrieving the user" });
+      next(error);
     }
   },
 
@@ -136,8 +126,7 @@ const userController = {
 
       return res.status(200).json(usernames);
     } catch (error) {
-      console.log(error);
-      return res.status(500).json({ message: "An error occured on the server" });
+      next(error);
     }
   }
 };
