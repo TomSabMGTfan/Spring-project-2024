@@ -7,7 +7,8 @@ import LoginForm from "./components/LoginForm";
 import UserDashboard from "./components/userDashboard/UserDashboard";
 import PrivateRoute from "./routes/privateRoutes";
 import { AuthContext } from "./utils/AuthContext";
-
+import ExplorePage from './components/search/ExplorePage';
+import { SearchProvider } from './components/search/hooks/useSearch';
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -23,32 +24,39 @@ function App() {
   const { user: authUser, logoutUser } = useContext(AuthContext);
 
   return (
-    <>
-      <Router>
-        
-        <Header />
-        <Routes>
-          <Route path="/login" element={<LoginForm />} />
-          <Route path='/Signup' element={<RegistrationForm />} />
-          <Route path='/' element={<Home />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <UserDashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route path='projects/:id' element={
+    <Router>
+
+      <Header />
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<RegistrationForm />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/explore" element={
+          <PrivateRoute>
+            <SearchProvider>
+              <ExplorePage />
+            </SearchProvider>
+          </PrivateRoute>} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <UserDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/projects/:id"
+          element={
             <PrivateRoute>
               <ProjectPage />
             </PrivateRoute>
-          } />
-        </Routes>
-        <Footer />
-      </Router>
-    </>
-  )
+          }
+        />
+      </Routes>
+      <Footer />
+    </Router >
+  );
 }
 
 export default App

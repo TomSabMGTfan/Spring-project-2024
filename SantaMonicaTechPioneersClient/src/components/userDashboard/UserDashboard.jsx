@@ -5,6 +5,7 @@ import { AuthContext } from "../../utils/AuthContext";
 import { UserNavigation } from "./UserNavigation";
 import { ProjectList } from "./ProjectList/ProjectList"
 import { ProjectsProvider } from "./ProjectList/hooks/useProject";
+import { Spinner } from "../Spinner";
 
 
 
@@ -43,7 +44,7 @@ function UserDashboard() {
   }, [authUser, navigate]);
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return <Spinner /> ;
   }
 
   return (

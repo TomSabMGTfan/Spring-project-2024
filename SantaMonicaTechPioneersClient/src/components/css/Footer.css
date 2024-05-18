@@ -1,98 +1,188 @@
-.section_pading{
-  padding: 4rem 4rem;
-}
-.footer{
+footer {
   background-color: #394045;
-  /* position: absolute; */
-  right: 0;
-  left: 0;
-   /* bottom: -50vh;  */
-}
-
-
-.sb__footer-links{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  text-align: left;
-  margin-bottom: 1rem;
-}
-.sb__footer-links-div p a{
-  width: 250px;
-  margin: 1rem;
-  text-align: center;
-  font-size: 1rem;
-  font-family: "Kadwa", serif;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  color: #ffffff;
-  margin-left: 15rem;
-}
-.sb__footer-links-div p a:hover{
-  color: #696969;
-}
-
-.sb__footer{
-  display: flex;
-  flex-direction: column;
-  font-weight: normal;
-   
-    
-}
-.socialmedia{
-  display: flex;
-  flex-direction: row;
-  margin-right: 15rem;
-}
-.socialmedia a{
-  color: #F4F5F8;
-  width: 80%;
-  font-size: 40px;
-  padding: 10px;
-}
-.socialmedia a:hover{
-  color: #ccc;
-}
-
-.sb__footer-links p{
-  font-size: 12px;
-  line-height: 15px;
-  margin: 2.5rem 0;
-  cursor: pointer;
-}
-
-/* -------------------nereikalinga dalis---------------- */
-/* @media only screen and (max-width: 1420px){
-  .sb__footer-links div{
-    margin: 0.5rem;
-    margin-right: 12rem;
   }
-}
-@media only screen and (max-width: 1115px){
-  .sb__footer-links div{
-    margin: 0.5rem;
-    margin-right: 11rem;
+  
+  .footerContainer {
+    width: 100%;
+    padding: 15px 80px;
+    display: flex;
+    justify-content: space-between;
+  
   }
-}
-@media only screen and (max-width: 1082px){
-  .sb__footer-links div{
-    margin: 0.5rem;
-    margin-right: 10rem;
+  
+  .socialIcons {
+    display: flex;
+    justify-content: center;
   }
-}
-@media only screen and (max-width: 1051px){
-  .sb__footer-links div{
-    margin: 0.5rem;
-    margin-right: 9rem;
+  
+  .socialIcons a {
+    text-decoration: none;
+    padding: 5px ;
+    background-color: white;
+    margin: 5px;
+    border-radius: 50%;
   }
-}
-@media only screen and (max-width: 1018px){
-  .sb__footer-links div{
-    margin: 0.5rem;
-    margin-right: 8rem;
+  
+  .socialIcons a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
   }
-} */
+  
+  .socialIcons a:hover {
+    background-color: #f78898;
+    transition: 0.5s;
+  }
+  
+  .socialIcons a i:hover {
+    color: white;
+    transition: 0.5s;
+  }
+  
+  .copyOne p {
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding: 15px;
+  }
+  
+  .designer {
+    opacity: 0.7;
+    text-transform: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* .section_pading{
+    padding: 4rem 4rem;
+  }
+  .footer{
+    background-color: #394045; */
+    /* position: absolute; */
+    /* right: 0;
+    left: 0; */
+     /* bottom: -50vh;  */
+  /* } */
+  
+  /* 
+  .sb__footer-links{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  .sb__footer-links-div p a{
+    width: 250px;
+    margin: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-family: "Kadwa", serif;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    color: #ffffff;
+    margin-left: 15rem;
+  }
+  .sb__footer-links-div p a:hover{
+    color: #696969;
+  }
+  
+  .sb__footer{
+    display: flex;
+    flex-direction: column;
+    font-weight: normal;
+     
+      
+  }
+  .socialmedia{
+    display: flex;
+    flex-direction: row;
+    margin-right: 15rem;
+  }
+  .socialmedia a{
+    color: #F4F5F8;
+    width: 80%;
+    font-size: 40px;
+    padding: 10px;
+  }
+  .socialmedia a:hover{
+    color: #ccc;
+  }
+  
+  .sb__footer-links p{
+    font-size: 12px;
+    line-height: 15px;
+    margin: 2.5rem 0;
+    cursor: pointer;
+  }
+  
+  
+  
+  
+   */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* -------------------nereikalinga dalis---------------- */
+  /* @media only screen and (max-width: 1420px){
+    .sb__footer-links div{
+      margin: 0.5rem;
+      margin-right: 12rem;
+    }
+  }
+  @media only screen and (max-width: 1115px){
+    .sb__footer-links div{
+      margin: 0.5rem;
+      margin-right: 11rem;
+    }
+  }
+  @media only screen and (max-width: 1082px){
+    .sb__footer-links div{
+      margin: 0.5rem;
+      margin-right: 10rem;
+    }
+  }
+  @media only screen and (max-width: 1051px){
+    .sb__footer-links div{
+      margin: 0.5rem;
+      margin-right: 9rem;
+    }
+  }
+  @media only screen and (max-width: 1018px){
+    .sb__footer-links div{
+      margin: 0.5rem;
+      margin-right: 8rem;
+    }
+  } */
+  
