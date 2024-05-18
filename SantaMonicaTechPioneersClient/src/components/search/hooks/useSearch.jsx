@@ -9,12 +9,12 @@ export const SearchProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const searchProjects = useCallback(async (id, word) => {
-    const response = await ProjectModel.searchProjects(id ,word);
+    const response = await ProjectModel.searchProjects(id, word);
     return [response.status, response.data];
   });
 
   return (
-    <SearchContext.Provider value={{ searchProjects, searchResults }}>
+    <SearchContext.Provider value={{ searchProjects, searchResults, setSearchResults }}>
       {children}
     </SearchContext.Provider>
   );
