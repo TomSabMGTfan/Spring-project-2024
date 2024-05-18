@@ -2,12 +2,15 @@ import React, { useCallback, useState } from "react";
 import "../css/ExplorePage.css";
 import { useSearch } from "./hooks/useSearch";
 import { Link } from "react-router-dom";
+import { Spinner } from "../Spinner";
 
 function ExplorePage() {
     const { searchProjects, searchResults, setSearchResults } = useSearch();
     const [pageIndex, setPageIndex] = useState(1);
     const [query, setQuery] = useState("");
     const [endOfPages, setEndOfPages] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const FetchProjects = async (query) => {
         const [status, data] = await searchProjects(pageIndex, query);
@@ -21,9 +24,11 @@ function ExplorePage() {
         let timerId;
         return function () {
             clearTimeout(timerId);
+            setIsLoading(true);
             timerId = setTimeout(async () => {
                 const arr = await FetchProjects(query);
                 setSearchResults(arr);
+                setIsLoading(false);
             }, 300);
         }
     });
@@ -80,6 +85,10 @@ function ExplorePage() {
                         Not working properly
                         query && query.length > 0 ? <p>No result</p> : <></>
                         */}
+
+                        {
+                            isLoading && <Spinner />
+                        }
                     </>
 
 
