@@ -9,6 +9,7 @@ import { TasksProvider } from './TaskList/hooks/useTasks';
 import { UserList } from './UserList/components/UserList';
 import ProjectModel from '../../api/projects';
 import img2 from "../../assets/30342253-Photoroom.png-Photoroom.png"
+import { Spinner } from '../Spinner';
 
 export const ProjectPage = () => {
     let { id: project_id } = useParams();
@@ -86,7 +87,7 @@ export const ProjectPage = () => {
                                         </UsersProvider>
                                     )}
                                 </> :
-                                <div>Loading ...</div>)
+                                <Spinner />)
                     }
                 </div>
             </div>

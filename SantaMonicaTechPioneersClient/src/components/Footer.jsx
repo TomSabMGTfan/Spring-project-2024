@@ -1,22 +1,51 @@
 import React from 'react'
 import './css/Footer.css'
 
+
 const Footer = () => {
   return (
-    <footer className='footer'>  
-         <div className='sb__footer section_padding'>
-           <div className='sb__footer-links'>
-             <div className='sb__footer-links-div'>
-               <p><a className="footer_text"href="#Contact">Do You have any questions?</a></p>
-               </div>
-                <div className='socialmedia'>
-                 <a href="#call"><i className="fa fa-phone"></i></a>
-                 <a href="#email"><i className="fa fa-at"></i></a>
-                 <a href="#comment section"><i className="fa fa-comments-o"></i></a>
-                </div>
-           </div>
-         </div>
-    </footer>
+    <>
+<footer>
+<div className='footerContainer'>
+<div className="copyOne">
+    <p>Copyright &copy;2024; Desinged by <span className='designer'>Santa Monica Tech Pioneers</span></p>
+  </div>
+  <div className='socialIcons'>
+  <a href=""><i class="fa-brands fa-facebook"></i></a>
+  <a href=""><i class="fa-brands fa-instagram"></i></a>
+  <a href=""><i class="fa-brands fa-twitter"></i></a>
+  <a href=""><i class="fa-brands fa-google-plus"></i></a>
+  <a href=""><i class="fa-brands fa-youtube"></i></a>
+  </div>
+  
+</div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+    {/* // <footer className='footer'>  
+    //      <div className='sb__footer section_padding'>
+    //        <div className='sb__footer-links'>
+    //          <div className='sb__footer-links-div'>
+    //            <p><a className="footer_text"href="#Contact">Do You have any questions?</a></p>
+    //            </div>
+    //             <div className='socialmedia'>
+    //              <a href="#call"><i className="fa fa-phone"></i></a>
+    //              <a href="#email"><i className="fa fa-at"></i></a>
+    //              <a href="#comment section"><i className="fa fa-comments-o"></i></a>
+    //             </div>
+    //        </div>
+    //      </div>
+    // </footer> */}
+    </>
   )
 }
 
