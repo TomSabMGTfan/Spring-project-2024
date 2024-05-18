@@ -53,6 +53,20 @@ const ProjectModel = {
             return error.response;
         }
     },
+
+    searchProjects: async(id, word) => {
+        try {
+            const response = await apiClient.get(`/projects/search/${id}`, {
+                params: {
+                    search: word
+                }
+            })
+            return response;
+        } catch (error) {
+            console.log(`Error searching for projects`, error)
+          return error.response;
+        }
+    }
 };
 
 export default ProjectModel;

@@ -91,10 +91,10 @@ const projectsController = {
                 return res.status(400).json({ message: "project does not exist" });
             }
 
-            const pWorker = await project_workersModel.getProjectWorker(req.user.id, projectId);
-            if (!pWorker) {
-                return res.status(401).json({ message: "You dont have access to this project" })
-            }
+            // const pWorker = await project_workersModel.getProjectWorker(req.user.id, projectId);
+            // if (!pWorker) {
+            //     return res.status(401).json({ message: "You dont have access to this project" })
+            // }
 
             return res.status(200).json(project);
 
@@ -146,11 +146,17 @@ const projectsController = {
     },
 
     searchProjects: async (req, res) => {
+
+
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
             const { id } = req.params;
             const { search } = req.query;
-
-            const searchResult = projectsModel.searchProjects(id, search);
+            const searchResult = await projectsModel.searchProjects(id, search);
 
             return res.status(200).json(searchResult);
         } catch (error) {
