@@ -6,7 +6,7 @@ import userModel from "../models/userModel.mjs";
 
 const userController = {
   // POST: User registration
-  createUser: async (req, res) => {
+  createUser: async (req, res, next) => {
     try {
       // Checking for validation errors
       const errors = validationResult(req);
@@ -34,18 +34,13 @@ const userController = {
       delete createUser.password;
 
       res.status(201).json(createUser);
-    } catch (err) {
-      // Logging
-      console.error(err);
-
-      res
-        .status(500)
-        .json({ message: "An error occurred while creating the user." });
+    } catch (error) {
+      next(error);
     }
   },
 
   // POST: User login
-  login: async (req, res) => {
+  login: async (req, res, next) => {
     try {
       // Checking for validation errors
       const errors = validationResult(req);
@@ -94,16 +89,13 @@ const userController = {
       });
 
       res.status(200).json({ message: "Logged in successfully", token });
-    } catch (err) {
-      // Logging
-      console.log(err);
-
-      res.status(500).json({ message: "An error occurred while logging in." });
+    } catch (error) {
+      next(error);
     }
   },
 
   // GET: User
-  getUserById: async (req, res) => {
+  getUserById: async (req, res, next) => {
     try {
       const id = req.params.id;
       const user = await userModel.getUserById(id);
@@ -117,13 +109,11 @@ const userController = {
 
       res.status(200).json(user);
     } catch (error) {
-      res
-        .status(500)
-        .json({ message: "An error has occurred while retrieving the user" });
+      next(error);
     }
   },
 
-  searchUsername: async (req, res) => {
+  searchUsername: async (req, res, next) => {
     try {
 
       const errors = validationResult(req);
@@ -136,8 +126,7 @@ const userController = {
 
       return res.status(200).json(usernames);
     } catch (error) {
-      console.log(error);
-      return res.status(500).json({ message: "An error occured on the server" });
+      next(error);
     }
   }
 };

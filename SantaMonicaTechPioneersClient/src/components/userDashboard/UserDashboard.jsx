@@ -5,7 +5,7 @@ import { AuthContext } from "../../utils/AuthContext";
 import { UserNavigation } from "./UserNavigation";
 import { ProjectList } from "./ProjectList/ProjectList"
 import { ProjectsProvider } from "./ProjectList/hooks/useProject";
-
+import { Spinner } from "../Spinner";
 
 
 function UserDashboard() {
@@ -42,20 +42,15 @@ function UserDashboard() {
     fetchUser();
   }, [authUser, navigate]);
 
-  if (!userData) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="dashboard_body">
       <UserNavigation />
       <div className="app-table">
         <h2>Projects</h2>
         <ProjectsProvider>
-
-        <ProjectList />
-
+          <ProjectList />
         </ProjectsProvider>
+
       </div>
     </div>
   );

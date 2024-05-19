@@ -47,7 +47,12 @@ export const CreateUserForm = ({ project_id }) => {
             timerId = setTimeout(async () => {
                 const response = await UserModel.searchUsername(data);
                 if (response.status === 200) {
-                    setUsernameList(response.data);
+                    if (response.data.length === 1 && response.data[0].username === data) {
+                        setUsernameList([]);
+                    }
+                    else {
+                        setUsernameList(response.data);
+                    }
                 }
             }, 300);
         }
@@ -68,7 +73,7 @@ export const CreateUserForm = ({ project_id }) => {
                     <div className='form-group'>
                         <label htmlFor="username">Username</label>
                         <input list='usernames' autoComplete='off' type="text" {...register("username", {
-                            minLength: 3,
+                            minLength: 1,
                             maxLength: 20,
 
                         })} onChange={OnUsernameInputChange} />

@@ -1,7 +1,7 @@
 import '../../../css/Modal.css';
 import { BsFillTrashFill, BsFillPencilFill, BsFillEyeFill } from "react-icons/bs";
 import { AuthContext } from '../../../../utils/AuthContext';
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useMemo } from 'react';
 import { useTasks } from '../hooks/useTasks';
 
 export const Task = ({ task, isAdminOrOwner }) => {
@@ -37,6 +37,28 @@ export const Task = ({ task, isAdminOrOwner }) => {
         FetchTasks();
     });
 
+    const created = useMemo(() => {
+        const date = new Date(created_on);
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        return `${yyyy}-${mm}-${dd}`;
+    }, [created_on]);
+
+    const deadline = useMemo(() => {
+        const date = new Date(planned_end_date);
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        return `${yyyy}-${mm}-${dd}`;
+    }, [planned_end_date]);
+
     return <tr>
         {/* ID */}
         <td>{id}</td>
@@ -51,9 +73,9 @@ export const Task = ({ task, isAdminOrOwner }) => {
             <span className={`label label-${cssStatus}`}>{displayStatus}</span>
         </td>
         {/* Task creation date */}
-        <td>{created_on.split('T')[0]}</td>
+        <td>{created}</td>
         {/* Task deadline */}
-        <td>{planned_end_date.split('T')[0]}</td>
+        <td>{deadline}</td>
 
         {/* Buttons */}
 

@@ -8,23 +8,34 @@ import { connectDB } from './db/postgresConnection.mjs';
 
 import mainRouter from './routes/mainRouter.mjs';
 
+import { LoggingMiddleware } from './middleware/LoggingMiddleware.mjs';
+import { LogInfo, LogError } from './Logger/Logger.mjs';
+import { ErrorHandlingMiddleware } from './middleware/ErrorHandlingMiddleware.mjs';
+import { CaptureResMiddleware } from './middleware/CaptureResMiddleware.mjs';
+
 const app = express();
 
 // Server configuration
-const startServer = async () => { 
+const startServer = async () => {
 	try {
 		// Connecting to database
-		const message = await connectDB();
-		console.log(message);
-
+		await connectDB();
 
 		app.use(cors());
 
 		// Configuring for json body requests
 		app.use(express.json());
 
+		app.use(CaptureResMiddleware);
+
+		app.use(LoggingMiddleware);
+
 		// API routes
 		app.use('/api', mainRouter);
+
+
+		app.use(ErrorHandlingMiddleware);
+
 
 		// Configuring port
 		const port = process.env.PORT;
@@ -32,11 +43,11 @@ const startServer = async () => {
 		// Starting server
 		app.listen(port, () => {
 			// Logging
-			console.log(`Server is running and listening on port ${port}`);
+			LogInfo(`Server is running and listening on port ${port}.`);
 		});
 
 	} catch (error) {
-		console.error('Failed to connect to database', error);
+		LogError("Error occured while starting a server.", error);
 
 		process.exit(1);
 	}

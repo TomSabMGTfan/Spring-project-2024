@@ -125,7 +125,7 @@ export const searchUsernameValidationSchema = checkSchema({
 	search: {
 		in: ["query"],
 		isLength: {
-			options: { min: 3, max: 20 },
+			options: { min: 1, max: 20 },
 			errorMessage: 'Search query must be at least 3 characters with a max of 20 characters',
 		}
 	}

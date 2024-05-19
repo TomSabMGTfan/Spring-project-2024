@@ -15,3 +15,16 @@
   cursor:pointer;
   box-shadow: 0px 3px 3px #DFC1C1;
 }
+
+.main{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content{
+  background: url(./assets/Background7.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  flex: 1;
+}

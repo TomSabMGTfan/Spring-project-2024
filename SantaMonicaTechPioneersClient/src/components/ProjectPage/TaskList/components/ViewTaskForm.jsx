@@ -1,9 +1,32 @@
 import "../../../css/Modal.css";
 import { useTasks } from "../hooks/useTasks";
+import { useMemo } from "react";
 
 export const ViewTask = () => {
 
     const { activeTask: task, CloseViewForm } = useTasks();
+
+    const created = useMemo(() => {
+        const date = new Date(task.created_on);
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        return `${yyyy}-${mm}-${dd}`;
+    }, [task.created_on]);
+
+    const deadline = useMemo(() => {
+        const date = new Date(task.planned_end_date);
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        return `${yyyy}-${mm}-${dd}`;
+    }, [task.planned_end_date]);
 
     return (
         <div className="modal-container" onClick={(e) => {
@@ -45,13 +68,13 @@ export const ViewTask = () => {
                     {/* Created on */}
                     <div className="form-group">
                         <label>Created on</label>
-                        <input readOnly value={task.created_on.split('T')[0]} />
+                        <input readOnly value={created} />
                     </div>
 
                     {/* Deadline */}
                     <div className="form-group">
                         <label>Deadline</label>
-                        <input readOnly value={task.planned_end_date.split('T')[0]} />
+                        <input readOnly value={deadline} />
                     </div>
                 </div>
             </div>

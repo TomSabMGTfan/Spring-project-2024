@@ -6,7 +6,7 @@ import userModel from "../models/userModel.mjs";
 import { ADMIN, OWNER, USER } from "../cfg/Roles.mjs";
 
 const projectWorkersController = {
-    getPWorkersByUserId: async (req, res) => {
+    getPWorkersByUserId: async (req, res, next) => {
         try {
             const id = req.params.user_id;
 
@@ -15,11 +15,10 @@ const projectWorkersController = {
             return res.status(200).json(result);
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
+            next(error);
         }
     },
-    getPWorkerByUserAndProjectId: async (req, res) => {
+    getPWorkerByUserAndProjectId: async (req, res, next) => {
         try {
             const { user_id, project_id } = req.params;
 
@@ -28,11 +27,10 @@ const projectWorkersController = {
             return res.status(200).json(result);
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
+            next(error);
         }
     },
-    getPWorkersByProjectId: async (req, res) => {
+    getPWorkersByProjectId: async (req, res, next) => {
         try {
             const id = req.params.project_id;
 
@@ -41,12 +39,11 @@ const projectWorkersController = {
             return res.status(200).json(result);
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to get a project worker, an error has occured" });
+            next(error);
         }
     },
 
-    createPWorker: async (req, res) => {
+    createPWorker: async (req, res, next) => {
         try {
 
             const { username, project_id } = req.body;
@@ -94,12 +91,11 @@ const projectWorkersController = {
 
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to create a project worker, an error has occured" });
+            next(error);
         }
     },
 
-    updatePWorker: async (req, res) => {
+    updatePWorker: async (req, res, next) => {
         try {
 
             const { role, user_id, project_id } = req.body;
@@ -145,12 +141,11 @@ const projectWorkersController = {
 
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to update a project worker, an error has occured" });
+            next(error);
         }
     },
 
-    deletePWorker: async (req, res) => {
+    deletePWorker: async (req, res, next) => {
         try {
             const { user_id, project_id } = req.body;
 
@@ -191,8 +186,7 @@ const projectWorkersController = {
 
         }
         catch (error) {
-            console.log(error);
-            return res.status(500).json({ message: "Failed to delete a project worker, an error has occured" });
+            next(error);
         }
     }
 }

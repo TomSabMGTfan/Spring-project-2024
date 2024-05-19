@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import "../../../css/Modal.css";
 import { useTasks } from "../hooks/useTasks";
+import { useMemo } from "react";
 
 export const EditTask = () => {
 
@@ -37,6 +38,17 @@ export const EditTask = () => {
 
     }
 
+
+    const planned_end_date = useMemo(() => {
+        const date = new Date(task.planned_end_date);
+        const yyyy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+        return `${yyyy}-${mm}-${dd}`;
+    }, [task.planned_end_date]);
 
     return (
         <div className="modal-container" onClick={(e) => {
@@ -105,7 +117,7 @@ export const EditTask = () => {
                     <div className="form-group">
                         <label>Deadline</label>
                         <input type="date" {...register("planned_end_date", {
-                            value: task.planned_end_date.split('T')[0],
+                            value: planned_end_date,
                         })} />
                         {errors.planned_end_date && <div className="error">{errors.planned_end_date.message}</div>}
                     </div>

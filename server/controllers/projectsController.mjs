@@ -7,7 +7,7 @@ import tasksModel from '../models/tasksModel.mjs';
 
 
 const projectsController = {
-    createProject: async (req, res) => {
+    createProject: async (req, res, next) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -31,12 +31,11 @@ const projectsController = {
 
             res.status(201).json(createdProject);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "failed to create a project, an error has occured " })
+            next(error);
         }
     },
 
-    deleteProject: async (req, res) => {
+    deleteProject: async (req, res, next) => {
         try {
             // testing if user is authenticated
             if (!req.user) {
@@ -71,12 +70,11 @@ const projectsController = {
             return res.status(200).json({ message: "Project deleted successfully" })
 
         } catch (error) {
-            console.error("error deleting projects", error);
-            return res.status(500).json({ message: "Server error " });
+            next(error);
         }
     },
 
-    getProjectById: async (req, res) => {
+    getProjectById: async (req, res, next) => {
         try {
             if (!req.user) {
                 return res.status(401).json({ message: "unauthorized access" });
@@ -91,20 +89,19 @@ const projectsController = {
                 return res.status(400).json({ message: "project does not exist" });
             }
 
-            const pWorker = await project_workersModel.getProjectWorker(req.user.id, projectId);
-            if (!pWorker) {
-                return res.status(401).json({ message: "You dont have access to this project" })
-            }
+            // const pWorker = await project_workersModel.getProjectWorker(req.user.id, projectId);
+            // if (!pWorker) {
+            //     return res.status(401).json({ message: "You dont have access to this project" })
+            // }
 
             return res.status(200).json(project);
 
         } catch (error) {
-            console.error("error fetching project details", error);
-            return res.status(500).json({ message: "server error" })
+            next(error);
         }
     },
 
-    updateProject: async (req, res) => {
+    updateProject: async (req, res, next) => {
         try {
             if (!req.user) {
                 res.status(401).json({ message: "you dont have the authorization to update this project" })
@@ -127,35 +124,36 @@ const projectsController = {
 
 
         } catch (error) {
-            console.error("error updating project", error);
-            res.status(500).json({ message: "server error" })
+            next(error);
 
         }
     },
 
-    getMyProjects: async (req, res) => {
+    getMyProjects: async (req, res, next) => {
         try {
             const projects = await projectsModel.getMyProjects(req.user.id);
 
             res.status(200).json(projects);
 
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "failed to retrieve projects" })
+            next(error);
         }
     },
 
-    searchProjects: async (req, res) => {
+    searchProjects: async (req, res, next) => {
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
             const { id } = req.params;
             const { search } = req.query;
-
-            const searchResult = projectsModel.searchProjects(id, search);
+            const searchResult = await projectsModel.searchProjects(id, search);
 
             return res.status(200).json(searchResult);
         } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Error occured" })
+            next(error);
         }
     }
 };
