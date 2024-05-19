@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSearch } from "react-icons/fa";
 import './css/Header.css'
 import { AuthContext } from "../utils/AuthContext"
 import { Link } from "react-router-dom";
@@ -26,7 +26,6 @@ function Navbar() {
 							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
 
 							<ul>
-								<li><Link to="/explore">Explore</Link></li>
 								<li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
 								<li><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
 								<li><Link to="/login"><i className="fa fa-sign-in"></i>Login</Link></li>
@@ -38,7 +37,7 @@ function Navbar() {
 
 							<div className="logo"><Link to="/"><p className="logo-collor">Santa Monica Tech Pioneers</p></Link></div>
 							<ul>
-								<li className="link"><Link to="/explore">Explore</Link></li>
+								<li className="link"><Link to="/explore"><i className="fas fa-search"></i>Explore</Link></li>
 								<li className="link"><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
 								<li className="link"><Link to=""><i className="fas fa-info-circle"></i>About</Link></li>
 								<li className="link"><Link to=""><i className="fas fa-envelope"></i>Contacts</Link></li>
