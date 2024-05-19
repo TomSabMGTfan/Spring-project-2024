@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from "react";
 import "../css/ExplorePage.css";
 import { useSearch } from "./hooks/useSearch";
-import { Link } from "react-router-dom";
 import { Spinner } from "../Spinner";
+import { SearchResult } from "./SearchResult";
+import { IoSearchSharp } from "react-icons/io5";
 
 function ExplorePage() {
     const { searchProjects, searchResults, setSearchResults } = useSearch();
@@ -45,38 +46,48 @@ function ExplorePage() {
     };
 
     const HandleLoadMore = async () => {
+        setIsLoading(true);
         const arr = await FetchProjects(query);
         if (!arr || arr.length === 0) {
             setEndOfPages(true);
         }
         setSearchResults(a => [...a, ...arr]);
+        setIsLoading(false);
     }
 
     return (
-        <div className="pataisome">
-            <div>
-                <h1>Explore projects</h1>
-                <input
-                    type="text"
-                    placeholder="Search.."
-                    name="search"
-                    value={query}
-                    onChange={handleSearchInputChange}
-                />
+        <div className="explore">
+            <div className="search">
+                <h2 className="explore-serach-header">Explore projects</h2>
+                <div className="search-box">
+                    <input
+                        type="text"
+                        placeholder="Search.."
+                        name="search"
+                        value={query}
+                        onChange={handleSearchInputChange}
+                    />
+                    <IoSearchSharp className="icon" />
+                </div>
             </div>
-            <div>
+            <div className="results">
                 {searchResults && searchResults.length > 0 ?
                     (<div>
-                        {searchResults.map((result) => (
-                            <div key={result.id}>
-                                <h3>{result.id}</h3>
-                                <h3>{result.name}</h3>
-                                <p>{result.description}</p>
-                                <Link to={`/projects/${result.id}`}>Go to project</Link>
-                            </div>
+                        <div className="search-list">
+                            {searchResults.map((result) => (
+                                <SearchResult {...result} />
+                            ))}
+                            {
 
-                        ))}
-                        {!endOfPages && <button onClick={async () => await HandleLoadMore()}>Load more</button>}
+                                isLoading && <div><Spinner /></div>
+                            }
+                        </div>
+                        {
+                            !endOfPages &&
+                            <div>
+                                <button className="load-more-btn" onClick={async () => await HandleLoadMore()}>Load more</button>
+                            </div>
+                        }
                         {endOfPages && <p>End of pages</p>}
                     </div>) :
 
@@ -87,12 +98,12 @@ function ExplorePage() {
                         */}
 
                         {
-                            isLoading && <Spinner />
+
+                            isLoading && <div className="spinner-main"><Spinner /></div>
                         }
                     </>
-
-
                 }
+
             </div>
         </div>
     );

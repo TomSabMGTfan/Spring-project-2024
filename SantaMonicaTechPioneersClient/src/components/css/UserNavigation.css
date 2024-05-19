@@ -1,7 +1,4 @@
 .dashboard_body{
-    background: url(../../assets/Background7.jpg) no-repeat;
-    background-size: cover;
-    background-position: center;
     display: grid;
     grid-template-columns: 20rem 30rem 20rem 20rem;
     grid-template-rows: 10rem 10rem 10rem 10rem 10rem;

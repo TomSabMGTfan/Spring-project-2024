@@ -20,13 +20,11 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 .main-content{
   background: url(./assets/Background7.jpg) no-repeat;
   background-size: cover;
   background-position: center;
-  min-height: 90vh;
-  padding-bottom: 10vh;
+  flex: 1;
 }

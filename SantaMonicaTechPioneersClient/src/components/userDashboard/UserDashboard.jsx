@@ -42,20 +42,15 @@ function UserDashboard() {
     fetchUser();
   }, [authUser, navigate]);
 
-  if (!userData) {
-    return <Spinner />;
-  }
-
   return (
     <div className="dashboard_body">
       <UserNavigation />
       <div className="app-table">
         <h2>Projects</h2>
         <ProjectsProvider>
-
           <ProjectList />
-
         </ProjectsProvider>
+
       </div>
     </div>
   );

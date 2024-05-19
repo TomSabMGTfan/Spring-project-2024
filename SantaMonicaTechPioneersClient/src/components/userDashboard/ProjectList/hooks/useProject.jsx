@@ -31,7 +31,7 @@ export const ProjectsProvider = ({ children }) => {
     });
 
     const createProject = useCallback(async (project) => {
-      setIsLoading(true);
+        setIsLoading(true);
         const response = await ProjectModel.createProject(project);
         setIsLoading(false)
         return [response.status, response.data];
@@ -48,17 +48,17 @@ export const ProjectsProvider = ({ children }) => {
     });
 
     const updateProject = useCallback(async (project) => {
-        
+
         const response = await ProjectModel.updateProject(project);
-        
+
         return [response.status, response.data]
-        
+
     });
 
     const deleteProject = useCallback(async (id) => {
-        
+
         const response = await ProjectModel.deleteProject(id);
-        
+
         return [response.status, response.data]
     });
 
@@ -66,7 +66,7 @@ export const ProjectsProvider = ({ children }) => {
         setIsLoading(true);
         (async () => {
             const response = await ProjectModel.getMyProjects()
-             if (response.status === 200) {
+            if (response.status === 200) {
                 setProjects(response.data);
             }
             setIsLoading(false)
@@ -80,7 +80,7 @@ export const ProjectsProvider = ({ children }) => {
             updateProject, showUpdateForm, OpenUpdateForm, CloseUpdateForm, activeProject,
             deleteProject, FetchProjects, fetchProjects,
         }}>
-            {projects && children}
+            {children}
         </ProjectContext.Provider>
     );
 

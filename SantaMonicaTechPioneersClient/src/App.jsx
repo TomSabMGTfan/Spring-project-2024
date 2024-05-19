@@ -27,10 +27,8 @@ function App() {
     <Router>
       <div className='main'>
 
-        <div>
-          <Header />
+        <Header />
 
-        </div>
         <div className='main-content'>
           <Routes>
             <Route path="/login" element={<LoginForm />} />
