@@ -17,7 +17,7 @@ export const EditTaskStatus = () => {
         const [status, response] = await UpdateTaskStatus({ ...data, id: task.id });
         if (status === 200) {
             FetchTasks();
-            CloseUpdateForm();
+            CloseUpdateStatusForm();
             return;
         }
         else if (status === 400) {
@@ -39,7 +39,7 @@ export const EditTaskStatus = () => {
 
     return (
         <div className="modal-container" onClick={(e) => {
-            if (e.target.className === "modal-container") CloseUpdateForm();
+            if (e.target.className === "modal-container") CloseUpdateStatusForm();
         }}>
             <div className="modal">
                 <form onSubmit={handleSubmit(onFormSubmit)}>
