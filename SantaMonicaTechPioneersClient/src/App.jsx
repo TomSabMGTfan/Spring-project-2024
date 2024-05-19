@@ -14,6 +14,7 @@ import Header from "./components/Header";
 import "./App.css";
 import './App.css'
 import { ProjectPage } from './components/ProjectPage/ProjectPage';
+import About from './components/About';
 
 
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path='/Signup' element={<RegistrationForm />} />
           <Route path='/' element={<Home />} />
+          <Route path='/About' element={<About/>} />
           <Route
             path="/dashboard"
             element={

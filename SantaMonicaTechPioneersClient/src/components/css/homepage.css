@@ -74,10 +74,10 @@ align-items: center;}
 .container {
   min-height: 90vh;
   background: url(../../assets/Background7.jpg) no-repeat;
-  background-size: cover;
   background-position: center;
   z-index: -1;
   position: relative;
+  width: 100%;
   }
 
 
