@@ -13,10 +13,12 @@ function ExplorePage() {
     const [isLoading, setIsLoading] = useState(false);
 
 
-    const FetchProjects = async (query) => {
-        const [status, data] = await searchProjects(pageIndex, query);
+    const FetchProjects = async (query, page_index) => {
+        const [status, data] = await searchProjects(page_index ? page_index : pageIndex, query);
         if (status === 200) {
-            setPageIndex(pageIndex + 1);
+            if (data.length < 20 && data.length > 0) {
+                setEndOfPages(true);
+            }
             return data;
         }
     }
@@ -47,7 +49,8 @@ function ExplorePage() {
 
     const HandleLoadMore = async () => {
         setIsLoading(true);
-        const arr = await FetchProjects(query);
+        const arr = await FetchProjects(query, pageIndex + 1);
+        setPageIndex(pageIndex + 1);
         if (!arr || arr.length === 0) {
             setEndOfPages(true);
         }
@@ -79,16 +82,16 @@ function ExplorePage() {
                             ))}
                             {
 
-                                isLoading && <div><Spinner /></div>
+                                isLoading && <div className="search-item"><Spinner /></div>
                             }
+                            {
+                                !endOfPages && !isLoading &&
+                                <div>
+                                    <button className="search-item" onClick={async () => await HandleLoadMore()}>Load more</button>
+                                </div>
+                            }
+                            {endOfPages && <div className="search-item-no-more-pages">No more pages left...</div>}
                         </div>
-                        {
-                            !endOfPages &&
-                            <div>
-                                <button className="load-more-btn" onClick={async () => await HandleLoadMore()}>Load more</button>
-                            </div>
-                        }
-                        {endOfPages && <p>End of pages</p>}
                     </div>) :
 
                     <>
