@@ -6,7 +6,7 @@ import userModel from "../models/userModel.mjs";
 
 const userController = {
   // POST: User registration
-  createUser: async (req, res) => {
+  createUser: async (req, res, next) => {
     try {
       // Checking for validation errors
       const errors = validationResult(req);
@@ -40,7 +40,7 @@ const userController = {
   },
 
   // POST: User login
-  login: async (req, res) => {
+  login: async (req, res, next) => {
     try {
       // Checking for validation errors
       const errors = validationResult(req);
@@ -95,7 +95,7 @@ const userController = {
   },
 
   // GET: User
-  getUserById: async (req, res) => {
+  getUserById: async (req, res, next) => {
     try {
       const id = req.params.id;
       const user = await userModel.getUserById(id);
@@ -113,7 +113,7 @@ const userController = {
     }
   },
 
-  searchUsername: async (req, res) => {
+  searchUsername: async (req, res, next) => {
     try {
 
       const errors = validationResult(req);

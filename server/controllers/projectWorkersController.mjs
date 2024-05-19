@@ -6,7 +6,7 @@ import userModel from "../models/userModel.mjs";
 import { ADMIN, OWNER, USER } from "../cfg/Roles.mjs";
 
 const projectWorkersController = {
-    getPWorkersByUserId: async (req, res) => {
+    getPWorkersByUserId: async (req, res, next) => {
         try {
             const id = req.params.user_id;
 
@@ -18,7 +18,7 @@ const projectWorkersController = {
             next(error);
         }
     },
-    getPWorkerByUserAndProjectId: async (req, res) => {
+    getPWorkerByUserAndProjectId: async (req, res, next) => {
         try {
             const { user_id, project_id } = req.params;
 
@@ -30,7 +30,7 @@ const projectWorkersController = {
             next(error);
         }
     },
-    getPWorkersByProjectId: async (req, res) => {
+    getPWorkersByProjectId: async (req, res, next) => {
         try {
             const id = req.params.project_id;
 
@@ -43,7 +43,7 @@ const projectWorkersController = {
         }
     },
 
-    createPWorker: async (req, res) => {
+    createPWorker: async (req, res, next) => {
         try {
 
             const { username, project_id } = req.body;
@@ -95,7 +95,7 @@ const projectWorkersController = {
         }
     },
 
-    updatePWorker: async (req, res) => {
+    updatePWorker: async (req, res, next) => {
         try {
 
             const { role, user_id, project_id } = req.body;
@@ -145,7 +145,7 @@ const projectWorkersController = {
         }
     },
 
-    deletePWorker: async (req, res) => {
+    deletePWorker: async (req, res, next) => {
         try {
             const { user_id, project_id } = req.body;
 

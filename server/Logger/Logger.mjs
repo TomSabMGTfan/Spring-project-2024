@@ -74,3 +74,11 @@ export const ExtractReqInfo = (req) => {
 
     return request;
 }
+
+export const ExtractResInfo = (res) => {
+    const response = {
+        data: res.logger.data
+    };
+
+    return response;
+}

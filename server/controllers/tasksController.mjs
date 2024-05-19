@@ -7,7 +7,7 @@ import { ADMIN, OWNER } from "../cfg/Roles.mjs";
 
 const tasksController = {
 
-    createTask: async (req, res) => {
+    createTask: async (req, res, next) => {
         try {
             if (!req.user) {
                 return res.status(401).json("Unauthorized access");
@@ -47,7 +47,7 @@ const tasksController = {
         }
     },
 
-    getTasksByProjectId: async (req, res) => {
+    getTasksByProjectId: async (req, res, next) => {
         try {
             const id = req.params.project_id;
 
@@ -71,7 +71,7 @@ const tasksController = {
         }
     },
 
-    getTasksByUserId: async (req, res) => {
+    getTasksByUserId: async (req, res, next) => {
         try {
             const id = req.params.user_id;
 
@@ -97,7 +97,7 @@ const tasksController = {
         }
     },
 
-    updateTask: async (req, res) => {
+    updateTask: async (req, res, next) => {
         try {
             if (!req.user) {
                 return res.status(401).json("Unauthorized access");
@@ -159,7 +159,7 @@ const tasksController = {
         }
     },
 
-    updateTaskStatus: async (req, res) => {
+    updateTaskStatus: async (req, res, next) => {
         try {
             if (!req.user) {
                 return res.status(401).json("Unauthorized access");
@@ -173,7 +173,7 @@ const tasksController = {
             const { id, status } = req.body;
 
             const task = await tasksModel.getTaskByTaskAndUserId(id, req.user.id);
-            console.log(task);
+
             if (!task) {
                 return res.status(401).json("You dont have privileges to perform this action");
             }
@@ -187,7 +187,7 @@ const tasksController = {
         }
     },
 
-    updateTaskWorker: async (req, res) => {
+    updateTaskWorker: async (req, res, next) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -229,7 +229,7 @@ const tasksController = {
         }
     },
 
-    deleteTask: async (req, res) => {
+    deleteTask: async (req, res, next) => {
         try {
             if (!req.user) {
                 return res.status(401).json("Unauthorized access");

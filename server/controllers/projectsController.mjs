@@ -7,7 +7,7 @@ import tasksModel from '../models/tasksModel.mjs';
 
 
 const projectsController = {
-    createProject: async (req, res) => {
+    createProject: async (req, res, next) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -35,7 +35,7 @@ const projectsController = {
         }
     },
 
-    deleteProject: async (req, res) => {
+    deleteProject: async (req, res, next) => {
         try {
             // testing if user is authenticated
             if (!req.user) {
@@ -74,7 +74,7 @@ const projectsController = {
         }
     },
 
-    getProjectById: async (req, res) => {
+    getProjectById: async (req, res, next) => {
         try {
             if (!req.user) {
                 return res.status(401).json({ message: "unauthorized access" });
@@ -101,7 +101,7 @@ const projectsController = {
         }
     },
 
-    updateProject: async (req, res) => {
+    updateProject: async (req, res, next) => {
         try {
             if (!req.user) {
                 res.status(401).json({ message: "you dont have the authorization to update this project" })
@@ -140,7 +140,7 @@ const projectsController = {
         }
     },
 
-    searchProjects: async (req, res) => {
+    searchProjects: async (req, res, next) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {

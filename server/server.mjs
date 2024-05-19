@@ -11,6 +11,7 @@ import mainRouter from './routes/mainRouter.mjs';
 import { LoggingMiddleware } from './middleware/LoggingMiddleware.mjs';
 import { LogInfo, LogError } from './Logger/Logger.mjs';
 import { ErrorHandlingMiddleware } from './middleware/ErrorHandlingMiddleware.mjs';
+import { CaptureResMiddleware } from './middleware/CaptureResMiddleware.mjs';
 
 const app = express();
 
@@ -25,10 +26,13 @@ const startServer = async () => {
 		// Configuring for json body requests
 		app.use(express.json());
 
+		app.use(CaptureResMiddleware);
+
 		app.use(LoggingMiddleware);
 
 		// API routes
 		app.use('/api', mainRouter);
+
 
 		app.use(ErrorHandlingMiddleware);
 
