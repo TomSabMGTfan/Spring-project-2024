@@ -5,6 +5,10 @@
 	
 }
 
+header{
+	width: 100%;
+}
+
 nav {
 	background-color: #394045;
 	padding: 16px 80px;

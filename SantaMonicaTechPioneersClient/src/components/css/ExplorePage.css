@@ -78,6 +78,9 @@
     color: #394045;
 }
 
+.search-item button {
+    padding: 0;
+}
 
 .search-item:hover{
     background-color: white;
@@ -88,7 +91,9 @@ font-size: 10px;
 }
 
 .load-more-btn{
-    align-self: center;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .search-item-no-more-pages{

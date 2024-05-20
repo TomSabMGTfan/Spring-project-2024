@@ -86,8 +86,8 @@ function ExplorePage() {
                             }
                             {
                                 !endOfPages && !isLoading &&
-                                <div>
-                                    <button className="search-item" onClick={async () => await HandleLoadMore()}>Load more</button>
+                                <div className="search-item">
+                                    <button className="load-more-btn" onClick={async () => await HandleLoadMore()}>Load more</button>
                                 </div>
                             }
                             {endOfPages && <div className="search-item-no-more-pages">No more pages left...</div>}

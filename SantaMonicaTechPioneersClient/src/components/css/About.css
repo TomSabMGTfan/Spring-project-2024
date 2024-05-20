@@ -9,7 +9,6 @@
     background: url(../../assets/Background7.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    z-index: -1;
     position: relative;
   
 }

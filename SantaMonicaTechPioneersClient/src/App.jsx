@@ -15,6 +15,7 @@ import Header from "./components/Header";
 import "./App.css";
 import './App.css'
 import { ProjectPage } from './components/ProjectPage/ProjectPage';
+import About from './components/About';
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<RegistrationForm />} />
+            <Route path="/about" element={<About />} />
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={
               <PrivateRoute>
