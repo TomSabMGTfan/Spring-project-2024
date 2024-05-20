@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
     }
     else {
       if (!loggedOut) {
-        alert("Session expired.");
         setToken(null);
         setUser(null);
       }
