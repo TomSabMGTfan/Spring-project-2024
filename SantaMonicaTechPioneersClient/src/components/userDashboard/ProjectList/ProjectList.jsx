@@ -14,37 +14,41 @@ export const ProjectList = () => {
             {showUpdateForm && <UpdateProjectForm />}
             {!projects && <Spinner />}
             {
-                projects && projects.length > 0 &&
-                <>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Description</th>
-                                <th>Role</th>
-                                <th>To Do </th>
-                                <th>In Progress </th>
-                                <th>Done </th>
-                                <th>Actions</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {projects.map(project => (
+                projects &&
+                <table className='table'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                            <th>Role</th>
+                            <th>To Do Tasks</th>
+                            <th>In Progress Tasks</th>
+                            <th>Done Tasks</th>
+                            <th>Actions</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {projects.length > 0 ? (
+                            projects.map(project => (
                                 <Project key={project.id} project={project} />
-                            ))}
-                        </tbody>
-                        <div>
-                        <button className='btn btn-new-task' onClick={OpenCreateForm}>Create new project</button>
-                    </div>
-                    </table>
-                    
-                </>
+                            ))
+                        ) : (
+                            <tr>
+                                <td className="text-center">No projects available</td>
+                            </tr>
+                        )}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td className="text-center">
+                                <button className='btn btn-new-task' onClick={OpenCreateForm}>Create new project</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
             }
-            <div>
-                <button className='btn btn-new-task' onClick={OpenCreateForm}>Create new project</button>
-            </div>
         </div>
     );
 };
