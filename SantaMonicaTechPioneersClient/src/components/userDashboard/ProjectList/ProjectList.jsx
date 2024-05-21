@@ -12,36 +12,33 @@ export const ProjectList = () => {
         <div>
             {showCreateForm && <CreateProjectForm />}
             {showUpdateForm && <UpdateProjectForm />}
-            {(!projects || projects.length === 0) && <Spinner />}
+            {!projects && <Spinner />}
             {
                 projects && projects.length > 0 &&
-                <>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Description</th>
-                                <th>Role</th>
-                                <th>To Do Tasks</th>
-                                <th>In Progress Tasks</th>
-                                <th>Done Tasks</th>
-                                <th>Actions</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {projects.map(project => (
-                                <Project key={project.id} project={project} />
-                            ))}
-                        </tbody>
-                        <div>
-                        <button className='btn btn-new-task' onClick={OpenCreateForm}>Create new project</button>
-                    </div>
-                    </table>
-                    
-                </>
+                <table className='table'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                            <th>Role</th>
+                            <th>To Do Tasks</th>
+                            <th>In Progress Tasks</th>
+                            <th>Done Tasks</th>
+                            <th>Actions</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {projects.map(project => (
+                            <Project key={project.id} project={project} />
+                        ))}
+                    </tbody>
+                </table>
             }
+            <div>
+                <button className='btn btn-new-task' onClick={OpenCreateForm}>Create new project</button>
+            </div>
         </div>
     );
 };
