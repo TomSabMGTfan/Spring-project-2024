@@ -45,7 +45,7 @@ function UserDashboard() {
     <div className="dashboard_body">
       
       <div className="app-table">
-        <h2>Projects</h2>
+        <h1 style={{textTransform:"uppercase",marginTop:"1.5rem"}}>Your Projects Summary</h1>
         <ProjectsProvider>
           <ProjectList />
         </ProjectsProvider>

@@ -23,9 +23,9 @@ export const ProjectList = () => {
                                 <th>Status</th>
                                 <th>Description</th>
                                 <th>Role</th>
-                                <th>To Do Tasks</th>
-                                <th>In Progress Tasks</th>
-                                <th>Done Tasks</th>
+                                <th>To Do </th>
+                                <th>In Progress </th>
+                                <th>Done </th>
                                 <th>Actions</th>
                                 <th></th>
                             </tr>

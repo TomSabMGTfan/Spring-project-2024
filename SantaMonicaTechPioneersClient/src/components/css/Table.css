@@ -28,11 +28,15 @@
     max-width: 80%;
     margin: auto;
     overflow-x: auto;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     
 }
 .table-header{
     display: grid;
     justify-content: center;
+    
+
 }
 .btn-new-task{
  width: 10rem;
@@ -41,7 +45,9 @@
 
 .table thead {
     background-color: #DFC1C1;
+    
     color: #222;
+    
 
 }
 .table th
