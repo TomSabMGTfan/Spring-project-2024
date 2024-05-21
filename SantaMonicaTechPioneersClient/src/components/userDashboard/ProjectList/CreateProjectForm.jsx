@@ -34,6 +34,10 @@ export const CreateProjectForm = () => {
     }, []);
 
     return (
+        <div className="modal-container" onClick={(e) => {
+            if (e.target.className === "modal-container") CloseCreateForm();
+        }}>
+            <div className="modal">
         <form onSubmit={handleSubmit(onFormSubmit)}>
             <div>
                 <label htmlFor='name'>Name</label>
@@ -48,5 +52,7 @@ export const CreateProjectForm = () => {
 
             <button type='submit'>Create Project</button>
         </form>
+        </div>
+        </div>
     )
 }

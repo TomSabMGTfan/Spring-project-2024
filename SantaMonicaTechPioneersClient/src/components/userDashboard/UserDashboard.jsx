@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react";
 import { fetchUserData } from "../../api/apis";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
-import { UserNavigation } from "./UserNavigation";
 import { ProjectList } from "./ProjectList/ProjectList"
 import { ProjectsProvider } from "./ProjectList/hooks/useProject";
 import { Spinner } from "../Spinner";
@@ -44,7 +43,7 @@ function UserDashboard() {
 
   return (
     <div className="dashboard_body">
-      <UserNavigation />
+      
       <div className="app-table">
         <h2>Projects</h2>
         <ProjectsProvider>

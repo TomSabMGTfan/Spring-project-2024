@@ -13,7 +13,7 @@
 .Grid-Container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  padding-left: 5rem;
+  
 }
 
 .Grid-Item {
@@ -34,13 +34,13 @@
   grid-row: 1 / span 3;
 }
 
-table.user {
+table {
   
   outline: none;
   border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 40px;
   font-size: 16px;
-  color: white;
+  
   padding: 20px 45px 20px 20px;
 }
 .User-hub-table-owner-section {

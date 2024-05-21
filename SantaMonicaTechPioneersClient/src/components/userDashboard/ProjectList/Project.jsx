@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useProjects } from './hooks/useProject';
 import { Link } from "react-router-dom";
+import  "../../css/UserDashboard.css";
 
 export const Project = ({ project }) => {
     const { deleteProject, OpenUpdateForm, FetchProjects } = useProjects();
@@ -17,7 +18,7 @@ export const Project = ({ project }) => {
 
 
     return (
-        <tr>
+        <tr className='table'>
             <td>
                 {project.name}
             </td>

@@ -11,10 +11,10 @@
    width: 100%; 
 }
 .table{
-    display: grid;
+    /* display: grid; */
     overflow: hidden;
     table-layout: auto;
-    border-collapse: collapse;
+  
     box-shadow: 0 0 10px rgba(0, 0, 0, .5);
     backdrop-filter: blur(15px);
     background-color: #7335827c;
@@ -24,7 +24,7 @@
     padding: 40px;
     border-radius: 10px;
     white-space: nowrap;
-    width: 60em;
+    /* width: 60em; */
     max-width: 80%;
     margin: auto;
     overflow-x: auto;
