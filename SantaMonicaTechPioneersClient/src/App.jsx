@@ -16,6 +16,7 @@ import "./App.css";
 import './App.css'
 import { ProjectPage } from './components/ProjectPage/ProjectPage';
 import About from './components/About';
+import Contacts from './components/Contacts'
 
 
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/signup" element={<RegistrationForm />} />
             <Route path="/about" element={<About />} />
             <Route path="/" element={<Home />} />
+            <Route path="/contacts" element={<Contacts />} />
             <Route path="/explore" element={
               <PrivateRoute>
                 <SearchProvider>
