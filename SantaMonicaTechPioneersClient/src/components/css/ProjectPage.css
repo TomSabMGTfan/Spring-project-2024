@@ -52,3 +52,15 @@ table {
   text-decoration: none;
   display: block;
 }
+
+.action-button {
+  background-color: rgb(90, 161, 90);
+}
+
+.action-button:nth-of-type(2){
+  background-color: rgb(230, 64, 64);
+}
+
+.dashboard-link{
+  color: black;
+}

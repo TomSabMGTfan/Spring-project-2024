@@ -43,12 +43,12 @@ export const Project = ({ project }) => {
             <td>
                 {project.userRole === "owner" &&
                     <>
-                        <button onClick={() => OpenUpdateForm(project)}>Update</button>
-                        <button onClick={RemoveProject}>Remove</button>
+                        <button  className='action-button ' onClick={() => OpenUpdateForm(project)}>Update</button>
+                        <button className='action-button ' onClick={RemoveProject}>Remove</button>
                     </>}
             </td>
             <td>
-                <Link to={`/projects/${project.id}`}>Go to project</Link>
+                <Link to={`/projects/${project.id}`} className='btn dashboard-link'>Go to project</Link>
             </td>
         </tr>
     );

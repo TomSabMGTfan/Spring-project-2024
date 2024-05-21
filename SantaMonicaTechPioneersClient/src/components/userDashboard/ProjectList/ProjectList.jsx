@@ -16,7 +16,7 @@ export const ProjectList = () => {
             {
                 projects && projects.length > 0 &&
                 <>
-                    <table>
+                    <table className='table'>
                         <thead>
                             <tr>
                                 <th>Name</th>

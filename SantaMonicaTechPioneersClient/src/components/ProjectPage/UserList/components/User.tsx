@@ -77,7 +77,7 @@ export const User = ({ user, isAdminOrOwner }) => {
             <td>
                 {
                     isAdminOrOwner && user.role !== "owner" ?
-                        <button onClick={UpdateUserRole}>
+                        <button className='action-button ' onClick={UpdateUserRole}>
                             {user.role === "user" ?
                                 <>Promote</> : <>Demote</>}
                         </button> :
@@ -85,11 +85,11 @@ export const User = ({ user, isAdminOrOwner }) => {
                 }
                 {
                     isAdminOrOwner && auth.user.username !== user.username ?
-                        <button onClick={RemoveUser}>Remove</button> : <></>
+                        <button className='action-button 2' onClick={RemoveUser}>Remove</button> : <></>
                 }
                 {
                     auth.user.username === user.username && user.role !== "owner" ?
-                        <button onClick={RemoveUser}>Leave</button> : <></>
+                        <button className='action-button 3' onClick={RemoveUser}>Leave</button> : <></>
                 }
             </td>
 

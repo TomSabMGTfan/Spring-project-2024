@@ -16,7 +16,7 @@ export const UserList = ({ isAdminOrOwner, project_id }) => {
             <div>
             <h3 className="table-header">Users List</h3>
         </div>
-            <table className='table  user'>
+            <table className='table'>
 
                 <thead>
                     <tr>
