@@ -44,7 +44,7 @@ export const UpdateProjectForm = () => {
         }}>
             <div className="modal">
         <form onSubmit={handleSubmit(onFormSubmit)}>
-            <div>
+            <div className='form-group'>
                 <label htmlFor='name'>Name</label>
                 <input type='text'{...register('name', {
                     value: project.name,
@@ -59,7 +59,7 @@ export const UpdateProjectForm = () => {
                 })} />
                 {errors.name && <p>{errors.name.message}</p>}
             </div>
-            <div>
+            <div className='form-group'>
                 <label htmlFor='description'>description</label>
                 <input type='text'{...register('description', {
                     value: project.description,
@@ -74,7 +74,7 @@ export const UpdateProjectForm = () => {
                 })} />
                 {errors.description && <p>{errors.description.message}</p>}
             </div>
-            <div>
+            <div className='form-group'>
                 <label htmlFor='status'>Status</label>
                 <select {...register('status', {
                     value: project.status
@@ -85,7 +85,7 @@ export const UpdateProjectForm = () => {
                 {errors.status && <p>{errors.status.message}</p>}
             </div>
 
-            <button type='submit'>Update Project</button>
+            <button type='submit' className='btn btn-new-task'>Update Project</button>
         </form>
         </div>
         </div>

@@ -39,7 +39,7 @@ export const CreateProjectForm = () => {
         }}>
             <div className="modal">
         <form onSubmit={handleSubmit(onFormSubmit)}>
-            <div>
+            <div className='form group'>
                 <label htmlFor='name'>Name</label>
                 <input type='text'{...register('name')} />
                 {errors.name && <p>{errors.name.message}</p>}

@@ -63,7 +63,7 @@ export const Task = ({ task, isAdminOrOwner }) => {
         {/* ID */}
         <td>{id}</td>
         {/* Name */}
-        <td>{name}</td>
+        <td >{name}</td>
         {/* Worker */}
         <td>{worker_username}</td>
         {/* Description */}

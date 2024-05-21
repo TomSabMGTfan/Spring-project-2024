@@ -35,10 +35,11 @@ export const ProjectList = () => {
                                 <Project key={project.id} project={project} />
                             ))}
                         </tbody>
-                    </table>
-                    <div>
-                        <button onClick={OpenCreateForm}>Create new project</button>
+                        <div>
+                        <button className='btn btn-new-task' onClick={OpenCreateForm}>Create new project</button>
                     </div>
+                    </table>
+                    
                 </>
             }
         </div>
