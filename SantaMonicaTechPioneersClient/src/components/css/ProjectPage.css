@@ -7,13 +7,11 @@
   background: url(../../assets/Background7-fotor-2024051211119.jpg) no-repeat;
   background-size: cover;
   background-position: center;
-  height: 800px;
 }
 
 .Grid-Container {
   display: grid;
   grid-template-columns: auto auto auto auto;
-  
 }
 
 .Grid-Item {
@@ -35,8 +33,6 @@
 }
 
 table {
-  
-  outline: none;
   border: 2px solid rgba(255, 255, 255, 1);
   border-radius: 40px;
   font-size: 16px;
