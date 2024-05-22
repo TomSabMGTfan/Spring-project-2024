@@ -43,9 +43,9 @@ function UserDashboard() {
 
   return (
     <div className="dashboard_body">
-      
+
       <div className="app-table">
-        <h1 style={{textTransform:"uppercase",marginTop:"1.5rem"}}>Your Projects Summary</h1>
+        <h1 style={{ textTransform: "uppercase", marginTop: "1.5rem", color: "#394045" }}>Your Projects Summary</h1>
         <ProjectsProvider>
           <ProjectList />
         </ProjectsProvider>
