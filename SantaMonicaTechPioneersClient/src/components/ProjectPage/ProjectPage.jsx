@@ -53,7 +53,7 @@ export const ProjectPage = () => {
             
             <div className='Grid-Container'>
                 <div className='Grid-Item-Grid-login-information'>
-                <h3>Name: {project.name}</h3>
+                <h3>Project name: {project.name}</h3>
                 <div>Description: {project.description}</div>
                 <div>Status: {project.status}</div>
             </div>

@@ -17,7 +17,7 @@ export const TaskList = ({ isAdminOrOwner }) => {
         {showViewForm && <ViewTask />}
 
         <div>
-            <h3 className="table-header">Task List</h3>
+            <h1 className="table-header">Task List</h1>
         </div>
 
         <table className="table">

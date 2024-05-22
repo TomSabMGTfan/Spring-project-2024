@@ -14,7 +14,7 @@ export const UserList = ({ isAdminOrOwner, project_id }) => {
                 < CreateUserForm project_id={project_id} />
             }
             <div>
-            <h3 className="table-header">Users List</h3>
+            <h1 className="table-header">Users List</h1>
         </div>
             <table className='table'>
 

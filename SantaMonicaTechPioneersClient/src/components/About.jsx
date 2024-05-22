@@ -1,7 +1,7 @@
 import React from 'react'
 import './css/About.css'
 import firstPicrure from '../assets/about/AM.png'
-import firstPicrure1 from '../assets/about/JuliusStrioga.jpg'
+// import firstPicrure1 from '../assets/about/JuliusStrioga.jpg'
 import firstPicrure2 from '../assets/about/TomasSabalauskas.jpg'
 import firstPicrure3 from '../assets/about/ZygintasCernius.jpg'
 import firstPicrure4 from '../assets/about/SimonasVaznevicius.jpg'
@@ -9,7 +9,7 @@ import firstPicrure5 from '../assets/about/KarinaGaidele.jpg'
 import firstPicrure6 from '../assets/about/ErnestDombrovski.jpg'
 import firstPicrure7 from '../assets/about/DanieliusVlasenko.jpg'
 import firstPicrure8 from '../assets/about/DaliaNikouls.jpg'
-
+import firstPicture9 from '../assets/about/JuliusStrioga1.jpg'
 const About = () => {
   return (
     <>
@@ -22,6 +22,7 @@ const About = () => {
             Every component is essential to composing a successful symphony<br></br>
             that advances projects and guarantees client delight.</p>
         </div>
+        <div className='grid-container'>
         <div className='AllPage'>
           <div className='circleBoxContainer1'>
             <div className='circleBox1'>
@@ -107,13 +108,14 @@ const About = () => {
           <div className='circleBoxContainer1'>
             <div className='circleBox1'>
               <div className='circleImg1'>
-                <img src={firstPicrure1} alt="AM" />
+                <img src={firstPicture9} alt="AM" />
               </div>
               <div>
               </div>
             </div>
             <p>Julius Strioga</p>
           </div>
+        </div>
         </div>
       </div>
     </>

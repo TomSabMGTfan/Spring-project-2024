@@ -1,5 +1,5 @@
 * {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 0;
     box-sizing: border-box;
 }
@@ -28,16 +28,19 @@ color: #394045;
 }
 
 .AllPage2 {
-     max-width: 70%;
-    display: flex;
-    align-content: center;
+     /* max-width: 70%; */
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
     padding-top: 50px;
+    gap: 3rem;
 }
 
 .AllPage {
-    max-width: 50%;
-    display: flex;
-    align-content: center;
+    /* max-width: 50%; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    padding-left: 1.5rem;
     
 }
 
@@ -110,3 +113,9 @@ object-fit: cover;
     font-weight: 600;
     color: #394045;
 }
+
+.grid-container{
+    display: grid; 
+    justify-content: center;
+    
+    }
