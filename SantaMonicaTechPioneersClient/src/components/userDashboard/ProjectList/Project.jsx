@@ -19,34 +19,63 @@ export const Project = ({ project }) => {
 
     return (
         <tr className='table'>
+
             <td title={project.name}>
-                {
-                    project.name.length > 15 ?
-                        project.name.substring(0, 15) + " ..." :
-                        project.name.substring(0, 15)
-                }
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {
+                            project.name.length > 15 ?
+                                project.name.substring(0, 15) + " ..." :
+                                project.name.substring(0, 15)
+                        }
+                    </div>
+                </Link>
             </td>
             <td title={project.status}>
-                {project.status}
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.status}
+                    </div>
+                </Link>
             </td>
             <td title={project.description}>
-                {
-                    project.description.length > 10 ?
-                        project.description.substring(0, 10) + " ..." :
-                        project.description.substring(0, 10)
-                }
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {
+                            project.description.length > 10 ?
+                                project.description.substring(0, 10) + " ..." :
+                                project.description.substring(0, 10)
+                        }
+                    </div>
+                </Link>
             </td>
             <td title={project.userRole}>
-                {project.userRole}
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.userRole}
+                    </div>
+                </Link>
             </td>
             <td title={project.toDoTasks}>
-                {project.toDoTasks}
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.toDoTasks}
+                    </div>
+                </Link>
             </td>
             <td title={project.inProgressTasks}>
-                {project.inProgressTasks}
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.inProgressTasks}
+                    </div>
+                </Link>
             </td>
             <td title={project.completedTasks}>
-                {project.completedTasks}
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.completedTasks}
+                    </div>
+                </Link>
             </td>
             <td>
                 {project.userRole === "owner" &&
@@ -54,9 +83,6 @@ export const Project = ({ project }) => {
                         <button className='action-button ' onClick={() => OpenUpdateForm(project)}>Update</button>
                         <button className='action-button ' onClick={RemoveProject}>Remove</button>
                     </>}
-            </td>
-            <td>
-                <Link to={`/projects/${project.id}`} className='btn dashboard-link'>Go to project</Link>
             </td>
         </tr>
     );
