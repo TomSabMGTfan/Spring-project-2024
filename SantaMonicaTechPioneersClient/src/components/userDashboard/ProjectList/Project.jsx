@@ -26,7 +26,7 @@ export const Project = ({ project }) => {
                         {
                             project.name.length > 15 ?
                                 project.name.substring(0, 15) + " ..." :
-                                project.name.substring(0, 15)
+                                project.name
                         }
                     </div>
                 </Link>
@@ -44,7 +44,7 @@ export const Project = ({ project }) => {
                         {
                             project.description.length > 10 ?
                                 project.description.substring(0, 10) + " ..." :
-                                project.description.substring(0, 10)
+                                project.description
                         }
                     </div>
                 </Link>
