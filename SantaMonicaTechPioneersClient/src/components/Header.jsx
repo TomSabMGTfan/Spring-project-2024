@@ -41,7 +41,7 @@ function Navbar() {
 								<li className="link"><Link to="/explore"><i className="fas fa-search"></i>Explore</Link></li>
 								<li className="link"><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
 								<li className="link"><Link to="/about"><i className="fas fa-info-circle"></i>About</Link></li>
-								<li className="link"><Link to=""><i className="fas fa-envelope"></i>Contacts</Link></li>
+								<li className="link"><Link to="/contacts"><i className="fas fa-envelope"></i>Contacts</Link></li>
 								<li className="link"><Link to="/dashboard"><i className="fas fa-cogs"></i>Dashboard</Link></li>
 								<li className="link"><Link to="" onClick={logoutUser}><i className="fas fa-sign-out" ></i>Logout</Link></li>
 							</ul>
