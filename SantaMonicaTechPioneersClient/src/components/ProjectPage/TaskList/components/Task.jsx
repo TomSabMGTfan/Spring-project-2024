@@ -63,11 +63,24 @@ export const Task = ({ task, isAdminOrOwner }) => {
         {/* ID */}
         <td>{id}</td>
         {/* Name */}
-        <td >{name}</td>
+        <td title={name}>
+            {
+                name.length > 10 ?
+                    name.substr(0, 10) + " ..." :
+                    name
+
+            }
+        </td>
         {/* Worker */}
         <td>{worker_username}</td>
         {/* Description */}
-        <td className="expand">{description.substring(0, 10) + " ..."}</td>
+        <td className="expand" title={description}>
+            {
+                description.length > 10 ?
+                    description.substring(0, 10) + " ..." :
+                    description
+            }
+        </td>
         {/* Status */}
         <td>
             <span className={`label label-${cssStatus}`}>{displayStatus}</span>
