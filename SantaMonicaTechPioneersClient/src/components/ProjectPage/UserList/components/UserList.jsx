@@ -19,13 +19,13 @@ export const UserList = ({ isAdminOrOwner, project_id }) => {
             <table className='table'>
 
                 <thead>
-                    <tr>
+                    <tr >
                         <th>Username</th>
                         <th>Role</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='table-column'>
                     {users.map((value) => <User key={value.user_id} user={value} isAdminOrOwner={isAdminOrOwner}></User>)}
                 </tbody>
                 <div>{

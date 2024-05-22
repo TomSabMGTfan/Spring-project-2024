@@ -35,7 +35,7 @@ export const TaskList = ({ isAdminOrOwner }) => {
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className='table-column'>
                 {tasks.map((value) => <Task task={value} isAdminOrOwner={isAdminOrOwner} key={value.id} />)}
             </tbody>
             {isAdminOrOwner && <button className="btn btn-new-task" onClick={OpenCreateForm}>Create new task</button>}

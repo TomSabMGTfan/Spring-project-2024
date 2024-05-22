@@ -66,7 +66,7 @@ export const User = ({ user, isAdminOrOwner }) => {
     }, [user]);
 
     return (
-        <tr>
+        <tr >
             <td>
                 {user.username}
             </td>
