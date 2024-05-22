@@ -19,25 +19,25 @@ export const Project = ({ project }) => {
 
     return (
         <tr className='table'>
-            <td>
+            <td title={project.name}>
                 {project.name.substring(0, 10) + " ..."}
             </td>
-            <td>
+            <td title={project.status}>
                 {project.status}
             </td>
-            <td>
+            <td title={project.description}>
                 {project.description.substring(0, 10) + " ..."}
             </td>
-            <td>
+            <td title={project.userRole}>
                 {project.userRole}
             </td>
-            <td>
+            <td title={project.toDoTasks}>
                 {project.toDoTasks}
             </td>
-            <td>
+            <td title={project.inProgressTasks}>
                 {project.inProgressTasks}
             </td>
-            <td>
+            <td title={project.completedTasks}>
                 {project.completedTasks}
             </td>
             <td>
