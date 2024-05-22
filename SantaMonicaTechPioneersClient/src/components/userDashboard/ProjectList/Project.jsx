@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useProjects } from './hooks/useProject';
 import { Link } from "react-router-dom";
-import  "../../css/UserDashboard.css";
+import "../../css/UserDashboard.css";
 
 export const Project = ({ project }) => {
     const { deleteProject, OpenUpdateForm, FetchProjects } = useProjects();
@@ -19,36 +19,70 @@ export const Project = ({ project }) => {
 
     return (
         <tr className='table'>
-            <td>
-                {project.name}
+
+            <td title={project.name}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {
+                            project.name.length > 15 ?
+                                project.name.substring(0, 15) + " ..." :
+                                project.name
+                        }
+                    </div>
+                </Link>
             </td>
-            <td>
-                {project.status}
+            <td title={project.status}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.status}
+                    </div>
+                </Link>
             </td>
-            <td>
-                {project.description.substring(0, 10) + " ..."}
+            <td title={project.description}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {
+                            project.description.length > 10 ?
+                                project.description.substring(0, 10) + " ..." :
+                                project.description
+                        }
+                    </div>
+                </Link>
             </td>
-            <td>
-                {project.userRole}
+            <td title={project.userRole}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.userRole}
+                    </div>
+                </Link>
             </td>
-            <td>
-                {project.toDoTasks}
+            <td title={project.toDoTasks}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.toDoTasks}
+                    </div>
+                </Link>
             </td>
-            <td>
-                {project.inProgressTasks}
+            <td title={project.inProgressTasks}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.inProgressTasks}
+                    </div>
+                </Link>
             </td>
-            <td>
-                {project.completedTasks}
+            <td title={project.completedTasks}>
+                <Link to={`/projects/${project.id}`} className='table-link'>
+                    <div>
+                        {project.completedTasks}
+                    </div>
+                </Link>
             </td>
             <td>
                 {project.userRole === "owner" &&
                     <>
-                        <button  className='action-button ' onClick={() => OpenUpdateForm(project)}>Update</button>
+                        <button className='action-button ' onClick={() => OpenUpdateForm(project)}>Update</button>
                         <button className='action-button ' onClick={RemoveProject}>Remove</button>
                     </>}
-            </td>
-            <td>
-                <Link to={`/projects/${project.id}`} className='btn dashboard-link'>Go to project</Link>
             </td>
         </tr>
     );
