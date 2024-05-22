@@ -1,0 +1,92 @@
+.project-page {
+  min-height: 42rem;
+  box-sizing: border-box;
+  display: grid;
+
+  min-height: 90vh;
+  background: url(../../assets/Background7-fotor-2024051211119.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.Grid-Container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.Grid-Item {
+  margin: 1rem;
+}
+
+.Grid-Item-Grid-login-information {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.Grid-Login-Info-Style {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the login info horizontally */
+}
+
+.Grid-Item-Side-navigation-style-task-user-list1 {
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+  
+}
+
+.Grid-Item-Side-navigation-style-task-user-list2 {
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+
+.Grid-Item-Grid-Side-navigation {
+  grid-column: 2 / 1;
+  grid-row: 2 / 3;
+  padding: 1rem;
+}
+
+.Grid-Main {
+  grid-column: 2 / span 4 / 5;
+  grid-row: 1 / span 3;
+}
+
+table {
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 40px;
+  font-size: 16px;
+  
+  padding: 20px 45px 20px 20px;
+}
+.User-hub-table-owner-section {
+  padding-top: 1rem;
+}
+.active-link,
+.passive-link {
+  color: black;
+  text-decoration: none;
+  display: block;
+  font-size: 1.5rem;
+}
+
+.action-button {
+  background-color: rgb(90, 161, 90);
+}
+
+.action-button:nth-of-type(2){
+  background-color: rgb(230, 64, 64);
+}
+
+.dashboard-link{
+  color: black;
+}
+
+.table-column{
+  background-color: #7335827c;
+}
+

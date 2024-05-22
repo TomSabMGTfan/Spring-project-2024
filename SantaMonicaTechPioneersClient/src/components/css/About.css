@@ -1,0 +1,121 @@
+* {
+    /* margin: 0 auto; */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.aboutBody {
+    min-height: 90vh;
+    background: url(../../assets/Background7.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  
+}
+
+.about h1 {
+font-size: 70px;
+color: #394045;
+}
+
+.about p {
+color: #394045;
+}
+
+.about {
+    padding: 80px 100px;
+    
+}
+
+.AllPage2 {
+     /* max-width: 70%; */
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
+    padding-top: 50px;
+    gap: 3rem;
+}
+
+.AllPage {
+    /* max-width: 50%; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    padding-left: 1.5rem;
+    
+}
+
+.circleBox1 {
+position: relative;
+width: 130px;
+height: 134px;
+background: #394045;
+border-radius: 50%;
+overflow: hidden;
+box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.circleBox1::before {
+    content: '';
+    position: absolute;
+    inset: -5px 40px;
+    background: #f78898;
+    transition: 0.5s;
+    animation: animate2 4s linear infinite;
+}
+
+.circleBox1:hover::before {
+    
+      inset: -5px -5px;
+}
+
+@keyframes animate2
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    0%
+    {
+        transform: rotate(360deg); 
+    }
+}
+
+.circleBox1::after {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    background: #394045;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.circleImg1 {
+    position: absolute;
+    inset: 5px;
+    z-index: 3;
+    inset: 2px;
+    overflow: hidden;
+    border: 4px transparent;
+    border-radius: 50%;
+}
+
+.circleImg1 img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.circleBoxContainer1 p {
+    padding: 10px;
+    font-weight: 600;
+    color: #394045;
+}
+
+.grid-container{
+    display: grid; 
+    justify-content: center;
+    
+    }
