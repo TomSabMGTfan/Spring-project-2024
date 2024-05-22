@@ -20,13 +20,21 @@ export const Project = ({ project }) => {
     return (
         <tr className='table'>
             <td title={project.name}>
-                {project.name.substring(0, 10) + " ..."}
+                {
+                    project.name.length > 15 ?
+                        project.name.substring(0, 15) + " ..." :
+                        project.name.substring(0, 15)
+                }
             </td>
             <td title={project.status}>
                 {project.status}
             </td>
             <td title={project.description}>
-                {project.description.substring(0, 10) + " ..."}
+                {
+                    project.description.length > 10 ?
+                        project.description.substring(0, 10) + " ..." :
+                        project.description.substring(0, 10)
+                }
             </td>
             <td title={project.userRole}>
                 {project.userRole}
