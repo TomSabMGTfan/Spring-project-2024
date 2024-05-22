@@ -61,7 +61,7 @@ export const Task = ({ task, isAdminOrOwner }) => {
 
     return <tr>
         {/* ID */}
-        <td>{id}</td>
+        <td title={id}>{id}</td>
         {/* Name */}
         <td title={name}>
             {
@@ -72,7 +72,7 @@ export const Task = ({ task, isAdminOrOwner }) => {
             }
         </td>
         {/* Worker */}
-        <td>{worker_username}</td>
+        <td title={worker_username}>{worker_username}</td>
         {/* Description */}
         <td className="expand" title={description}>
             {
@@ -82,17 +82,17 @@ export const Task = ({ task, isAdminOrOwner }) => {
             }
         </td>
         {/* Status */}
-        <td>
+        <td title={displayStatus}>
             <span className={`label label-${cssStatus}`}>{displayStatus}</span>
         </td>
         {/* Task creation date */}
-        <td>{created}</td>
+        <td title={created}>{created}</td>
         {/* Task deadline */}
-        <td>{deadline}</td>
+        <td title={deadline}>{deadline}</td>
 
         {/* Buttons */}
 
-        <td>
+        <td title='actions'>
             <span className="actions">
                 <BsFillEyeFill onClick={() => OpenViewForm(task)} />
                 {isAdminOrOwner ?

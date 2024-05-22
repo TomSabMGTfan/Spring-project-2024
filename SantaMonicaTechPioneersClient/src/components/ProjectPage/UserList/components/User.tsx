@@ -67,14 +67,14 @@ export const User = ({ user, isAdminOrOwner }) => {
 
     return (
         <tr >
-            <td>
+            <td title={user.username}>
                 {user.username}
             </td>
-            <td>
+            <td title={user.role}>
                 {user.role}
             </td>
 
-            <td>
+            <td title="actions">
                 {
                     isAdminOrOwner && user.role !== "owner" ?
                         <button className='action-button ' onClick={UpdateUserRole}>
