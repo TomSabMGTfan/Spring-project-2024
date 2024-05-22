@@ -26,20 +26,19 @@ Question</h1>
                 <FaUser className='icon2' />
               </div>
               <div className='input-box2'>
-                <input type="email" placeholder='Email'/>
+                <input type="email" placeholder='Email' />
                 
                 <FaEnvelope className='icon2' />
               </div>
 
               <div className='input-text-erea'>
-              <textarea name='message' id='message' cols={5} rows={5} placeholder='Message'></textarea>
+              <textarea  name='message' id='message' cols={5} rows={5} placeholder='Message'></textarea>
 
               </div>
               
 
               <div>
-              <button type='submit'>Submit your request</button>
-              <Link to="/signup">Forgot password? </Link>
+              <Link to="/about" ><button type='submit'>Submit your request</button></Link>
               </div>
               {/* <div className='remeber-forgot'>
                 <label><input type="checkbox" />Remeber me</label>
