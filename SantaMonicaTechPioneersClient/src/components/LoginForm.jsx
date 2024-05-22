@@ -60,15 +60,20 @@ function LoginForm() {
           <div className="from-box login">
             <form onSubmit={handleSubmit(onSubmit)}>
               <h1 className='loginName'>Login</h1>
-              <div className='input-box'>
-                <input type="text" placeholder='Username' {...register('login', { required: 'Username/Email is required' })} />
+              <div className='field-box'>
+
+                <div className='input-box'>
+                  <input type="text" placeholder='Username' {...register('login', { required: 'Username/Email is required' })} />
+                  <FaUser className='icon' />
+                </div>
                 {errors.login && <p className='input_error'>{errors.login.message}</p>}
-                <FaUser className='icon' />
               </div>
-              <div className='input-box'>
-                <input type="password" placeholder='Password' {...register('password', { required: 'Password is required' })} />
+              <div className='field-box'>
+                <div className='input-box'>
+                  <input type="password" placeholder='Password' {...register('password', { required: 'Password is required' })} />
+                  <FaLock className='icon' />
+                </div>
                 {errors.password && <p className='input_error'>{errors.password.message}</p>}
-                <FaLock className='icon' />
               </div>
               <div className='remeber-forgot'>
                 <label><input type="checkbox" />Remeber me</label>
