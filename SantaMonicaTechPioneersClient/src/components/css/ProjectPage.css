@@ -19,12 +19,36 @@
 }
 
 .Grid-Item-Grid-login-information {
-  grid-column: 1 / 1;
-  grid-row: 1 / 1;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
+
+.Grid-Login-Info-Style {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the login info horizontally */
+}
+
+.Grid-Item-Side-navigation-style-task-user-list1 {
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+  
+}
+
+.Grid-Item-Side-navigation-style-task-user-list2 {
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+
 .Grid-Item-Grid-Side-navigation {
   grid-column: 2 / 1;
   grid-row: 2 / 3;
+  padding: 1rem;
 }
 
 .Grid-Main {

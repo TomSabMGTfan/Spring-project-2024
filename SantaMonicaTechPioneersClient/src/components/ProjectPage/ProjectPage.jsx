@@ -52,23 +52,31 @@ export const ProjectPage = () => {
         <div className='project-page'>
             
             <div className='Grid-Container'>
+                <div className="Grid-Login-Info-Style">
                 <div className='Grid-Item-Grid-login-information'>
                 <h3>Project name: {project.name}</h3>
                 <div>Description: {project.description}</div>
                 <div>Status: {project.status}</div>
+                </div>
             </div>
                 <div className='Grid-Item-Grid-Side-navigation'>
+
                     {/* Conditional rendering for active links */}
+                    <div className='Grid-Item-Side-navigation-style-task-user-list1'>
                     {activeTab === 'task' ? (
                         <Link to={`/projects/${project_id}`} onClick={handleTaskListClick} className="active-link">Task list</Link>
                     ) : (
                         <Link to={`/projects/${project_id}`} onClick={handleTaskListClick} className='passive-link'>Task list</Link>
                     )}
+                    </div>
+                    <div className='Grid-Item-Side-navigation-style-task-user-list2'>
                     {activeTab === 'user' ? (
                         <Link to={`/projects/${project_id}`} onClick={handleUserListClick} className="active-link">User list</Link>
                     ) : (
                         <Link to={`/projects/${project_id}`} onClick={handleUserListClick} className='passive-link'>User list</Link>
                     )}
+                    </div>
+    
                 </div>
                 <div className='Grid-Item Grid-Main'>
                     {
