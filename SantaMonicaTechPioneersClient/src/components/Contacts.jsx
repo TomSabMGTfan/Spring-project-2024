@@ -1,16 +1,23 @@
 import React from 'react'
 import './css/Contacts.css'
-import { FaUser, FaLock } from 'react-icons/fa';
+import { FaUser, FaEnvelope} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Contacts = () => {
     return (
         <> 
 
   <div className='wrapper-body2'> 
+  <div className='wrapper-contacts'>
+                    <h1 className="anim">Reach us here</h1>
+                    <p className="anim">On top of that, 90% of all emails that get a reply <br></br> get it within 2 days
+                    </p>
+  </div>
   <div className='wrapper2'>
   <div className="from-box2 login2">
   <form>
-  <h1 className='loginName2'>Quatation</h1>
+  <h1 className='loginName2'>
+Question</h1>
 
   
               <div className='input-box2'>
@@ -19,9 +26,9 @@ const Contacts = () => {
                 <FaUser className='icon2' />
               </div>
               <div className='input-box2'>
-                <input type="password" placeholder='Email'/>
+                <input type="email" placeholder='Email'/>
                 
-                <FaLock className='icon2' />
+                <FaEnvelope className='icon2' />
               </div>
 
               <div className='input-text-erea'>
@@ -32,6 +39,7 @@ const Contacts = () => {
 
               <div>
               <button type='submit'>Submit your request</button>
+              <Link to="/signup">Forgot password? </Link>
               </div>
               {/* <div className='remeber-forgot'>
                 <label><input type="checkbox" />Remeber me</label>
