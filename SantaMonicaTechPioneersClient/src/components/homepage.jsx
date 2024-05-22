@@ -15,7 +15,7 @@ export const Home = () => {
                     <h1 className="anim">Team Work</h1>
                     <p className="anim">Collaborative effort of a group to achieve a common goal or <br></br>to
                         complete a task in an effective and efficient way !</p>
-                    {!user && <a href="/singup" className="pgr-btn anim">Join now</a>}
+                    {!user && <a href="/signup" className="pgr-btn anim">Join now</a>}
                 </div>
                 <div className="div-img">
                     <img src={img1} alt="labas" className="feature-img anim" />
